@@ -19,7 +19,7 @@ use App\Http\Controllers\Backend\VendorController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/loguot', function () {
+Route::get('/logout', function () {
     return view('welcome');
 });
 

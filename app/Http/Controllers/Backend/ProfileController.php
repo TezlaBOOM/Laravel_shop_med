@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' =>['required','max:150'],
             'email' =>['required','email','unique:users,email,'.Auth::user()->id],
-            'image' =>['required','max:2048'],
+            'image' =>['max:2048'],
         ]);
 
         $user = Auth::user();
@@ -41,20 +41,23 @@ class ProfileController extends Controller
         $user ->email = $request->email;
         $user ->save();
 
+        toastr()->success('Profile updated successfully');
         return redirect()->back();
     }
 
     public function updatePassword(Request $request)
     {
+        
         $request->validate([
             'current_password'=>['required','current_password'],
-            'password'=>['required','confirmed','min:8']
+            'password'=>['required','string','confirmed','min:8']
         ]);
 
         $request->user()->update([
             'password'=>bcrypt($request->password)
         ]);
 
+        toastr()->success('Profile password successfully');
         return redirect()->back();
     }
 
