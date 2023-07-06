@@ -22,3 +22,4 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 resources/views/stisla-1-2.2.0
+resources/views/ecommerce-frontend-template
