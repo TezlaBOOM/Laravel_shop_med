@@ -87,15 +87,15 @@
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="far fa-envelope"></i>
-                                            <input id="nip" name="nip" value="{{old('nip')}}" type="text" placeholder="NIP" max="10">
+                                            <input id="nip" name="nip" value="{{old('nip')}}" type="text" placeholder="NIP" maxlength="10">
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
-                                            <input id="password" name="password" type="password" placeholder="Password">
+                                            <input id="password" name="password" type="password" placeholder="Password" minlength="8">
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
-                                            <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirm Password">
+                                            <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirm Password" minlength="8">
                                         </div>
                                         
                                         <button class="common_btn mt-5" type="submit">signup</button>

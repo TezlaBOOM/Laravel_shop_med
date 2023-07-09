@@ -1,25 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
 
-class ProfileController extends Controller
+class UserProfileController extends Controller
 {
     public function index()
     {
-        return view('admin.profile.index');
+        return view('frontend.dashboard.profile');
     }
     public function updateProfile(Request $request)
     {
+
         $request->validate([
             'name' =>['required','max:150'],
             'email' =>['required','email','unique:users,email,'.Auth::user()->id],
+            'nip' =>['required','max:10'],
+            'phone' =>['required','max:9'], 
             'image' =>['max:2048'],
         ]);
+
 
         $user = Auth::user();
         if($request->hasFile('image'))
@@ -32,22 +36,25 @@ class ProfileController extends Controller
             $imageName=rand().'_'.$image->getClientOriginalName();
             $image->move(public_path('uploads'), $imageName);
 
-            $path="/uploads/".$imageName;
+            $path='/uploads/'.$imageName;
 
             $user->image=$path;
         }
         
+        
         $user ->name = $request->name;
         $user ->email = $request->email;
+        $user ->nip = $request->nip;
+        $user ->phone = $request->phone;
         $user ->save();
 
-        toastr()->success('Profile został zaktualizowany');
+        toastr()->success('Profile updated successfully');
         return redirect()->back();
+    
     }
-
     public function updatePassword(Request $request)
     {
-        dd($request->all());
+        
         $request->validate([
             'current_password'=>['required','current_password'],
             'password'=>['required','string','confirmed','min:8']
@@ -57,8 +64,7 @@ class ProfileController extends Controller
             'password'=>bcrypt($request->password)
         ]);
 
-        toastr()->success('Hasło zostało zmienione');
+        toastr()->success('Profile password successfully');
         return redirect()->back();
     }
-
 }
