@@ -25,23 +25,23 @@
 
                             <div class="form-group">
                                 <label>Typ</label>
-                                <input type="text" class="form-control" name="type">
+                                <input type="text" class="form-control" name="type" value="{{old('type')}}">
                             </div>
                             <div class="form-group">
                                 <label>Tytuł</label>
-                                <input type="text" class="form-control" name="title">
+                                <input type="text" class="form-control" name="title" value="{{old('title')}}">
                             </div>
                             <div class="form-group">
                                 <label>Cena Startowa</label>
-                                <input type="text" class="form-control" name="strating_price">
+                                <input type="text" class="form-control" name="starting_price" value="{{old('starting_price')}}">
                             </div>
                             <div class="form-group">
                                 <label>Link przycisku</label>
-                                <input type="text" class="form-control" name="btn_url">
+                                <input type="text" class="form-control" name="btn_url" value="{{old('btn_url')}}">
                             </div>
                             <div class="form-group">
                                 <label>Pozycja</label>
-                                <input type="number" class="form-control" name="serial">
+                                <input type="number" class="form-control" name="serial" value="{{old('serial')}}">
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
