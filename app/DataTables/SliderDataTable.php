@@ -77,9 +77,6 @@ class SliderDataTable extends DataTable
             Column::make('id')->width(50),
             Column::make('banner')->width(70),
             Column::make('title'),
-            Column::make('type'),
-            Column::make('starting_price'),
-            Column::make('btn_url'),
             Column::make('serial'),
             Column::make('status'),
             Column::computed('action')
