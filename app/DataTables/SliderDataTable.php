@@ -25,7 +25,7 @@ class SliderDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
                 $editBtn ="<a href='".route('admin.slider.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $delBtn ="<a href='".route('admin.slider.destroy',$query->id)."' class='btn btn-danger ml-2'><i class='fa-regular fa-trash-alt'></i></a>";
+                $delBtn ="<a href='".route('admin.slider.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
 
                 return $editBtn.$delBtn;
             })
@@ -33,7 +33,16 @@ class SliderDataTable extends DataTable
             ->addColumn('banner', function($query){
               return  $img="<img width='50px' src='".asset($query->banner)."'></img>";
             })
-            ->rawColumns(['banner','action'])
+            ->addColumn('status', function($query){
+                $active ='<i class ="badge badga-success">Włączony</i>';
+                $inActive ='<i class ="badge badga-danger">Wyłączony</i>';
+                if($query->status ==1){
+                    return $active;
+                }else{
+                    return $inActive;
+                }
+            })
+            ->rawColumns(['banner','action','status'])
             ->setRowId('id');
     }
 

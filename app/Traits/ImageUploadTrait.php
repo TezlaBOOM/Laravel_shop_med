@@ -38,4 +38,10 @@ trait ImageUploadTrait{
 
         }
     }
+    public function deleteImage(string $Path)
+    {
+        if(File::exists(public_path($Path))){
+            File::exists(public_path($Path));
+        }
+    }
 }
