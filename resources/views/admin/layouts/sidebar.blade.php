@@ -19,6 +19,7 @@
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Zarządzanie Kategoriami</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{route('admin.category.index')}}">Kategorie</a></li>
+            <li><a class="nav-link" href="{{route('admin.sub-category.index')}}">Pod Kategorie</a></li>
           </ul>
         </li>
 
