@@ -20,6 +20,7 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{route('admin.category.index')}}">Kategorie</a></li>
             <li><a class="nav-link" href="{{route('admin.sub-category.index')}}">Pod Kategorie</a></li>
+            <li><a class="nav-link" href="{{route('admin.child-category.index')}}">Pod pod Kategorie</a></li>
           </ul>
         </li>
 
