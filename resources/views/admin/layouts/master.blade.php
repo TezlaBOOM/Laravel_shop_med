@@ -105,6 +105,9 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
+    function DelReload() {
+      window.location.reload();;
+    }
 
     $('body').on('click', '.delete-item', function(event) {
       event.preventDefault();
@@ -129,18 +132,25 @@
                   if(data.status =="success"){
                     Swal.fire(
                     'Usunięto',
-                    data.message
+                    data.message,
+                    'success'
+                    
                   )
+                 
                   }else if(data.status =="error"){
                     Swal.fire(
                     'Błąd',
-                    data.message
+                    data.message,
+                    'error'
                   )
                   }
-              window.location.reload();
+
+
+               setTimeout(DelReload, 1500);
+              
               },
               error: function(xhn,status,error){
-                console.log(erroe);
+                console.log(error);
               }
             })
 

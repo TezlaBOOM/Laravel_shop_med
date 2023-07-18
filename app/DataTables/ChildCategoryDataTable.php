@@ -47,8 +47,9 @@ class ChildCategoryDataTable extends DataTable
         ->addColumn('category',function ($query) {
             return $query->category->name;
         })
-        ->addColumn('subcategory',function ($query) {
-            return $query->subcategory->name;
+
+        ->addColumn('sub_category',function ($query) {
+            return $query->subCategory->name;
         })
 
 
@@ -97,7 +98,7 @@ class ChildCategoryDataTable extends DataTable
             Column::make('id')->width(100),
             Column::make('name'),
             Column::make('category'),
-            Column::make('subcategory'),
+            Column::make('sub_category'),
             Column::make('status')->width(100),
             Column::computed('action')
             ->exportable(false)

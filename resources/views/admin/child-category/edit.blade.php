@@ -33,7 +33,7 @@
                               <select id="inputStatus" class="form-control sub-category" name="sub_category">
                                   <option value="">Wybierz</option>
                                   @foreach ($subCategories as $subCategory)
-                                  <option {{$subCategory->id == $childCategory->subcategory_id ? 'selected':''}}
+                                  <option {{$subCategory->id == $childCategory->sub_category_id ? 'selected':''}}
                                      value="{{$subCategory->id}}">{{$subCategory->name}}</option>
                                   @endforeach                                 
                                 
@@ -41,7 +41,7 @@
                               </select>
                           <div class="form-group">
                             <label>Nazwa</label>
-                            <input type="text" class="form-control" name="name" value="{{$subCategory->name}}">
+                            <input type="text" class="form-control" name="name" value="{{$childCategory->name}}">
                         </div>
                         <div class="form-group">
                           <label for="inputStatus">Status</label>
