@@ -14,17 +14,17 @@ class AdminProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::where('email','admin@tezla.com')->first();
+        $user = User::where('email','admin@tezla.pl')->first();
 
         $vendor= new Vendor();
         $vendor->banner = 'uploads/123.jpg';
         $vendor->phone = '123123123';
-        $vendor->email = 'admin@tezla.com';
+        $vendor->email = 'admin@tezla.pl';
         $vendor->nip = '1234567890';
         $vendor->address = 'pl';
         $vendor->description = 'vendor';
         $vendor->user_id = $user->id;
         $vendor->save();
-        
+
     }
 }
