@@ -20,9 +20,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductDataTable $datatable)
+    public function index(ProductDataTable $dataTable)
     {
-        return $datatable->render('admin.product.index');
+        return $dataTable->render('admin.product.index');
     }
 
     /**
@@ -53,9 +53,7 @@ class ProductController extends Controller
             'backorder'=>['required'],
             'short_description' =>['required','max:600'],
             'seo_description' =>['required'],
-            'is_top' =>['required'],
-            'is_best' =>['required'],
-            'is_featured' =>['required']
+            'product_type' =>['required'],
         ]);
 
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
@@ -79,9 +77,7 @@ class ProductController extends Controller
         $product->offer_price = $request->offer_price;
         $product->offer_start_date = $request->offer_start_date;
         $product->offer_end_date = $request->offer_end_date;
-        $product->is_top = $request->is_top;
-        $product->is_best = $request->is_best;
-        $product->is_featured = $request->is_featured;
+        $product->product_type = $request->product_type;
         $product->status = $request->status;
         $product->is_approved = 1;
         $product->seo_title = $request->seo_title;

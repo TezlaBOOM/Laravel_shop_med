@@ -147,29 +147,17 @@
                             <textarea class="summernote" name="long_description" value="{{old('long_description')}}"></textarea>
                           </div>
 
-                          <div class="row">
-                              <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="inputStatus">Top</label>
-                                  <select id="inputStatus" class="form-control" name="is_top">
+                                  <label for="inputStatus">Typ produktu</label>
+                                  <select id="inputStatus" class="form-control" name="product_type">
                                       <option value="">Wybierz</option>
-                                      <option value="1">Tak</option>
-                                      <option value="0">Nie</option>
+                                      <option value="new_arrival">Nowość</option>
+                                      <option value="featured_product">Wyróżniony</option>
+                                      <option value="top_product">Top produkt</option>
+                                      <option value="best_product">Bestseller</option>
                                   </select>
                                 </div>
-                              </div>
 
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="inputStatus">BestSeller</label>
-                                  <select id="inputStatus" class="form-control" name="is_best">
-                                    <option value="">Wybierz</option>
-                                    <option value="1">Tak</option>
-                                    <option value="0">Nie</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
                           <div class="from-group">
                             <label>seo tytuł</label>
                             <input type="text" class="form-control" name='seo_title' value="{{old('seo_title')}}">

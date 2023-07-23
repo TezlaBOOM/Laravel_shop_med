@@ -19,7 +19,7 @@
                         </div>
                       </div>
                       <div class="card-body">
-                       {{-- // {{$dataTable->table()}} --}}
+                       {{$dataTable->table()}} 
                       </div>
 
                     </div>
