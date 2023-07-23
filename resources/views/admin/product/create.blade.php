@@ -169,14 +169,14 @@
                           </div>
 
                         
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="inputStatus">Pokazuje się</label>
                                 <select id="inputStatus" class="form-control" name="is_featured">
                                     <option value="">Wybierz</option>
                                     <option value="1">Tak</option>
                                     <option value="0">Nie</option>
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
