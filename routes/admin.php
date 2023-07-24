@@ -8,10 +8,12 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Models\Category;
+use App\Models\ProductImageGallery;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -48,5 +50,7 @@ Route::resource('vendor-profile',AdminVendorController::class);
 /**vendor route*/
 Route::get('product/get-subcategories',[ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
 Route::get('product/child-subcategories',[ProductController::class, 'getChildCategories'])->name('product.get-childcategories');
-
+Route::put('product/change-status', [ProductController::class, 'changeStatus'])->name('product.change-status');
 Route::resource('product',ProductController::class);
+Route::resource('product-image-gallery',ProductImageGalleryController::class);
+

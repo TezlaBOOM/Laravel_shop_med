@@ -16,8 +16,9 @@
                         <h4>Strwórz Marke</h4>
                       </div>
                       <div class="card-body">
-                        <form action="{{route('admin.product.update',$product->id)}}" method="POST" enctype="multipart/form-data"> 
-                            @csrf
+                        <form action="{{route('admin.product.update', $product->id)}}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          @method('PUT')
                             <div class="form-group">
                                 <label>Podgląd Loga</label>
                                 <br>
