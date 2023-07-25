@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -47,10 +48,14 @@ Route::resource('brand',BrandController::class);
 /**vendor route*/
 Route::resource('vendor-profile',AdminVendorController::class);
 
-/**vendor route*/
+/**product route*/
 Route::get('product/get-subcategories',[ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
 Route::get('product/child-subcategories',[ProductController::class, 'getChildCategories'])->name('product.get-childcategories');
 Route::put('product/change-status', [ProductController::class, 'changeStatus'])->name('product.change-status');
 Route::resource('product',ProductController::class);
+/**product gallery image route*/
 Route::resource('product-image-gallery',ProductImageGalleryController::class);
+//*product variant route*/
+Route::put('product-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
+Route::resource('product-variant',ProductVariantController::class);
 
