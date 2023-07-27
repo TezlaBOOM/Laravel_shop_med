@@ -4,10 +4,10 @@
           <!-- Main Content -->
             <section class="section">
               <div class="section-header">
-                <h1>Warianty</h1>
+                <h1>Warianty przedmiotu</h1>
               </div>
               <div class="mb-3">
-                <a herf="{{route('admin.product.index')}}" class="btn btn-primary" >Back</a>
+                <a herf="{{route('admin.product-variant.index',['product'=>$product->id])}}" class="btn btn-primary" >Back</a>
               </div>
               <div class="section-body">
                 

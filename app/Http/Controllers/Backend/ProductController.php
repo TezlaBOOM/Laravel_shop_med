@@ -189,7 +189,14 @@ class ProductController extends Controller
         $childcategories = ChildCategory::where('sub_category_id',$request->id)->get();
         return $childcategories;
     }
+    public function changeStatus(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product -> status = $request -> status == 'true' ? 1 : 0;
+        $product -> save();
 
+        return response(['message' =>'Zaktualizowano status']);
+    }
 
     
 }
