@@ -17,7 +17,7 @@
                       <div class="card-header">
                         <h4>Lista Wariantów</h4>
                         <div class="card-header-action">
-                            <a href="{{route('admin.product-variant.create', ['product'=>request()->product])}}" class="btn btn-primary">Dodaj Wariant</a>
+                            <a href="{{route('admin.product-variant-item.create', ['productId'=>$product->id,'variantId'=>$variant->id])}}" class="btn btn-primary">Dodaj Wariant</a>
                         </div>
                       </div>
                       <div class="card-body">

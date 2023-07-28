@@ -17,24 +17,43 @@
 
                   </div>
                   <div class="card-body">
-                    <form action="{{route('admin.product-variant.store')}}" method="POST">
+                    <form action="{{route('admin.product-variant-item.store')}}" method="POST">
                         @csrf
 
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="">
+                            <label>nazwa wariantu</label>
+                            <input type="text" class="form-control" name="variant_name" value="{{$variant->name}}" readonly>
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" name="product" value="{{request()->product}}">
+                          <input type="hidden" class="form-control" name="variant_id" value="{{$variant->id}}">
                         </div>
+                        <div class="form-group">
+                          <input type="hidden" class="form-control" name="product_id" value="{{$product->id}}">
+                        </div>
+                        <div class="form-group">
+                          <label>nazwa przedmiotu</label>
+                          <input type="text" class="form-control" name="name" value="">
+                      </div>
+                      <div class="form-group">
+                        <label>Cena <code>(0 oznacze za free)</label>
+                        <input type="text" class="form-control" name="price" value="">
+                    </div>
+                        <div class="form-group">
+                          <label for="inputState">Domyślna wartość</label>
+                          <select id="inputState" class="form-control" name="is_default">
+                            <option value="1">tak</option>
+                            <option value="0">nie</option>
+                          </select>
+                      </div>
+
                         <div class="form-group">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">
-                              <option value="1">Active</option>
-                              <option value="0">Inactive</option>
+                              <option value="1">aktywny</option>
+                              <option value="0">nie aktuwny</option>
                             </select>
                         </div>
-                        <button type="submmit" class="btn btn-primary">Create</button>
+                        <button type="submmit" class="btn btn-primary">Stwórz</button>
                     </form>
                   </div>
 
