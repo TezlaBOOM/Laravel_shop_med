@@ -7,20 +7,20 @@ use App\Models\Vendor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdminProfileSeeder extends Seeder
+class VendorShopProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $user = User::where('email','admin@tezla.pl')->first();
+        $user = User::where('email','vendor@tezla.pl')->first();
 
         $vendor= new Vendor();
         $vendor->banner = 'uploads/123.jpg';
-        $vendor->shop_name = 'sklep admin';
+        $vendor->shop_name = 'sklep testowy';
         $vendor->phone = '123123123';
-        $vendor->email = 'admin@tezla.pl';
+        $vendor->email = 'vendor@tezla.pl';
         $vendor->nip = '1234567890';
         $vendor->address = 'pl';
         $vendor->description = 'vendor';

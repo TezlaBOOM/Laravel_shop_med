@@ -27,7 +27,10 @@
                                 <label>Baner</label>
                                 <input type="file" class="form-control" name="banner">
                             </div>
-
+                            <div class="form-group wsus__input">
+                              <label>Nazwa sklepu</label>
+                              <input type="text" class="form-control" name="shop_name" value="{{$profile->shop_name}}">
+                          </div>
                             <div class="form-group">
                                 <label>Telefon</label>
                                 <input type="text" class="form-control" name="phone" value="{{$profile->phone}}">
@@ -46,7 +49,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Opis</label>
-                                <textarea class="summernote" name="description" value="{{$profile->description}}"></textarea>
+                                <textarea class="summernote" name="description">{{$profile->description}}</textarea>
                             </div>
 
                             <div class="form-group">

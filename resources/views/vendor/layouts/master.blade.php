@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="{{asset('frontend/css/ranger_style.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/jquery.classycountdown.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/venobox.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/assets/modules/summernote/summernote-bs4.css')}}">
 
   <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
@@ -35,7 +36,7 @@
   ==============================-->
   <div class="wsus__dashboard_menu">
     <div class="wsusd__dashboard_user">
-      <img src="images/dashboard_user.jpg" alt="img" class="img-fluid">
+      <img src="{{asset('frontend/images/dashboard_user.jpg')}}" alt="img" class="img-fluid">
       <p>anik roy</p>
     </div>
   </div>
@@ -99,8 +100,15 @@
   <!--classycountdown js-->
   <script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
 
+  <script src="{{asset('backend/assets/modules/summernote/summernote-bs4.js')}}"></script>
   <!--main/custom js-->
   <script src="{{asset('frontend/js/main.js')}}"></script>
+
+<script>
+    $('.summernote').summernote({
+      hight:150
+    });
+</script>
 </body>
 
 </html>

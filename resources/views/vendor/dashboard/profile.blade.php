@@ -1,4 +1,4 @@
-@extends('vendor.dashboard.layouts.master')
+@extends('vendor.layouts.master')
 
 @section('content')
 
@@ -8,7 +8,7 @@
   ==============================-->
   <section id="wsus__dashboard">
     <div class="container-fluid">
-        @include('vendor.dashboard.layouts.siderbar')
+        @include('vendor.layouts.siderbar')
 
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
