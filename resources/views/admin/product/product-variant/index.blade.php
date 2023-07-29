@@ -7,7 +7,7 @@
                 <h1>Warianty</h1>
               </div>
               <div class="mb-3">
-                <a herf="{{route('admin.product.index')}}" class="btn btn-primary" >Back</a>
+                <a href="{{route('admin.product.index')}}" class="btn btn-primary">Powrót</a>
               </div>
               <div class="section-body">
                 

@@ -7,7 +7,7 @@
                 <h1>Warianty przedmiotu</h1>
               </div>
               <div class="mb-3">
-                <a herf="{{route('admin.product-variant.index',['product'=>$product->id])}}" class="btn btn-primary" >Back</a>
+                <a href="{{route('admin.product-variant.index', ['product' => $product->id])}}" class="btn btn-primary">Back</a>
               </div>
               <div class="section-body">
                 
@@ -15,7 +15,7 @@
                   <div class="col-12 ">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Lista Wariantów</h4>
+                        <h4>Lista Wariantów: {{$variant->name}}</h4>
                         <div class="card-header-action">
                             <a href="{{route('admin.product-variant-item.create', ['productId'=>$product->id,'variantId'=>$variant->id])}}" class="btn btn-primary">Dodaj Wariant</a>
                         </div>

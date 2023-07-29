@@ -59,7 +59,7 @@ class ProductVariantItemController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'price' => ['integer', 'required'],
+            'price' => ['integer','required'],
             'is_default' => ['required'],
             'status' => ['required']
         ]);
@@ -71,9 +71,9 @@ class ProductVariantItemController extends Controller
         $variantItem->status = $request->status;
         $variantItem->save();
 
-        toastr('Update Successfully!', 'success', 'success');
+        toastr('Zaktualizowano', 'success', 'success');
 
-        return redirect()->route('admin.products-variant-item.index',
+        return redirect()->route('admin.product-variant-item.index',
         ['productId' => $variantItem->productVariant->product_id, 'variantId' => $variantItem->product_variant_id]);
     }
 
@@ -82,7 +82,7 @@ class ProductVariantItemController extends Controller
         $variantItem = ProductVariantItem::findOrFail($variantItemId);
         $variantItem->delete();
 
-        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        return response(['status' => 'success', 'message' => 'Usunięto']);
     }
 
     public function chageStatus(Request $request)
@@ -91,6 +91,6 @@ class ProductVariantItemController extends Controller
         $variantItem->status = $request->status == 'true' ? 1 : 0;
         $variantItem->save();
 
-        return response(['message' => 'Status has been updated!']);
+        return response(['message' => 'Status zmieniono']);
     }
 }

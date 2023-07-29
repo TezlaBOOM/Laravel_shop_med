@@ -4,7 +4,7 @@
       <!-- Main Content -->
         <section class="section">
           <div class="section-header">
-            <h1>Warianty przedmiotu<</h1>
+            <h1>warianty przedmiotu<</h1>
           </div>
 
           <div class="section-body">
