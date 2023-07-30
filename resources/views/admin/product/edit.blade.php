@@ -4,7 +4,7 @@
           <!-- Main Content -->
             <section class="section">
               <div class="section-header">
-                <h1>Marka</h1>
+                <h1>Produkt</h1>
               </div>
     
               <div class="section-body">
@@ -13,7 +13,7 @@
                   <div class="col-12 ">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Strwórz Marke</h4>
+                        <h4>Strwórz Produkt</h4>
                       </div>
                       <div class="card-body">
                         <form action="{{route('admin.product.update', $product->id)}}" method="POST" enctype="multipart/form-data">

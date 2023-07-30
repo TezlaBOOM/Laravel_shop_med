@@ -6,9 +6,9 @@
     <a href="dsahboard.html" class="dash_logo"><img src="{{asset('frontend/images/logo.png')}}" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
       <li><a class="active" href="dsahboard.html"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+      <li><a href="{{route('vendor.product.index')}}"><i class="far fa-user"></i> Produkty</a></li>
       <li><a href="{{route('vendor.shop-profile.index')}}"><i class="far fa-user"></i> Profil sprzedawcy</a></li>
-      <li><a href="{{route('vendor.profile')}}"><i class="far fa-user"></i> Profil</a></li>
-      <li>
+      <li><a href="{{route('vendor.profile')}}"><i class="far fa-user"></i> Profil</a></li><li>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="route('logout')" onclick="event.preventDefault();

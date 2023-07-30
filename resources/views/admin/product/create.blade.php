@@ -168,15 +168,7 @@
                             <textarea class="summernote" name="seo_description" value="{{old('seo_description')}}"></textarea>
                           </div>
 
-                        
-                            {{-- <div class="form-group">
-                                <label for="inputStatus">Pokazuje się</label>
-                                <select id="inputStatus" class="form-control" name="is_featured">
-                                    <option value="">Wybierz</option>
-                                    <option value="1">Tak</option>
-                                    <option value="0">Nie</option>
-                                </select>
-                            </div> --}}
+
 
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
