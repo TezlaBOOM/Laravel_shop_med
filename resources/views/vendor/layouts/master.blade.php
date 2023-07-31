@@ -130,6 +130,80 @@
         singleDatePicker: true
     });
   </script>
+    <script>
+      @if($errors->any())
+        @foreach($errors->all() as $error)
+          toastr.error("{{$error}}")
+        @endforeach
+      @endif
+  </script>
+
+
+
+
+<script>
+  $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    function DelReload() {
+      window.location.reload();;
+    }
+
+    $('body').on('click', '.delete-item', function(event) {
+      event.preventDefault();
+      let DeleteURL=$(this).attr('href');
+
+      
+
+        Swal.fire({
+          title: 'Jesteś pewien?',
+          text: "Nie będzie możliwości cofnęięcia zmania",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Tak, usuń'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type:"DELETE",
+              url: DeleteURL,
+              success: function(data){
+                  if(data.status =="success"){
+                    Swal.fire(
+                    'Usunięto',
+                    data.message,
+                    'success'
+                    
+                  )
+                 
+                  }else if(data.status =="error"){
+                    Swal.fire(
+                    'Błąd',
+                    data.message,
+                    'error'
+                  )
+                  }
+
+
+               setTimeout(DelReload, 1500);
+              
+              },
+              error: function(xhn,status,error){
+                console.log(error);
+              }
+            })
+
+          }
+        })
+
+      })
+  })
+</script>
+
 
 @stack('scripts');
 </body>

@@ -9504,3 +9504,7 @@ a:not([href]):not([class]):hover {
 {
   margin-left: 5px;
 }
+.btn-space-right {
+  margin-right: 3px;
+  color:#fff;
+}
