@@ -28,22 +28,22 @@
                   <form action="{{route('vendor.product-variant-item.update', $variantItem->id)}}" method="POST">
                       @csrf
                       @method('PUT')
-                      <div class="form-group">
+                      <div class="form-group wsus__input">
                           <label>Nazwa wariantu</label>
                           <input type="text" class="form-control" name="variant_name" value="{{$variantItem->productVariant->name}}" readonly>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group wsus__input">
                           <label>Nazwa przedmiotu</label>
                           <input type="text" class="form-control" name="name" value="{{$variantItem->name}}">
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group wsus__input">
                           <label>Xena <code>(0 oznacza za free)</code></label>
                           <input type="text" class="form-control" name="price" value="{{$variantItem->price}}">
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group wsus__input">
                           <label for="inputState">domyślna wartość</label>
                           <select id="inputState" class="form-control" name="is_default">
                               <option value="">wybierz</option>
@@ -52,7 +52,7 @@
                           </select>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group wsus__input">
                           <label for="inputState">Status</label>
                           <select id="inputState" class="form-control" name="status">
                             <option {{$variantItem->status == 1 ? 'selected' : ''}} value="1">Aktywny</option>

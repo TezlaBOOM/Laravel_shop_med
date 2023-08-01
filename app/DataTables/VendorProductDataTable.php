@@ -101,8 +101,15 @@ class VendorProductDataTable extends DataTable
 
             }
           })
+          ->addColumn('approved', function($query){
+            if($query->is_approved === 1){
+                return '<i class="badge bg-success"> Zatwierdzony</i>';
+            }else {
+                return '<i class="badge bg-warning"> Oczekujący</i>';
+            }
+          })
 
-        ->rawColumns(['status','action','thumb_image','type','backorder'])
+        ->rawColumns(['status','action','thumb_image','type','backorder','approved'])
         ->setRowId('id');
     }
 
@@ -148,6 +155,7 @@ class VendorProductDataTable extends DataTable
             Column::make('price'),
             Column::make('qty'),
             Column::make('backorder'),
+            Column::make('approved'),
             Column::make('type'),
             Column::make('status')->width(100),
             Column::computed('action')
