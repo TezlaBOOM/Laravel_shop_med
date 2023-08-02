@@ -47,7 +47,6 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'current_password'=>['required','current_password'],
             'password'=>['required','string','confirmed','min:8']

@@ -38,3 +38,4 @@ Route::group(['middleware' => ['auth','verified'],'prefix'=>'user','as'=>'user.'
     Route::put('profile',[UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile',[UserProfileController::class, 'updatePassword'])->name('profile.update.password');
 });
+
