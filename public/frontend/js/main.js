@@ -310,7 +310,7 @@ $(function () {
     });
 
 
-    //=======COUNTDOWN======   
+    // =======COUNTDOWN======   
     // var d = new Date(),
     //     countUpDate = new Date();
     // d.setDate(d.getDate() + 90);
