@@ -50,6 +50,7 @@ class VendorProductController extends Controller
             'category' =>['required'],
             'brand' =>['required'],
             'price' =>['required'],
+            'vat' => ['required'],
             'backorder' =>['required'],
             'qty' =>['required'],
             'backorder'=>['required'],
@@ -70,6 +71,7 @@ class VendorProductController extends Controller
         $product->child_category_id = $request->child_category;
         $product->brand_id = $request->brand;
         $product->qty = $request->qty;
+        $product->vat = $request->vat;
         $product->backorder = $request->backorder;
         $product->short_description = $request->short_description;
         $product->long_description = $request->long_description;
@@ -134,6 +136,7 @@ class VendorProductController extends Controller
                 'category' => ['required'],
                 'brand' => ['required'],
                 'price' => ['required'],
+                'vat' => ['required'],
                 'qty' => ['required'],
                 'short_description' => ['required', 'max: 600'],
                 'long_description' => ['required'],
@@ -159,6 +162,7 @@ class VendorProductController extends Controller
             $product->child_category_id = $request->child_category;
             $product->brand_id = $request->brand;
             $product->qty = $request->qty;
+            $product->vat = $request->vat;
             $product->short_description = $request->short_description;
             $product->long_description = $request->long_description;
             $product->video_link = $request->video_link;

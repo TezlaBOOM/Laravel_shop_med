@@ -90,19 +90,31 @@
                               </div>
                             </div>
                               <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="from-group">
                                     <label>Cena Brutto</label>
                                     <input type="text" class="form-control" name='price' value="{{$product->price}}">
                                   </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                  <div class="form-group wsus__input">
+                                    <label for="inputStatus">Vat:</label>
+                                    <select id="inputStatus" class="form-control" name="vat">
+                                        <option value="">Wybierz</option>
+                                        <option {{$product->vat == 0 ? 'selected': ''}} value="0">0</option>
+                                        <option {{$product->vat == 1 ? 'selected': ''}} value="1">5</option>
+                                        <option {{$product->vat == 2 ? 'selected': ''}} value="2">8</option>
+                                        <option {{$product->vat == 3 ? 'selected': ''}} value="3">23</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
                                   <div class="from-group">
                                     <label>Ilość</label>
                                     <input type="number" min="0" class="form-control" name='qty' value="{{$product->qty}}">
                                   </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="form-group">
                                     <label for="inputStatus">Na zamówienie</label>
                                     <select id="inputStatus" class="form-control" name="backorder">
