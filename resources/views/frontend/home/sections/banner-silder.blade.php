@@ -11,7 +11,7 @@
                                         <div class="wsus__single_slider_text">
                                             <h3>{!! $slider->type !!}</h3>
                                             <h1>{!! $slider->title !!}</h1>
-                                            <h6>Już od {{$slider->starting_price}} zł</h6>
+                                            <h6>Już od {{$slider->starting_price}} {{$settings->currency_icon}}</h6>
                                             <a class="common_btn" href="{{$slider->bnt_url}}">Sprawdź teraz</a>
                                         </div>
                                     </div>

@@ -207,10 +207,10 @@
                             <a class="title" href="javascript:;">{{$product->name}}</a>
                             <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
                             @if (checkDiscount($product))
-                                <h4>{{$product->offer_price}} zł<del>{{$product->price}} zł</del></h4>
+                                <h4>{{$product->offer_price}} {{$settings->currency_icon}}<del>{{$product->price}} {{$settings->currency_icon}}</del></h4>
 
                             @else
-                                <h4>{{$product->price}}</h4>
+                                <h4>{{$product->price}} {{$settings->currency_icon}}</h4>
                             @endif
                             @switch($product->vat)
                                 @case(0)
