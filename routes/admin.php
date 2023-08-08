@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AdminVendorController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSeleController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
@@ -84,6 +85,13 @@ Route::post('flash-sale/add-product', [FlashSeleController::class, 'addProduct']
 Route::put('flash-sale/show-at-home/status-change', [FlashSeleController::class, 'chageShowAtHomeStatus'])->name('flash-sale.show-at-home.change-status');
 Route::put('flash-sale-status', [FlashSeleController::class, 'changeStatus'])->name('flash-sale-status');
 Route::delete('flash-sale/{id}', [FlashSeleController::class, 'destory'])->name('flash-sale.destory');
+
+//*coupon route*/
+Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->name('coupons.change-status');
+
+Route::resource('coupons', CouponController::class);
+
+
 
 //*setting route*/
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
