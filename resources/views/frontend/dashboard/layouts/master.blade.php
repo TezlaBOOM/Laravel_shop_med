@@ -7,6 +7,7 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>One Shop || e-Commerce HTML Template</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <link rel="icon" type="image/png" href="{{asset('frontend/images/favicon.png')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
@@ -101,6 +102,8 @@
   <script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
   <!--toaster.js-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <!--sweetalert.js-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!--main/custom js-->
   <script src="{{asset('frontend/js/main.js')}}"></script>
@@ -112,6 +115,70 @@
       @endforeach
     @endif
 </script>
+
+<script>
+  $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    function DelReload() {
+      window.location.reload();;
+    }
+
+    $('body').on('click', '.delete-item', function(event) {
+      event.preventDefault();
+      let DeleteURL=$(this).attr('href');
+
+      
+
+        Swal.fire({
+          title: 'Jesteś pewien?',
+          text: "Nie będzie możliwości cofnęięcia zmania",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Tak, usuń'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type:"DELETE",
+              url: DeleteURL,
+              success: function(data){
+                  if(data.status =="success"){
+                    Swal.fire(
+                    'Usunięto',
+                    data.message,
+                    'success'
+                    
+                  )
+                 
+                  }else if(data.status =="error"){
+                    Swal.fire(
+                    'Błąd',
+                    data.message,
+                    'error'
+                  )
+                  }
+
+
+               setTimeout(DelReload, 1500);
+              
+              },
+              error: function(xhn,status,error){
+                console.log(error);
+              }
+            })
+
+          }
+        })
+
+      })
+  })
+</script>
+ @stack('scripts')
 </body>
 
 </html>

@@ -19,7 +19,21 @@
                         @foreach ($addresses as $address)
                         <div class="col-xl-6">
                             <div class="wsus__dash_add_single">
-                              <h4>Typ adresu:<span>{{$address->type}}</span></h4>
+                                @switch($address->type)
+                                    @case(0)
+                                        <h4>Typ adresu:<span>Adres fakturowy + Adres dostawy</span></h4>
+                                        @break
+                                    @case(1)
+                                        <h4>Typ adresu:<span>Adres fakturowy </span></h4>
+                                        @break
+                                    @case(2)
+                                        <h4>Typ adresu:<span>Adres dostawy</span></h4>
+                                        @break
+                                
+                                    @default
+                                    <h4>Typ adresu:<span></span></h4>  
+                                @endswitch
+                              
                               <ul>
                                 <li><span>Nazwa :</span> {{$address->name}}</li>
                                 <li><span>Telefon :</span> {{$address->phone}}</li>
@@ -30,8 +44,8 @@
                                 <li><span>Kraj :</span> {{$address->country}}</li>
                               </ul>
                               <div class="wsus__address_btn">
-                                <a href="dsahboard_address_add.html" class="edit"><i class="fal fa-edit"></i> Edytuj</a>
-                                <a href="#" class="del"><i class="fal fa-trash-alt"></i> Usuń</a>
+                                <a href="{{route('user.address.edit', $address->id)}}" class="edit"><i class="fal fa-edit"></i> Edytuj</a>
+                                <a href="{{route('user.address.destroy', $address->id)}}" class="del delete-item"><i class="fal fa-trash-alt"></i> Usuń</a>
                               </div>
                             </div>
                           </div>
@@ -56,3 +70,6 @@
 </section>
   
 @endsection
+@push('name')
+    
+@endpush
