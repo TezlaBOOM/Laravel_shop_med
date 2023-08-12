@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+{{$settings->site_name}} || Zapominałem hasła
+@endsection
+
 @section('content')
     <!--============================
         BREADCRUMB START

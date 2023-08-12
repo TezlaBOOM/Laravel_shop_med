@@ -1,5 +1,8 @@
 @extends('frontend.dashboard.layouts.master')
 
+@section('title')
+{{$settings->site_name}} || Panel główny
+@endsection
 @section('content')
 
 <section id="wsus__dashboard">

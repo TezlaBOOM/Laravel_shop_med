@@ -1,5 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
-
+@section('title')
+{{$settings->site_name}} || Profil użytkownika
+@endsection
 @section('content')
 
 

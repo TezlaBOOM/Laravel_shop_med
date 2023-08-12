@@ -1,5 +1,8 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+{{$settings->site_name}} || Produkty wyprzedażowe
+@endsection
 
 @section('content')
 
@@ -238,42 +241,52 @@
                                 <span>20 review</span>
                             </p>
                              <p class="description">{!!$product->short_description!!}</p> 
-                            <div class="wsus__selectbox">
-                                <div class="row">
-                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                    @foreach ($product->variants as $variant)
-                                    @if ($variant->status != 0)
-                                        <div class="col-xl-6 col-sm-6">
-                                            <h5 class="mb-2">{{$variant->name}}: </h5>
-                                            <select class="select_2" name="variants_items[]">
-                                                @foreach ($variant->productVariantItems as $variantItem)
-                                                    @if ($variantItem->status != 0)
-                                                        <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} ({{$variantItem->price}} ZŁ)</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    @endif
-                                    @endforeach
+                            
+
+                            <form class="shopping-cart-form" method="post">
+                                @csrf
+                                <div class="wsus__selectbox">
+                                    <div class="row">
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                        @foreach ($product->variants as $variant)
+                                        @if ($variant->status != 0)
+                                            <div class="col-xl-6 col-sm-6">
+                                                <h5 class="mb-2">{{$variant->name}}: </h5>
+                                                <select class="select_2" name="variants_items[]">
+                                                    @foreach ($variant->productVariantItems as $variantItem)
+                                                        @if ($variantItem->status != 0)
+                                                            <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} ({{$variantItem->price}} ZŁ)</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        @endforeach
 
 
 
-   
+    
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="wsus__quentity">
-                                <h5>quentity :</h5>
-                                <form class="select_number">
-                                    <input class="number_area" type="text" min="1" max="100" value="1" />
-                                </form>
-                                <h3>$50.00</h3>
-                            </div>
-                            <ul class="wsus__button_area">
-                                <li><a class="add_cart" href="#">add to cart</a></li>
-                                <li><a class="buy_now" href="#">buy now</a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-random"></i></a></li>
-                            </ul>
+                                <div class="wsus__quentity">
+                                    <h5>Ilość :</h5>
+                                    <div class="select_number">
+                                        <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
+                                    </div>
+                                    
+                                </div>
+                                <ul class="wsus__button_area">
+                                    <li><button type="submit" class="add_cart" href="#">Dodaj do koszyka</button></li>
+                                    <li><a class="buy_now" href="#">Kup teraz</a></li>
+                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                </ul>
+
+                            </form>
+
+
+
+
                             <p class="brand_model"><span>SKU :</span> {{$product->sku}}</p>
                             <p class="brand_model"><span>Marka :</span> {{$product->brand->name}}</p>
 
@@ -729,7 +742,7 @@
     <!--============================
         RELATED PRODUCT START
     ==============================-->
-    <section id="wsus__flash_sell">
+    {{-- <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -890,10 +903,42 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--============================
         RELATED PRODUCT END
     ==============================-->
 
 
 @endsection
+
+@push('scripts')
+        <script>
+            $(document).ready(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                    });
+                $('.shopping-cart-form').on('submit',function(e){
+                    e.preventDefault();
+                    let formData = $(this).serialize();
+        
+                    $.ajax({
+                        method: 'POST',
+                        data: formData,
+                        url: "{{route('add-to-cart')}}",
+                        success: function(data){
+
+                        },
+                        error:function(data){
+
+                        }
+                    })
+                })
+            })
+
+
+
+        </script>
+    
+@endpush
