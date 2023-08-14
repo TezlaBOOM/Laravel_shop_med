@@ -34,6 +34,7 @@
                             <label>Nazwa</label>
                             <input type="text" class="form-control" name="name" value="{{old('name')}}">
                         </div>
+
             
                         <div class = "row">
                           <div class="col-md-3">    

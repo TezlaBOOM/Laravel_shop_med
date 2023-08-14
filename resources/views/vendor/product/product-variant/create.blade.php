@@ -25,6 +25,7 @@
                   <label>Name</label>
                   <input type="text" class="form-control" name="name" value="">
               </div>
+
               <div class="form-group wsus__input">
                   <input type="hidden" class="form-control" name="product" value="{{request()->product}}">
               </div>

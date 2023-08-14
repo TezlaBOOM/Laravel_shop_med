@@ -37,9 +37,13 @@
                           <label>Nazwa przedmiotu</label>
                           <input type="text" class="form-control" name="name" value="{{$variantItem->name}}">
                       </div>
+                      <div class="form-group wsus__input">
+                        <label>Sku</label>
+                        <input type="text" class="form-control" name="sku" value="{{$variant->sku}}">
+                    </div>
 
                       <div class="form-group wsus__input">
-                          <label>Xena <code>(0 oznacza za free)</code></label>
+                          <label>Cena <code>(0 oznacza za free)</code></label>
                           <input type="text" class="form-control" name="price" value="{{$variantItem->price}}">
                       </div>
 

@@ -34,6 +34,7 @@ class VendorProductVariantItemController extends Controller
         $request->validate([
             'variant_id' => ['integer', 'required'],
             'name' => ['required', 'max:200'],
+            'sku' => ['required', 'max:200'],
             'price' => ['integer', 'required'],
             'is_default' => ['required'],
             'status' => ['required']
@@ -42,6 +43,7 @@ class VendorProductVariantItemController extends Controller
         $variantItem = new ProductVariantItem();
         $variantItem->product_variant_id = $request->variant_id;
         $variantItem->name = $request->name;
+        $variantItem->sku = $request->sku;
         $variantItem->price = $request->price;
         $variantItem->is_default = $request->is_default;
         $variantItem->status = $request->status;
@@ -49,7 +51,7 @@ class VendorProductVariantItemController extends Controller
 
         toastr('Uwtorzono', 'success', 'success');
 
-        return redirect()->route('vendor.products-variant-item.index',
+        return redirect()->route('vendor.product-variant-item.index',
         ['productId' => $request->product_id, 'variantId' => $request->variant_id]);
 
     }
@@ -65,12 +67,14 @@ class VendorProductVariantItemController extends Controller
         $request->validate([
             'name' => ['required', 'max:200'],
             'price' => ['integer', 'required'],
+            'sku' => ['required', 'max:200'],
             'is_default' => ['required'],
             'status' => ['required']
         ]);
 
         $variantItem = ProductVariantItem::findOrFail($variantItemId);
         $variantItem->name = $request->name;
+        $variantItem->sku = $request->sku;
         $variantItem->price = $request->price;
         $variantItem->is_default = $request->is_default;
         $variantItem->status = $request->status;
@@ -78,7 +82,7 @@ class VendorProductVariantItemController extends Controller
 
         toastr('Zaktualizowano', 'success', 'success');
 
-        return redirect()->route('vendor.products-variant-item.index',
+        return redirect()->route('vendor.product-variant-item.index',
         ['productId' => $variantItem->productVariant->product_id, 'variantId' => $variantItem->product_variant_id]);
     }
 

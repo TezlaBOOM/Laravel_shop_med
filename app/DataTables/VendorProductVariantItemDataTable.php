@@ -92,6 +92,7 @@ class VendorProductVariantItemDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
+            
             Column::make('variant_name'),
             Column::make('price'),
             Column::make('is_default'),
