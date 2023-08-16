@@ -249,6 +249,7 @@
                                     <div class="row">
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                         @foreach ($product->variants as $variant)
+
                                         @if ($variant->status != 0)
                                             <div class="col-xl-6 col-sm-6">
                                                 <h5 class="mb-2">{{$variant->name}}: </h5>
@@ -912,55 +913,6 @@
 @endsection
 
 @push('scripts')
-        <script>
-            $(document).ready(function(){
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                    });
-                $('.shopping-cart-form').on('submit',function(e){
-                    e.preventDefault();
-                    let formData = $(this).serialize();
-        
-                    $.ajax({
-                        method: 'POST',
-                        data: formData,
-                        url: "{{route('add-to-cart')}}",
-                        success: function(data){
-                            getCartCount();
-                            toaster.success(data.message);
-                        },
-                        error:function(data){
 
-                        }
-                    })
-                })
-
-                function getCartCount(){
-                    $.ajax({
-                        method: 'GET',
-                        url: "{{route('cart-count')}}",
-                        success: function(data){
-                           $('#cart-count').text(data); 
-                        },
-                        error:function(data){
-
-                        }
-                    })
-                
-                
-                
-                
-                }
-
-
-
-
-            })
-
-
-
-        </script>
     
 @endpush

@@ -46,7 +46,7 @@ class CartController extends Controller
         $cartData['price'] = $productPrice;
         $cartData['weight'] = 10;
         $cartData['options']['variants'] = $variants;
-        $cartData['options']['variantTotalAmount'] = $variantTotalAmount;
+        $cartData['options']['variants_total'] = $variantTotalAmount;
         $cartData['options']['image'] = $product ->thumb_image;
         $cartData['options']['slug'] = $product ->slug;
         //dd($cartData);
@@ -68,15 +68,28 @@ class CartController extends Controller
         $productTotal = $this->getProductTotal($request->rowId);
 
         return response(['status'=>'success','message'=>'zmieniono ilość','productTotal'=>$productTotal]);
+        
     }
     public function getProductTotal($rowId)
-    {
-        $product = Cart::get($rowId);
-       
-        $total = ($product->price+$product->options->variantTotalAmount)*($product->qty);
-        return $total;
+        {
+           $product = Cart::get($rowId);
+           $total = ($product->price + $product->options->variants_total) * $product->qty;
+           return $total;
+        }
 
+    public function cartTotal()
+    {
+        $total = 0;
+        foreach(Cart::content() as $product){
+            $total += $this->getProductTotal($product->rowId);
+        }
+
+        return $total;
     }
+
+
+
+
     public function clearCart()
     {
         cart::destroy();
@@ -90,5 +103,14 @@ class CartController extends Controller
     public function getCartCount()
     {
         return Cart::content()->count();
+    }
+    public function getCartProducts()
+    {
+        return Cart::content();
+    }
+    public function removeSidebarProduct(Request $request)
+    {
+        Cart::remove($request->rowId);
+        return response(['status'=>'success','message'=>'usunięto']);
     }
 }
