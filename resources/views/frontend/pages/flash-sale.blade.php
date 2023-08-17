@@ -192,7 +192,17 @@
                             <div class="col-xl-6 col-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="wsus__pro_details_text">
                                     <a class="title" href="#">{{$product->name}}</a>
-                                    <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
+                                    <p class="review">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span>20 review</span>
+                                    </p>
+
+
+                                    
                                     @if (checkDiscount($product))
                                     <h4>{{$product->offer_price}} {{$settings->currency_icon}}<del>{{$product->price}} {{$settings->currency_icon}}</del></h4>
     
@@ -216,15 +226,49 @@
                                     @default
                                     
                                 @endswitch
-                                    <p class="review">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>20 review</span>
-                                    </p>
+
                                     <p class="description">{!!$product->short_description!!}</p>
+
+                                    @if ($product->qty > 0)
+                                    @switch($product->backorder)
+                                        @case(0)
+                                        <p class="wsus__stock_area">
+                                           <span class="in_stock"> Dostępność:</span> <br>
+                                           Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
+                                           Zamówienia powyżej <b style="color:green"> {{$product->qty}}</b>: <u>Na zamówienie</u>
+                                       </p>
+       
+                                        @break
+                                        @case(1)
+                                        <p class="wsus__stock_area">
+                                           <span class="in_stock"> Dostępność:</span> <br>
+                                           Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
+                                           Produkt:<u>Wycofane</u>
+                                       </p>
+       
+                                        @break
+                                        @default
+                                        <p class="wsus__stock_area">
+                                           <span class="in_stock"> Dostępność:</span> <br>
+                                           Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
+                                           Zamówienia powyżej <b style="color:green"> {{$product->qty}}</b>: <u>Ustalana indywidualnie </u>
+                                       </p>
+       
+                                    @endswitch
+                                @elseif($product->qty === 0)
+                                        @switch($product->backorder)
+                                        @case(0)
+                                        <p class="wsus__stock_area"><span class="in_stock">Na zamówienie</span></p>
+                                        @break
+                                        @case(1)
+                                        <p class="wsus__stock_area"><span class="stock_out">Wycofany</span></p>
+       
+                                        @break
+                                        @default
+                                        <p class="wsus__stock_area"><span class="in_stock">Ustalana indywidualnie</span></p>
+       
+                                        @endswitch
+                                @endif
 
 
                                     <form class="shopping-cart-form" method="post">

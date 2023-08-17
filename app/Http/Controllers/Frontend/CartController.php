@@ -13,6 +13,35 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
+        if($product->qty===0)
+        {
+            switch($product->backorder)
+            {
+                case 0:
+                    return response(['status' =>'warning', 'message' =>'Produkt na zamówienie']);
+                break;
+                case 1:
+                    return response(['status' =>'error', 'message' =>'Produkt wycofany']);
+                break;
+                default:
+                     return response(['status' =>'warning', 'message' =>'produkt na zamówienie Indiwidualnie']);
+                break;
+            } 
+        }elseif($product->qty < $request->qty){
+            switch($request->backorder)
+            {
+                case 0:
+                    return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie']);
+                break;
+                case 1:
+                    return response(['status' =>'error', 'message' =>'Nie ma wystarczającej ilości produktu na magaznynie']);
+                break;
+                default:
+                     return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie Indiwidualnie']);
+                break;
+            } 
+
+        }
 
         $variants =[];
         $variantTotalAmount = 0;
@@ -58,12 +87,50 @@ class CartController extends Controller
     public function CartDetails()
     {
         $cartItems = Cart::content();
+       // $product = Product::findOrFail($request->product_id);
+
+        if(count($cartItems)===0)
+        {   
+            toastr('Koszy jest pusty','warning','Uwaga!');
+            return redirect()->route('home');
+        }
       
         return view('frontend.pages.cart-detail',compact('cartItems'));
     }
 
     public function updateProductQty(Request $request)
     {
+        $productId = Cart::get($request->rowId)->id;
+        $product = Product::findOrFail($productId);
+
+        if($product->qty===0)
+        {
+            switch($product->backorder)
+            {
+                case 0:
+                    return response(['status' =>'warning', 'message' =>'Produkt na zamówienie']);
+                break;
+                case 1:
+                    return response(['status' =>'error', 'message' =>'Produkt wycofany']);
+                break;
+                default:
+                     return response(['status' =>'warning', 'message' =>'produkt na zamówienie Indiwidualnie']);
+                break;
+            } 
+        }elseif($product->qty < $request->qty){
+            switch($request->backorder)
+            {
+                case 0:
+                    return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie']);
+                break;
+                case 1:
+                    return response(['status' =>'error', 'message' =>'Nie ma wystarczającej ilości produktu na magaznynie']);
+                break;
+                default:
+                     return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie Indiwidualnie']);
+                break;
+            } 
+        }
         Cart::update($request->rowId, $request->quantity);
         $productTotal = $this->getProductTotal($request->rowId);
 
@@ -98,6 +165,7 @@ class CartController extends Controller
     public function removeProduct($rowId)
     {
         Cart::remove($rowId);
+        toastr('Product usunięty','success','Sukces!');
         return redirect()->back();
     }
     public function getCartCount()

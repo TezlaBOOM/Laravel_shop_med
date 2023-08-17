@@ -26,10 +26,13 @@
                         let totalAmount = data.productTotal+"{{$settings->currency_icon}}"
                         $(productId).text(totalAmount)
 
-                        renderCartSubTotal()
-                        calculateCouponDescount()
+                        renderCartSubTotal();
+                        calculateCouponDescount();
 
                         toastr.success(data.message)
+                    }else if(data.status == 'warning'){
+
+                        toastr.warning(data.message)
                     }else if (data.status === 'error'){
                         toastr.error(data.message)
                     }
@@ -65,9 +68,12 @@
                         let totalAmount = data.productTotal+ "{{$settings->currency_icon}}"
                         $(productId).text(totalAmount)
 
-                        renderCartSubTotal()
-                        calculateCouponDescount()
+                        renderCartSubTotal();
+                        calculateCouponDescount();
                         toastr.success(data.message)
+                    }else if(data.status == 'warning'){
+
+                        toastr.warning(data.message)
                     }else if (data.status === 'error'){
                         toastr.error(data.message)
                     }
@@ -111,16 +117,7 @@
 
 
 
-    })   
-    </script>
 
-<script>
-    $(document).ready(function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-            });
         $('.shopping-cart-form').on('submit',function(e){
             e.preventDefault();
             let formData = $(this).serialize();
@@ -130,16 +127,26 @@
                 data: formData,
                 url: "{{route('add-to-cart')}}",
                 success: function(data){
-                    getCartCount();
-                    fetchSidebarCartProducts();
-                    $('.mini_cart_actions').removeClass('d-none');
-                    toaster.success(data.message);
+                    if(data.status == 'success'){
+                        getCartCount();
+                        fetchSidebarCartProducts();
+                        $('.mini_cart_actions').removeClass('d-none');
+                        toastr.success(data.message);
+                    }else if(data.status == 'warning'){
+                        getCartCount();
+                        fetchSidebarCartProducts();
+                        $('.mini_cart_actions').removeClass('d-none');
+                        toastr.warning(data.message);
+                    }else{
+                        toastr.error(data.message);
+                    }
                 },
                 error:function(data){
 
                 }
             })
         })
+        
 
         function getCartCount(){
             $.ajax({
@@ -226,9 +233,45 @@
 
                 }
             })
-        }  
+        } 
+
+
+        //get total cart subtotal amount
+        //this fun will only return float value
+        function getCartTotal(){
+            $.ajax({
+                method: 'GET',
+                url: "{{route('cart.sidebar-product-total')}}",
+                success: function(data){
+                   return data;
+                },
+                error:function(data){
+
+                }
+            })
+        } 
+
+
+
+
+
+
+                // get subtotal of cart and put it on dom
+                function renderCartSubTotal(){
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('cart.sidebar-product-total') }}",
+                success: function(data) {
+                    $('#sub_total').text(data+"{{$settings->currency_icon}}");
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            })
+        } 
 
 
     });
+    
 
 </script>

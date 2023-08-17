@@ -50,8 +50,8 @@
                                             Produkt
                                         </th>
 
-                                        <th class="wsus__pro_status">
-                                            Status dostępności
+                                        <th class="wsus__pro_name">
+                                            Stan
                                         </th>
 
                                         <th class="wsus__pro_select">
@@ -78,8 +78,42 @@
                                             @endforeach          
                                         </td>
 
-                                        <td class="wsus__pro_status">
-                                            <p>in stock</p>
+                                        <td class="wsus__pro_name">
+                                                        @if ($item->qty > 0)
+                                                                @switch($item->backorder)
+                                                                    @case(0)
+                                                                    <p>Na magazynie: <b style="color:green"> {{$item->qty}}</b></p>
+                                                                    <span>Pozostałe : <u>Na zamówienie</u></span>
+                                                                </p>
+                                
+                                                                    @break
+                                                                    @case(1)
+
+                                                                    Na magazynie: <b style="color:green"> {{$item->qty}}</b>
+                                                                    Produkt:<u>Wycofane</u>
+                                                                </p>
+                                
+                                                                    @break
+                                                                    @default
+                                                                    <p>Na magazynie: <b style="color:green"> {{$item->qty}}</b></p>
+                                                                    <span>Pozostałe : <u>Ustalana indywidualnie</u></span>
+                                                                </p>
+                                
+                                                                @endswitch
+                                                        @elseif($item->qty === 0)
+                                                                @switch($item->backorder)
+                                                                    @case(0)
+                                                                    <p class="wsus__stock_area"><span class="in_stock">Na zamówienie</span></p>
+                                                                    @break
+                                                                    @case(1)
+                                                                    <p class="wsus__stock_area"><span class="stock_out">Wycofany</span></p>
+                                
+                                                                    @break
+                                                                    @default
+                                                                    <p class="wsus__stock_area"><span class="in_stock">Ustalana indywidualnie</span></p>
+                                
+                                                                @endswitch
+                                                        @endif
                                         </td>
 
                                         <td class="wsus__pro_select">
@@ -117,11 +151,11 @@
                 </div>
                 <div class="col-xl-3">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
-                        <p>delivery: <span>$00.00</span></p>
-                        <p>discount: <span>$10.00</span></p>
-                        <p class="total"><span>total:</span> <span>$134.00</span></p>
+                        <h6>Podsumowanie:</h6>
+                        <p>Produkty: <span id="sub_total">{{getCartTotal()}} {{$settings->currency_icon}}</span></p>
+                        <p>Dostawa: <span>{{$settings->currency_icon}}</span></p>
+                        <p>Rabat: <span>{{$settings->currency_icon}}</span></p>
+                        <p class="total"><span>Suma:</span> <span>{{$settings->currency_icon}}</span></p>
 
                         <form>
                             <input type="text" placeholder="Coupon Code">
