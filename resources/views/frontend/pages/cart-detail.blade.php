@@ -65,43 +65,51 @@
                                             <a href="#" class="common_btn clear_cart">Wyczyść</a>
                                         </th>
                                     </tr>
+       
                                     @foreach($cartItems as $item)
+                                   {{-- @dd($item->options->variants['main']['backorder']); --}}
+                            
                                     <tr class="d-flex">
                                         <td class="wsus__pro_img"><img src="{{asset($item->options->image)}}" alt="product"
                                                 class="img-fluid w-100">
                                         </td>
-
+                                        
                                         <td class="wsus__pro_name">
                                             <p>{!! $item->name!!}</p>
+                                            
                                             @foreach ($item->options->variants as $key=>$variant) 
+                                            @if($key != "main")
                                             <span>{{$key}}: {{$variant['name']}} ({{$settings->currency_icon.$variant['price']}})</span>
+                                            
+                                            @else
+                                            @endif
                                             @endforeach          
                                         </td>
 
                                         <td class="wsus__pro_name">
-                                                        @if ($item->qty > 0)
-                                                                @switch($item->backorder)
+                                                        @if ($item->options->variants['main']['storage'] > 0)
+                                                                @switch($item->options->variants['main']['backorder'])
                                                                     @case(0)
-                                                                    <p>Na magazynie: <b style="color:green"> {{$item->qty}}</b></p>
-                                                                    <span>Pozostałe : <u>Na zamówienie</u></span>
+                                                                    <p>Na magazynie: <b style="color:green"> {{$item->options->variants['main']['storage'] }}</b></p><>
+                                                                    <span>Pozostałe :<br> <u>Na zamówienie</u></span>
                                                                 </p>
                                 
                                                                     @break
                                                                     @case(1)
 
-                                                                    Na magazynie: <b style="color:green"> {{$item->qty}}</b>
+                                                                    Na magazynie: <b style="color:green"> {{$item->options->variants['main']['storage'] }}</b>
                                                                     Produkt:<u>Wycofane</u>
                                                                 </p>
                                 
                                                                     @break
                                                                     @default
-                                                                    <p>Na magazynie: <b style="color:green"> {{$item->qty}}</b></p>
-                                                                    <span>Pozostałe : <u>Ustalana indywidualnie</u></span>
+                                                                    <p>Na magazynie: <b style="color:green"> {{$item->options->variants['main']['storage'] }}</b></p>
+                                                                    <span>Pozostałe : <br><u>Ustalana indywidualnie</u></span>
                                                                 </p>
                                 
                                                                 @endswitch
-                                                        @elseif($item->qty === 0)
-                                                                @switch($item->backorder)
+                                                        @elseif ($item->options->variants['main']['storage'] === 0)
+                                                                @switch($item->options->variants['main']['backorder'])
                                                                     @case(0)
                                                                     <p class="wsus__stock_area"><span class="in_stock">Na zamówienie</span></p>
                                                                     @break

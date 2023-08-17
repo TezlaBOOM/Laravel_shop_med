@@ -45,17 +45,21 @@ class CartController extends Controller
 
         $variants =[];
         $variantTotalAmount = 0;
-       
-        if($request->has('variants_items')){
-            foreach ($request->variants_items as $item_id)
-            {
-                $variantItem = ProductVariantItem::find($item_id);
-                $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
-                $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
-                $variants[$variantItem->productVariant->name]['sku'] = $variantItem->sku;
-                $variantTotalAmount += $variantItem->price;
+
+
+            if($request->has('variants_items')){
+                foreach ($request->variants_items as $item_id)
+                {
+                    $variantItem = ProductVariantItem::find($item_id);
+                    $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
+                    $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
+                    $variants[$variantItem->productVariant->name]['sku'] = $variantItem->sku;
+                    $variantTotalAmount += $variantItem->price;
+                }
             }
-        }
+        $variants['main']['backorder'] = $product->backorder;
+        $variants['main']['storage'] = $product->qty;
+        
 
         $productPrice = 0;
 
@@ -71,7 +75,7 @@ class CartController extends Controller
         $cartData = [];
         $cartData['id'] = $product->id;
         $cartData['name'] = $product ->name;
-        $cartData['qty'] = $request->qty;
+        $cartData['qty'] = $product->qty;
         $cartData['price'] = $productPrice;
         $cartData['weight'] = 10;
         $cartData['options']['variants'] = $variants;
@@ -87,7 +91,6 @@ class CartController extends Controller
     public function CartDetails()
     {
         $cartItems = Cart::content();
-       // $product = Product::findOrFail($request->product_id);
 
         if(count($cartItems)===0)
         {   
