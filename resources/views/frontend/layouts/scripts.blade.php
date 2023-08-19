@@ -70,6 +70,7 @@
 
                         renderCartSubTotal();
                         calculateCouponDescount();
+                        
                         toastr.success(data.message)
                     }else if(data.status == 'warning'){
 
@@ -104,6 +105,7 @@
                             url: "{{route('clear.cart')}}",
                             success: function(data){
                                 if(data.status === 'success'){
+                                    calculateCouponDescount();
                                     window.location.reload();
                                 }
                             },
@@ -160,6 +162,8 @@
                 }
             })
         }
+
+
         function fetchSidebarCartProducts(){
             $.ajax({
                 method: 'GET',
@@ -266,6 +270,46 @@
                 },
                 error: function(data) {
                     console.log(data);
+                }
+            })
+        } 
+        $('#coupon_form').on('submit', function(e){
+            e.preventDefault();
+            let formData =$(this).serialize();
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('apply-coupon') }}",
+                data: formData,
+                success: function(data) {
+                    if(data.status == 'error')
+                    {
+                        calculateCouponDescount();
+                        toastr.error(data.message);
+                    }else if(data.status == 'success')
+                    {
+                        calculateCouponDescount();
+                        toastr.success(data.message);
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        function calculateCouponDescount(){
+            $.ajax({
+                method: 'GET',
+                url: "{{route('coupon-calculation')}}",
+                success: function(data){
+                    if(data.status === 'success')
+                    {
+                     $('#discount').text(data.discount+'{{$settings->currency_icon}}');
+                     $('#cart_total').text(data.cart_total+'{{$settings->currency_icon}}');
+                    }
+                },
+                error:function(data){
+
                 }
             })
         } 

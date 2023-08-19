@@ -316,7 +316,7 @@
                                 <div class="wsus__quentity">
                                     <h5>Ilość :</h5>
                                     <div class="select_number">
-                                        <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
+                                        <input class="number_area" name="qty" type="text" min="1" max="100000" value="1" />
                                     </div>
                                     
                                 </div>

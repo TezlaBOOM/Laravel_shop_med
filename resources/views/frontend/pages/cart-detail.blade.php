@@ -161,17 +161,16 @@
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>Podsumowanie:</h6>
                         <p>Produkty: <span id="sub_total">{{getCartTotal()}} {{$settings->currency_icon}}</span></p>
-                        <p>Dostawa: <span>{{$settings->currency_icon}}</span></p>
-                        <p>Rabat: <span>{{$settings->currency_icon}}</span></p>
-                        <p class="total"><span>Suma:</span> <span>{{$settings->currency_icon}}</span></p>
+                        <p>Rabat: <span id="discount">{{getCartDiscount()}} {{$settings->currency_icon}}</span></p>
+                        <p class="total"><span>Suma:</span> <span id="cart_total">{{getMainCartTotal()}} {{$settings->currency_icon}}</span></p>
 
-                        <form>
-                            <input type="text" placeholder="Coupon Code">
-                            <button type="submit" class="common_btn">apply</button>
+                        <form id="coupon_form">
+                            <input type="text" placeholder="Kod rabatowy" name="coupon_code" value="{{session()->has('coupon') ? session()->get('coupon')['coupon_code']:''}}">
+                            <button type="submit" class="common_btn">Zastosuj</button>
                         </form>
-                        <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
-                        <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html"><i
-                                class="fab fa-shopify"></i> go shop</a>
+                        <a class="common_btn mt-4 w-100 text-center" href="check_out.html">Zamów</a>
+                        <a class="common_btn mt-1 w-100 text-center" href="{{route('home')}}"><i
+                                class="fab fa-shopify"></i> Kontynułuj zakupy</a>
                     </div>
                 </div>
             </div>
