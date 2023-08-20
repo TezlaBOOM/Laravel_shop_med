@@ -22,12 +22,15 @@ class CartController extends Controller
             switch($product->backorder)
             {
                 case 0:
+                    $this->addToCartBackorder($request,$product);
                     return response(['status' =>'warning', 'message' =>'Produkt na zamówienie']);
                 break;
                 case 1:
+                    $this->addToCartBackorder($request,$product);
                     return response(['status' =>'error', 'message' =>'Produkt wycofany']);
                 break;
                 default:
+                    $this->addToCartBackorder($request,$product);
                      return response(['status' =>'warning', 'message' =>'produkt na zamówienie Indiwidualnie']);
                 break;
             } 
@@ -35,17 +38,26 @@ class CartController extends Controller
             switch($request->backorder)
             {
                 case 0:
+                    $this->addToCartBackorder($request,$product);
                     return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie']);
                 break;
                 case 1:
+                    $this->addToCartBackorder($request,$product);
                     return response(['status' =>'error', 'message' =>'Nie ma wystarczającej ilości produktu na magaznynie']);
                 break;
                 default:
+                    $this->addToCartBackorder($request,$product);
                      return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie Indiwidualnie']);
                 break;
             } 
         }
 
+        $this->addToCartBackorder($request,$product);
+        return response(['status'=> 'success','message'=>'Dodano produkt do koszyka']);
+    }
+    public function addToCartBackorder(Request $request,$product)
+    {
+        
         $variants =[];
         $variantTotalAmount = 0;
 
@@ -87,9 +99,7 @@ class CartController extends Controller
         $cartData['options']['slug'] = $product ->slug;
         //dd($cartData);
         Cart::add($cartData);
-        return response(['status'=> 'success','message'=>'Dodano produkt do koszyka']);
     }
-    
 
     //show cart page
     public function CartDetails()
