@@ -19,7 +19,7 @@
                         @foreach ($addresses as $address)
                         <div class="col-xl-6">
                             <div class="wsus__dash_add_single">
-                                @switch($address->type)
+                                {{-- @switch($address->type)
                                     @case(0)
                                         <h4>Typ adresu:<span>Adres fakturowy + Adres dostawy</span></h4>
                                         @break
@@ -32,7 +32,7 @@
                                 
                                     @default
                                     <h4>Typ adresu:<span></span></h4>  
-                                @endswitch
+                                @endswitch --}}
                               
                               <ul>
                                 <li><span>Nazwa :</span> {{$address->name}}</li>

@@ -19,7 +19,7 @@
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <div class="col-xl-6 col-md-12">
+                            {{-- <div class="col-xl-6 col-md-12">
                                 <div class="wsus__add_address_single">
                                   <label>Typ adresu: <b>*</b></label>
                                   <div class="wsus__topbar_select">
@@ -30,7 +30,7 @@
                                     </select>
                                   </div>
                                 </div>
-                              </div>
+                              </div> --}}
                           <div class="col-xl-6 col-md-12">
                             <div class="wsus__add_address_single">
                               <label>Nazwa: <b>*</b></label>
