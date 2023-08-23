@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\paymentController;
+use App\Http\Controllers\Frontend\paymentController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Frontend\CartController;
