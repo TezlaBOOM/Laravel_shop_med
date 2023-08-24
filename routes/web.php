@@ -70,5 +70,11 @@ Route::group(['middleware' => ['auth','verified'],'prefix'=>'user','as'=>'user.'
     Route::post('checkout/form-submit', [CheckOutController::class, 'checkOutFormSubmit'])->name('checkout.form-submit');
     //payment route
     Route::get('payment',[paymentController::class,'index'])->name('payment');
+    Route::get('payment-success',[paymentController::class,'paymentSuccess'])->name('payment.success');
+    Route::get('paypal/payment',[paymentController::class,'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success',[paymentController::class,'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel',[paymentController::class,'paypalCancel'])->name('paypal.cancel');
+
+
 });
 

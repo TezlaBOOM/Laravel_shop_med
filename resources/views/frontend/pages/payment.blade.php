@@ -107,11 +107,12 @@
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
                                         <div class="wsus__payment_area">
-                                            <button type="button" class="nav-link common_btn">Zapłąć paypalem</button>
+                                            <a type="button" class="nav-link common_btn" href="{{route('user.paypal.payment')}}">Zapłąć paypalem</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade show active" id="v-pills-stripe" role="tabpanel"
                             aria-labelledby="v-pills-home-tab">
                                 <div class="row">
@@ -122,6 +123,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab">
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, tempora cum optio
