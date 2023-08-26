@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
@@ -107,3 +108,4 @@ Route::put('generale-setting-update', [SettingController::class, 'generalSetting
 /**Payment settings routs */
 Route::get('payment-setting', [PaymentSettingController::class,'index'])->name('payment-setting.index');
 Route::resource('paypal-setting', PayPalSettingController::class);
+Route::put('stripe-setting/{id}', [StripeSettingController::class,'update'])->name('stripe-setting.update');
