@@ -48,16 +48,12 @@
                                     aria-selected="true">Paypal</button>
     
                                     <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-stripe" type="button" role="tab"
-                                        aria-controls="v-pills-stripe" aria-selected="false">Stripe</button>
-    
-                                    <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-razorpay" type="button" role="tab"
-                                    aria-controls="v-pills-stripe" aria-selected="false">RazorPay</button>
+                                    data-bs-target="#v-pills-stripe" type="button" role="tab"
+                                    aria-controls="v-pills-stripe" aria-selected="false">Stripe</button>
     
                                     <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-cod" type="button" role="tab"
-                                    aria-controls="v-pills-stripe" aria-selected="false">COD</button>
+                                    aria-controls="v-pills-stripe" aria-selected="false">Odroczona płatność</button>
     
                             </div>
                         </div>
@@ -78,6 +74,10 @@
                             </div>
 
                             @include('frontend.pages.payment-gateway.stripe')
+
+
+                         
+
                             
 
                         </div>

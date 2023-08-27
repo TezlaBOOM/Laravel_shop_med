@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\PaypalSetting;
 use App\Models\Product;
+use App\Models\RazorpaySetting;
 use App\Models\StripeSetting;
 use App\Models\transactions;
 use Illuminate\Http\Request;
@@ -46,9 +47,9 @@ class paymentController extends Controller
         $order->payment_method = $paymentMethod;
         $order->payment_status = $paymentStatus;  
         $order->order_address = json_encode(Session::get('address'));
-        $order->shpping_method = json_encode(Session::get('shpping_method'));
+        $order->shpping_method = json_encode(Session::get('shipping_method'));
         $order->coupon = json_encode(Session::get('coupon'));
-        $order->order_status = 0;
+        $order->order_status = 'pending';
         $order->save();
 
         // store order products
@@ -220,6 +221,18 @@ class paymentController extends Controller
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
