@@ -138,32 +138,43 @@
                       </div>
                       <div class="row mt-4">
                         <div class="col-lg-8">
-                          {{-- <div class="section-title">Payment Method</div>
-                          <p class="section-lead">The payment method that we provide is to make it easier for you to pay invoices.</p>
-                          <div class="images">
-                            <img src="assets/img/visa.png" alt="visa">
-                            <img src="assets/img/jcb.png" alt="jcb">
-                            <img src="assets/img/mastercard.png" alt="mastercard">
-                            <img src="assets/img/paypal.png" alt="paypal">
-                          </div> --}}
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="">Metoda płatności</label>
+  
+                                  <select name="" id="payment_status" class="form-control" data-id="{{$order->id}}">
+                                      <option {{$order->payment_status === 0 ? 'selected': ''}} value="0">Oczekująca</option>
+                                      <option {{$order->payment_status === 1 ? 'selected': ''}} value="1">Zfinalizowana</option>
+                                  </select>
+                              </div>
+  
+                              <div class="form-group">
+                                  <label for="">Status zamówienia</label>
+                                  <select name="order_status" id="order_status" data-id="{{$order->id}}" class="form-control">
+                                      @foreach (config('order_status.order_status_admin') as $key => $orderStatus)
+                                          <option {{$order->order_status === $key ? 'selected' : ''}} value="{{$key}}">{{$orderStatus['status']}}</option>
+                                      @endforeach
+                                  </select>
+                              </div>
+                          </div>
                         </div>
                         <div class="col-lg-4 text-right">
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Cena produktów Brutto</div>
-                            <div class="invoice-detail-value"> {{$order->sub_total}} {{$settings->currency_icon}}</div>
+                            <div class="invoice-detail-value">{{$settings->currency_icon}} {{$order->sub_total}}</div>
                           </div>
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Dostawa</div>
-                            <div class="invoice-detail-value">{{@$shipping->cost}} {{$settings->currency_icon}}</div>
+                            <div class="invoice-detail-value">{{$settings->currency_icon}} {{@$shipping->cost}}</div>
                           </div>
                           <div class="invoice-detail-item">
                               <div class="invoice-detail-name">Kupon</div>
-                              <div class="invoice-detail-value">{{@$coupon->discount ? @$coupon->discount : 0}} {{$settings->currency_icon}}</div>
+                              <div class="invoice-detail-value">{{$settings->currency_icon}} {{@$coupon->discount ? @$coupon->discount : 0}}</div>
                             </div>
                           <hr class="mt-2 mb-2">
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Suma</div>
-                            <div class="invoice-detail-value invoice-detail-value-lg">{{$order->amount}} {{$settings->currency_icon}}</div>
+                            <div class="invoice-detail-value invoice-detail-value-lg">{{$settings->currency_icon}} {{$order->amount}}</div>
                           </div>
                         </div>
                       </div>
@@ -172,11 +183,7 @@
                 </div>
                 <hr>
                 <div class="text-md-right">
-                  <div class="float-lg-left mb-lg-0 mb-3">
-                    <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
-                    <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
-                  </div>
-                  <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+                  <button class="btn btn-warning btn-icon icon-left print_invoice"><i class="fas fa-print"></i> Drukuj</button>
                 </div>
               </div>
           </div>
@@ -185,7 +192,7 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
+    <script>
         $(document).ready(function(){
 
             $('#order_status').on('change', function(){
@@ -193,7 +200,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    method: 'GET',
+                    method: 'PUT',
                     url: "{{route('admin.order.status')}}",
                     data: {status: status, id:id},
                     success: function(data){
@@ -238,5 +245,5 @@
 
             })
         })
-    </script> --}}
+    </script>
 @endpush

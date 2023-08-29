@@ -30,16 +30,26 @@
         </li>
 
         <li class="dropdown {{ setActive([
-          'admin.category.*',
-          'admin.sub-category.*',
-          'admin.child-category.*'
+          'admin.orders.*',
+          'admin.pending-orders',
+          'admin.processed-orders',
+          'admin.shipped-orders',
+          'admin.out-for-delivery-orders',
+          'admin.delivered-orders',
+          'admin.canceled-orders'
+
 
         ])}}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Sprzedaż</span></a>
           <ul class="dropdown-menu">
-            <li class="{{setActive(['admin.category.*'])}}"><a class="nav-link" href="{{route('admin.orders.index')}}">Zamówienia</a></li>
-            <li class="{{setActive(['admin.sub-category.*'])}}"><a class="nav-link" href="{{route('admin.sub-category.index')}}">Pod Kategorie</a></li>
-            <li class="{{setActive(['admin.child-category.*'])}}"><a class="nav-link" href="{{route('admin.child-category.index')}}">Pod pod Kategorie</a></li>
+            <li class="{{setActive(['admin.orders.*'])}}"><a class="nav-link" href="{{route('admin.orders.index')}}">Zamówienia</a></li>
+            <li class="{{setActive(['admin.pending-orders'])}}"><a class="nav-link" href="{{route('admin.pending-orders')}}">Oczekujące</a></li>
+            <li class="{{setActive(['admin.processed-orders'])}}"><a class="nav-link" href="{{route('admin.processed-orders')}}">Obrobione</a></li>
+            <li class="{{setActive(['admin.dropped-off-orders'])}}"><a class="nav-link" href="{{route('admin.dropped-off-orders')}}">Odrzucone</a></li>
+            <li class="{{setActive(['admin.shipped-orders'])}}"><a class="nav-link" href="{{route('admin.shipped-orders')}}">Wysłane</a></li>
+            <li class="{{setActive(['admin.out-for-delivery-orders'])}}"><a class="nav-link" href="{{route('admin.out-for-delivery-orders')}}">W drodze</a></li>
+            <li class="{{setActive(['admin.delivered-orders'])}}"><a class="nav-link" href="{{route('admin.delivered-orders')}}">Dostarczone</a></li>
+            <li class="{{setActive(['admin.canceled-orders'])}}"><a class="nav-link" href="{{route('admin.canceled-orders')}}">Anulowane</a></li>
           </ul>
         </li>
 
