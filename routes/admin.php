@@ -24,9 +24,11 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TransactionController;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
 use App\Models\ShoppingRule;
+use App\Models\transactions;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -125,4 +127,7 @@ Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->name('s
 Route::get('out-for-delivery-orders', [OrderController::class, 'outForDeliveryOrders'])->name('out-for-delivery-orders');
 Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->name('delivered-orders');
 Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->name('canceled-orders');
+
+//* transaction */
+Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
 

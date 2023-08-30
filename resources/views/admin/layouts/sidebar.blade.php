@@ -53,6 +53,7 @@
           </ul>
         </li>
 
+        <li><a class="{{setActive(['admin.transaction'])}}" href="{{route('admin.transaction')}}"><i class="far fa-square"></i> <span>Transadcje</span></a></li>
 
 
         <li class="dropdown {{setActive([

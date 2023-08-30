@@ -125,7 +125,7 @@
                                 @endif
                               
 
-                          @endforeach
+                            @endforeach
                             </td>
                             <td class="text-center">{{$product->unit_price}} {{$settings->currency_icon}}</td>
                             <td class="text-center">{{$product->qty}}</td>
