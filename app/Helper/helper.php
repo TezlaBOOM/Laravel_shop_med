@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Session;
 
+
 /**Set siber active */
 
 function setActive(array $route){
@@ -114,4 +115,8 @@ function getShppingFee()
 }
 function getFinalPayableAmount(){
     return getMainCartTotal() + getShppingFee();
+}
+function limitText($text, $limit = 20)
+{
+    return \Str::limit($text, $limit);
 }
