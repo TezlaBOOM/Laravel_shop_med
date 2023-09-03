@@ -37,7 +37,7 @@
     <!--============================
         BRAND SLIDER START
     ==============================-->
-        {{-- @include('frontend.home.sections.brand-slider') --}}
+        @include('frontend.home.sections.brand-slider')
     <!--============================
         BRAND SLIDER END
     ==============================-->
@@ -55,7 +55,7 @@
     <!--============================
         HOT DEALS START
     ==============================-->
-        {{-- @include('frontend.home.sections.hot-deals') --}}
+        @include('frontend.home.sections.hot-deals')
     <!--============================
         HOT DEALS END  
     ==============================-->
@@ -64,7 +64,7 @@
     <!--============================
         ELECTRONIC PART START  
     ==============================-->
-        {{-- @include('frontend.home.sections.category-product-slider-one') --}}
+        @include('frontend.home.sections.category-product-slider-one')
     <!--============================
         ELECTRONIC PART END  
     ==============================-->
@@ -73,7 +73,7 @@
     <!--============================
         ELECTRONIC PART START  
     ==============================-->
-        {{-- @include('frontend.home.sections.category-product-slider-two') --}}
+        @include('frontend.home.sections.category-product-slider-two')
     <!--============================
         ELECTRONIC PART END  
     ==============================-->
