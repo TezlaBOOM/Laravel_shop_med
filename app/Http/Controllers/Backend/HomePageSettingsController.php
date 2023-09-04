@@ -18,8 +18,8 @@ public function index()
     $popularCategorySection = HomePageSettings::where('key', 'popular_category_section')->first();
     $sliderSectionOne = HomePageSettings::where('key', 'product_slider_section_one')->first();
     $sliderSectionTwo = HomePageSettings::where('key', 'product_slider_section_two')->first();
-
-    return view('admin.home-page-setting.index', compact('categories', 'popularCategorySection','sliderSectionOne','sliderSectionTwo'));
+    $sliderSectionThree = HomePageSettings::where('key', 'product_slider_section_three')->first();
+    return view('admin.home-page-setting.index', compact('categories', 'popularCategorySection','sliderSectionOne','sliderSectionTwo','sliderSectionThree'));
 }
 
 
@@ -134,6 +134,49 @@ public function index()
                 'value' => json_encode($data)
             ]
         );
+
+        toastr('Zaktualizowano', 'success', 'success');
+
+        return redirect()->back(); 
+        
+    }
+    public function updateProductSliderSectionThree(Request $request)
+    {
+        $request->validate([
+            'cat_one' => ['required'],
+            'cat_two' => ['required'],
+
+
+        ], [
+            'cat_one.required' => 'Kategoria 1 jest wymagana',
+            'cat_two.required' => 'Kategoria 2 jest wymagana',
+
+        ]);
+
+        // dd($request->all());
+        $data = [
+            [
+                'category' => $request->cat_one,
+                'sub_category' => $request->sub_cat_one,
+                'child_category' => $request->child_cat_one,
+            ],
+            [
+                'category' => $request->cat_two,
+                'sub_category' => $request->sub_cat_two,
+                'child_category' => $request->child_cat_two, 
+            ],
+
+        ];
+
+        HomePageSettings::updateOrCreate(
+            [
+                'key' => 'product_slider_section_three'
+            ],
+            [
+                'value' => json_encode($data)
+            ]
+        );
+
 
         toastr('Zaktualizowano', 'success', 'success');
 

@@ -115,6 +115,7 @@ Route::get('home-page-setting', [HomePageSettingsController::class, 'index'])->n
 Route::put('popular-category-setting', [HomePageSettingsController::class, 'updatePopularCategory'])->name('popular-category-setting');
 Route::put('product-slider-section-one', [HomePageSettingsController::class, 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two', [HomePageSettingsController::class, 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
+Route::put('product-slider-section-three', [HomePageSettingsController::class, 'updateProductSliderSectionThree'])->name('product-slider-section-three');
 
 
 /**Payment settings routs */
