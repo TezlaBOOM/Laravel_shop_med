@@ -30,7 +30,7 @@ function calculateDicCountProcent($originalPrice, $discountPrice)
 {
     $discountAmount = $originalPrice - $discountPrice;
     $discountProcent =($discountAmount / $originalPrice) * 100;
-    return $discountProcent;
+    return round($discountProcent);
 }
 /**check product have status */
 function productType($type):string

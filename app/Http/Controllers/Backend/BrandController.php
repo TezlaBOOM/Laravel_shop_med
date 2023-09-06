@@ -47,7 +47,7 @@ class BrandController extends Controller
 
         $brand->logo = $logoPath;
         $brand->name = $request->name;
-        $brand->slug = Str::slug($request->slug);
+        $brand->slug = Str::slug($request->name);
         $brand->is_featured = $request->is_featured;
         $brand->status = $request->status;
         $brand->save();
@@ -90,7 +90,7 @@ class BrandController extends Controller
 
         $brand->logo = empty(!$logoPath) ? $logoPath : $brand->logo;
         $brand->name = $request->name;
-        $brand->slug = Str::slug($request->slug);
+        $brand->slug = Str::slug($request->name);
         $brand->is_featured = $request->is_featured;
         $brand->status = $request->status;
         $brand->save();
