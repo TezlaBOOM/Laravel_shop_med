@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSeleController;
+use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\HomePageSettingsController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
@@ -139,4 +140,9 @@ Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->name(
 
 //* transaction */
 Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
+
+//foooters */
+Route::resource('footer-info', FooterInfoController::class);
+
+
 
