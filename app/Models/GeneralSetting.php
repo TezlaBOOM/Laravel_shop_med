@@ -15,6 +15,9 @@ class GeneralSetting extends Model
         'contact_email',
         'currency_name',
         'time_zone',
-        'currency_icon'
+        'currency_icon',
+        'contact_phone',
+        'contact_address',
+        'map'
     ];
 }

@@ -113,6 +113,10 @@ Route::resource('coupons', CouponController::class);
 //*setting route*/
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 Route::put('generale-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('generale-setting-update');
+Route::put('email-setting-update', [SettingController::class, 'emailSettingUpdate'])->name('email-setting-update');
+
+
+
 
 //*home page route*/
 Route::get('home-page-setting', [HomePageSettingsController::class, 'index'])->name('home-page-setting');

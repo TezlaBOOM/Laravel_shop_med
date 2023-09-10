@@ -337,6 +337,38 @@
             })
         })
 
+                //add product to wishlist
+        $('#newsletter').on('click', function(e){
+            e.preventDefault();
+            let data = $(this).serialize();
+
+            $.ajax({
+                method: 'POST',
+                url: "{{route('newsletter-request')}}",
+                data: data,
+                success:function(data){
+                    if(data.status === 'success'){
+                        toastr.success(data.message);
+                    }else if(data.status === 'error'){
+                        toastr.error(data.message);
+                    }
+                },
+                error: function(data){
+                   let error = data.responseJSON.errors;
+                   if(errors){
+                    $.each(errors, function(key, value){
+                        toastr.error(value);
+                    });
+                   }
+                }
+            })
+        })
+
+
+
+
+
+        {{route('newsletter-request')}}
     });
     
 

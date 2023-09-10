@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserOrderController;
@@ -57,6 +58,11 @@ Route::post('cart/remove-sidebar-product',[CartController::class, 'removeSidebar
 Route::get('cart/sidebar-product-total',[CartController::class, 'cartTotal'])->name('cart.sidebar-product-total');
 Route::get('apply-coupon',[CartController::class, 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation',[CartController::class, 'couponCalculation'])->name('coupon-calculation');
+
+/**Newsletter */
+Route::post('newsletter-request',[NewsletterController::class, 'newsletterRequest'])->name('newsletter-request');
+Route::get('newsletter-verify/{token}',[NewsletterController::class, 'newsletterEmailVerify'])->name('newsletter-verify');
+
 
 
 
