@@ -127,8 +127,9 @@
 
           </ul>
         </li>
+        <li><a class="nav-link {{setActive(['admin.subscribers.*'])}}" href="{{route('admin.subscribers.index')}}"><i class="far fa-square"></i> <span>Subskrybencji</span></a></li>
 
-        <li><a class="nav-link" href="{{route('admin.settings.index')}}"><i class="far fa-square"></i> <span>Ustawienia</span></a></li>
+        <li><a class="nav-link {{setActive(['admin.settings.*'])}}" href="{{route('admin.settings.index')}}"><i class="far fa-square"></i> <span>Ustawienia</span></a></li>
 
 
         {{-- <li class="dropdown">

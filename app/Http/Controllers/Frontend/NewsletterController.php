@@ -54,6 +54,16 @@ class NewsletterController extends Controller
     }
     public function newsLetterEmailVarify($token)
     {
-        dd($token);
+       $verify = NewsletterSubscriber::where('verified_token', $token)->first();
+       if($verify){
+            $verify->verified_token = 'verified';
+            $verify->is_verified = 1;
+            $verify->save();
+            toastr('Email zwerfikowany', 'success', 'success');
+            return redirect()->route('home');
+       }else {
+            toastr('Błąd', 'error', 'Error');
+            return redirect()->route('home');
+       }
     }
 }

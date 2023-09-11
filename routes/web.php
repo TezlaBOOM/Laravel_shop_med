@@ -61,7 +61,7 @@ Route::get('coupon-calculation',[CartController::class, 'couponCalculation'])->n
 
 /**Newsletter */
 Route::post('newsletter-request',[NewsletterController::class, 'newsletterRequest'])->name('newsletter-request');
-Route::get('newsletter-verify/{token}',[NewsletterController::class, 'newsletterEmailVerify'])->name('newsletter-verify');
+Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 
 
 

@@ -59,7 +59,7 @@ FOOTER PART START
                     <form action="{{route('newsletter-request')}}" method ="POST" id="newsletter">
                         @csrf
                         <input type="text" placeholder="Email..." name="email">
-                        <button type="submit" class="common_btn">Zapisz się</button>
+                        <button type="submit" class="common_btn subscribe_btn">Zapisz się</button>
                     </form>
                     {{-- <div class="footer_payment">
                         <p>We're using safe payment for :</p>

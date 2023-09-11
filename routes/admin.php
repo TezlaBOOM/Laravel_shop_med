@@ -29,6 +29,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
@@ -115,8 +116,10 @@ Route::get('settings', [SettingController::class, 'index'])->name('settings.inde
 Route::put('generale-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('generale-setting-update');
 Route::put('email-setting-update', [SettingController::class, 'emailSettingUpdate'])->name('email-setting-update');
 
-
-
+//*setting route*/
+Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
+Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
+Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
 
 //*home page route*/
 Route::get('home-page-setting', [HomePageSettingsController::class, 'index'])->name('home-page-setting');
