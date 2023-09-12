@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminVendorController;
+use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
@@ -120,6 +121,15 @@ Route::put('email-setting-update', [SettingController::class, 'emailSettingUpdat
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
 Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
 Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
+
+/**Advertisement */
+Route::put('advertisement/homepage-banner-secion-one', [AdvertisementController::class, 'homepageBannerSecionOne'])->name('homepage-banner-secion-one');
+Route::put('advertisement/homepage-banner-secion-two', [AdvertisementController::class, 'homepageBannerSecionTwo'])->name('homepage-banner-secion-two');
+Route::put('advertisement/homepage-banner-secion-three', [AdvertisementController::class, 'homepageBannerSecionThree'])->name('homepage-banner-secion-three');
+Route::put('advertisement/homepage-banner-secion-four', [AdvertisementController::class, 'homepageBannerSecionFour'])->name('homepage-banner-secion-four');
+
+Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
+
 
 //*home page route*/
 Route::get('home-page-setting', [HomePageSettingsController::class, 'index'])->name('home-page-setting');

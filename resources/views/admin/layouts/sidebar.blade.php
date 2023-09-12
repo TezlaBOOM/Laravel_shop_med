@@ -126,7 +126,9 @@
             <li class="{{setActive(['admin.footer-grid-three.*'])}}"><a class="nav-link" href="{{route('admin.footer-grid-three.index')}}">Stopka panel 2</a></li>
 
           </ul>
-        </li>
+        </li>  
+        <li><a class="nav-link {{setActive(['admin.advertisement.*'])}}" href="{{route('admin.advertisement.index')}}"><i class="far fa-square"></i> <span>Reklama</span></a></li>
+
         <li><a class="nav-link {{setActive(['admin.subscribers.*'])}}" href="{{route('admin.subscribers.index')}}"><i class="far fa-square"></i> <span>Subskrybencji</span></a></li>
 
         <li><a class="nav-link {{setActive(['admin.settings.*'])}}" href="{{route('admin.settings.index')}}"><i class="far fa-square"></i> <span>Ustawienia</span></a></li>
