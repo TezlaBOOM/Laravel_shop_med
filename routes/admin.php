@@ -127,6 +127,8 @@ Route::put('advertisement/homepage-banner-secion-one', [AdvertisementController:
 Route::put('advertisement/homepage-banner-secion-two', [AdvertisementController::class, 'homepageBannerSecionTwo'])->name('homepage-banner-secion-two');
 Route::put('advertisement/homepage-banner-secion-three', [AdvertisementController::class, 'homepageBannerSecionThree'])->name('homepage-banner-secion-three');
 Route::put('advertisement/homepage-banner-secion-four', [AdvertisementController::class, 'homepageBannerSecionFour'])->name('homepage-banner-secion-four');
+Route::put('advertisement/product-banner', [AdvertisementController::class, 'productBanner'])->name('product-banner');
+Route::put('advertisement/cart-banner', [AdvertisementController::class, 'cartBanner'])->name('cart-banner');
 
 Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
 

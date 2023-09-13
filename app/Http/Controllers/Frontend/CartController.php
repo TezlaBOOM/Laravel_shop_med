@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductVariantItem;
@@ -112,8 +113,10 @@ class CartController extends Controller
             toastr('Koszy jest pusty','warning','Uwaga!');
             return redirect()->route('home');
         }
+        $cart_banner = Advertisement::where('key', 'cart_banner')->first();
+        $cart_banner = json_decode($cart_banner?->value);
       
-        return view('frontend.pages.cart-detail',compact('cartItems'));
+        return view('frontend.pages.cart-detail',compact('cartItems','cart_banner'));
     }
 
     public function updateProductQty(Request $request)
