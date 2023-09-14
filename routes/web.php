@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserOrderController;
@@ -102,5 +103,7 @@ Route::group(['middleware' => ['auth','verified'],'prefix'=>'user','as'=>'user.'
     Route::get('stripe/cancel',[paymentController::class,'stripeCancel'])->name('stripe.cancel');
 
 
+    //product review routes
+    Route::post('review',[ReviewController::class,'create'])->name('review.create');
 });
 

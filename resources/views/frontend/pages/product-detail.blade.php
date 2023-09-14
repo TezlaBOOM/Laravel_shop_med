@@ -1,14 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Produkty wyprzedażowe
+    {{ $settings->site_name }} || Produkty wyprzedażowe
 @endsection
 
 @section('content')
-
     <!--==========================
-      PRODUCT MODAL VIEW START
-    ===========================-->
+              PRODUCT MODAL VIEW START
+            ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -88,7 +87,8 @@
                                     <div class="wsus__quentity">
                                         <h5>quentity :</h5>
                                         <form class="select_number">
-                                            <input class="number_area" type="text" min="1" max="100" value="1" />
+                                            <input class="number_area" type="text" min="1" max="100"
+                                                value="1" />
                                         </form>
                                         <h3>$50.00</h3>
                                     </div>
@@ -119,7 +119,8 @@
                                     <ul class="wsus__button_area">
                                         <li><a class="add_cart" href="#">add to cart</a></li>
                                         <li><a class="buy_now" href="#">buy now</a></li>
-                                        <li><a href="" class="add_to_wishlist" data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
+                                        <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                                    class="fal fa-heart"></i></a></li>
                                         <li><a href="#"><i class="far fa-random"></i></a></li>
                                     </ul>
                                     <p class="brand_model"><span>model :</span> 12345670</p>
@@ -127,10 +128,13 @@
                                     <div class="wsus__pro_det_share">
                                         <h5>share :</h5>
                                         <ul class="d-flex">
-                                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                                            </li>
                                             <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                            <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a>
+                                            </li>
+                                            <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -142,13 +146,13 @@
         </div>
     </section>
     <!--==========================
-      PRODUCT MODAL VIEW END
-    ===========================-->
+              PRODUCT MODAL VIEW END
+            ===========================-->
 
 
     <!--============================
-        BREADCRUMB START
-    ==============================-->
+                BREADCRUMB START
+            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -166,13 +170,13 @@
         </div>
     </section>
     <!--============================
-        BREADCRUMB END
-    ==============================-->
+                BREADCRUMB END
+            ==============================-->
 
 
     <!--============================
-        PRODUCT DETAILS START
-    ==============================-->
+                PRODUCT DETAILS START
+            ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -183,15 +187,17 @@
                                 <div class="exzoom_img_box">
                                     @if ($product->video_link)
                                         <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
-                                        href="{{$product->video_link}}">
-                                        <i class="fas fa-play"></i>
+                                            href="{{ $product->video_link }}">
+                                            <i class="fas fa-play"></i>
                                         </a>
                                     @endif
-                                    <ul class='exzoom_img_ul'>  
-                                        <li><img class="zoom ing-fluid w-100" src="{{asset($product->thumb_image)}}" alt="product"></li>
-                                    @foreach ($product->productImageGalleries as $ProductImage )
-                                        <li><img class="zoom ing-fluid w-100" src="{{asset($ProductImage->image)}}" alt="product"></li>
-                                    @endforeach
+                                    <ul class='exzoom_img_ul'>
+                                        <li><img class="zoom ing-fluid w-100" src="{{ asset($product->thumb_image) }}"
+                                                alt="product"></li>
+                                        @foreach ($product->productImageGalleries as $ProductImage)
+                                            <li><img class="zoom ing-fluid w-100" src="{{ asset($ProductImage->image) }}"
+                                                    alt="product"></li>
+                                        @endforeach
 
                                     </ul>
                                 </div>
@@ -207,8 +213,8 @@
                     </div>
                     <div class="col-xl-5 col-md-7 col-lg-7">
                         <div class="wsus__pro_details_text">
-                            <a class="title" href="javascript:;">{{$product->name}}</a>
-                            
+                            <a class="title" href="javascript:;">{{ $product->name }}</a>
+
                             <p class="review">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -218,112 +224,120 @@
                                 <span>20 review</span>
                             </p>
 
-                            
-                            @if (checkDiscount($product))
-                                <h4>{{$product->offer_price}} {{$settings->currency_icon}}<del>{{$product->price}} {{$settings->currency_icon}}</del></h4>
 
+                            @if (checkDiscount($product))
+                                <h4>{{ $product->offer_price }} {{ $settings->currency_icon }}<del>{{ $product->price }}
+                                        {{ $settings->currency_icon }}</del></h4>
                             @else
-                                <h4>{{$product->price}} {{$settings->currency_icon}}</h4>
+                                <h4>{{ $product->price }} {{ $settings->currency_icon }}</h4>
                             @endif
                             @switch($product->vat)
                                 @case(0)
                                     <h6>0% Vat</h6>
                                 @break
+
                                 @case(1)
                                     <h6>5% Vat</h6>
                                 @break
+
                                 @case(2)
                                     <h6>8% Vat</h6>
                                 @break
+
                                 @case(3)
                                     <h6>23% Vat</h6>
                                 @break
-                            
+
                                 @default
-                                
                             @endswitch
 
-                             <p class="description">{!!$product->short_description!!}</p> 
+                            <p class="description">{!! $product->short_description !!}</p>
 
 
-                             @if ($product->qty > 0)
-                             @switch($product->backorder)
-                                 @case(0)
-                                 <p class="wsus__stock_area">
-                                    <span class="in_stock"> Dostępność:</span> <br>
-                                    Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
-                                    Zamówienia powyżej <b style="color:green"> {{$product->qty}}</b>: <u>Na zamówienie</u>
-                                </p>
+                            @if ($product->qty > 0)
+                                @switch($product->backorder)
+                                    @case(0)
+                                        <p class="wsus__stock_area">
+                                            <span class="in_stock"> Dostępność:</span> <br>
+                                            Na magazynie: <b style="color:green"> {{ $product->qty }}</b><br>
+                                            Zamówienia powyżej <b style="color:green"> {{ $product->qty }}</b>: <u>Na
+                                                zamówienie</u>
+                                        </p>
+                                    @break
 
-                                 @break
-                                 @case(1)
-                                 <p class="wsus__stock_area">
-                                    <span class="in_stock"> Dostępność:</span> <br>
-                                    Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
-                                    Produkt:<u>Wycofane</u>
-                                </p>
+                                    @case(1)
+                                        <p class="wsus__stock_area">
+                                            <span class="in_stock"> Dostępność:</span> <br>
+                                            Na magazynie: <b style="color:green"> {{ $product->qty }}</b><br>
+                                            Produkt:<u>Wycofane</u>
+                                        </p>
+                                    @break
 
-                                 @break
-                                 @default
-                                 <p class="wsus__stock_area">
-                                    <span class="in_stock"> Dostępność:</span> <br>
-                                    Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
-                                    Zamówienia powyżej <b style="color:green"> {{$product->qty}}</b>: <u>Ustalana indywidualnie </u>
-                                </p>
+                                    @default
+                                        <p class="wsus__stock_area">
+                                            <span class="in_stock"> Dostępność:</span> <br>
+                                            Na magazynie: <b style="color:green"> {{ $product->qty }}</b><br>
+                                            Zamówienia powyżej <b style="color:green"> {{ $product->qty }}</b>: <u>Ustalana
+                                                indywidualnie </u>
+                                        </p>
+                                @endswitch
+                            @elseif($product->qty === 0)
+                                @switch($product->backorder)
+                                    @case(0)
+                                        <p class="wsus__stock_area"><span class="in_stock">Na zamówienie</span></p>
+                                    @break
 
-                             @endswitch
-                         @elseif($product->qty === 0)
-                                 @switch($product->backorder)
-                                 @case(0)
-                                 <p class="wsus__stock_area"><span class="in_stock">Na zamówienie</span></p>
-                                 @break
-                                 @case(1)
-                                 <p class="wsus__stock_area"><span class="stock_out">Wycofany</span></p>
+                                    @case(1)
+                                        <p class="wsus__stock_area"><span class="stock_out">Wycofany</span></p>
+                                    @break
 
-                                 @break
-                                 @default
-                                 <p class="wsus__stock_area"><span class="in_stock">Ustalana indywidualnie</span></p>
-
-                                 @endswitch
-                         @endif
+                                    @default
+                                        <p class="wsus__stock_area"><span class="in_stock">Ustalana indywidualnie</span></p>
+                                @endswitch
+                            @endif
 
                             <form class="shopping-cart-form" method="post">
                                 @csrf
                                 <div class="wsus__selectbox">
                                     <div class="row">
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         @foreach ($product->variants as $variant)
-
-                                        @if ($variant->status != 0)
-                                            <div class="col-xl-6 col-sm-6">
-                                                <h5 class="mb-2">{{$variant->name}}: </h5>
-                                                <select class="select_2" name="variants_items[]">
-                                                    @foreach ($variant->productVariantItems as $variantItem)
-                                                        @if ($variantItem->status != 0)
-                                                            <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} ({{$variantItem->price}} ZŁ)</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @endif
+                                            @if ($variant->status != 0)
+                                                <div class="col-xl-6 col-sm-6">
+                                                    <h5 class="mb-2">{{ $variant->name }}: </h5>
+                                                    <select class="select_2" name="variants_items[]">
+                                                        @foreach ($variant->productVariantItems as $variantItem)
+                                                            @if ($variantItem->status != 0)
+                                                                <option value="{{ $variantItem->id }}"
+                                                                    {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                                    {{ $variantItem->name }} ({{ $variantItem->price }}
+                                                                    ZŁ)</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
                                         @endforeach
 
 
 
-    
+
                                     </div>
                                 </div>
                                 <div class="wsus__quentity">
                                     <h5>Ilość :</h5>
                                     <div class="select_number">
-                                        <input class="number_area" name="qty" type="text" min="1" max="100000" value="1" />
+                                        <input class="number_area" name="qty" type="text" min="1"
+                                            max="100000" value="1" />
                                     </div>
-                                    
+
                                 </div>
                                 <ul class="wsus__button_area">
-                                    <li><button type="submit" class="add_cart" href="#">Dodaj do koszyka</button></li>
+                                    <li><button type="submit" class="add_cart" href="#">Dodaj do koszyka</button>
+                                    </li>
                                     <li><a class="buy_now" href="#">Kup teraz</a></li>
-                                    <li><a href="" class="add_to_wishlist" data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                                class="fal fa-heart"></i></a></li>
                                     <li><a href="#"><i class="far fa-random"></i></a></li>
                                 </ul>
 
@@ -332,8 +346,8 @@
 
 
 
-                            <p class="brand_model"><span>SKU :</span> {{$product->sku}}</p>
-                            <p class="brand_model"><span>Marka :</span> {{$product->brand->name}}</p>
+                            <p class="brand_model"><span>SKU :</span> {{ $product->sku }}</p>
+                            <p class="brand_model"><span>Marka :</span> {{ $product->brand->name }}</p>
 
                         </div>
                     </div>
@@ -404,7 +418,7 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="wsus__description_area">
-                                                {!!$product->long_description!!}
+                                                {!! $product->long_description !!}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -440,12 +454,13 @@
                                         <div class="row">
                                             <div class="col-xl-6 col-xxl-5 col-md-6">
                                                 <div class="wsus__vebdor_img">
-                                                    <img src="{{asset($product->vendor->banner)}}" alt="vensor" class="img-fluid w-100">
+                                                    <img src="{{ asset($product->vendor->banner) }}" alt="vensor"
+                                                        class="img-fluid w-100">
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                 <div class="wsus__pro_det_vendor_text">
-                                                    <h4>{{$product->vendor->user->name}}</h4>
+                                                    <h4>{{ $product->vendor->user->name }}</h4>
                                                     <p class="rating">
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
@@ -454,16 +469,16 @@
                                                         <i class="fas fa-star"></i>
                                                         <span>(41 review)</span>
                                                     </p>
-                                                    <p><span>Nazwa:</span> {{$product->vendor->shop_name}}</p>
-                                                    <p><span>Adres:</span> {{$product->vendor->address}}</p>
-                                                    <p><span>Phone:</span> {{$product->vendor->phone}}</p>
-                                                    <p><span>mail:</span> {{$product->vendor->email}}</p>
+                                                    <p><span>Nazwa:</span> {{ $product->vendor->shop_name }}</p>
+                                                    <p><span>Adres:</span> {{ $product->vendor->address }}</p>
+                                                    <p><span>Phone:</span> {{ $product->vendor->phone }}</p>
+                                                    <p><span>mail:</span> {{ $product->vendor->email }}</p>
                                                     <a href="vendor_details.html" class="see_btn">visit store</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12">
                                                 <div class="wsus__vendor_details">
-                                                    <p>{!!$product->vendor->description!!}
+                                                    <p>{!! $product->vendor->description !!}
                                                     </p>
                                                 </div>
                                             </div>
@@ -477,297 +492,117 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-                                                        <h4>Reviews <span>02</span></h4>
-                                                        <div class="wsus__main_comment">
-                                                            <div class="wsus__comment_img">
-                                                                <img src="images/client_img_3.jpg" alt="user"
-                                                                    class="img-fluid w-100">
-                                                            </div>
-                                                            <div class="wsus__comment_text reply">
-                                                                <h6>Shopnil mahadi <span>4 <i
-                                                                            class="fas fa-star"></i></span></h6>
-                                                                <span>09 Jul 2021</span>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                                    elit.
-                                                                    Cupiditate sint molestiae eos? Officia, fuga eaque.
-                                                                </p>
-                                                                <ul class="">
-                                                                    <li><img src="images/headphone_1.jpg" alt="product"
-                                                                            class="img-fluid w-100"></li>
-                                                                    <li><img src="images/headphone_2.jpg" alt="product"
-                                                                            class="img-fluid w-100"></li>
-                                                                    <li><img src="images/kids_1.jpg" alt="product"
-                                                                            class="img-fluid w-100"></li>
-                                                                </ul>
-                                                                <a href="#" data-bs-toggle="collapse"
-                                                                    data-bs-target="#flush-collapsetwo">reply</a>
-                                                                <div class="accordion accordion-flush"
-                                                                    id="accordionFlushExample2">
-                                                                    <div class="accordion-item">
-                                                                        <div id="flush-collapsetwo"
-                                                                            class="accordion-collapse collapse"
-                                                                            aria-labelledby="flush-collapsetwo"
-                                                                            data-bs-parent="#accordionFlushExample">
-                                                                            <div class="accordion-body">
-                                                                                <form>
-                                                                                    <div
-                                                                                        class="wsus__riv_edit_single text_area">
-                                                                                        <i class="far fa-edit"></i>
-                                                                                        <textarea cols="3" rows="1"
-                                                                                            placeholder="Your Text"></textarea>
-                                                                                    </div>
-                                                                                    <button type="submit"
-                                                                                        class="common_btn">submit</button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                        <h4>Opinie: <span>{{ count($reviews) }}</span></h4>
+                                                        @foreach ($reviews as $review)
+                                                            <div class="wsus__main_comment">
+                                                                <div class="wsus__comment_img">
+                                                                    <img src="{{ asset($review->user->image) }}"
+                                                                        alt="user" class="img-fluid w-100">
+                                                                </div>
+                                                                <div class="wsus__comment_text reply">
+                                                                    <h6>{{ $review->user->name }}<span>{{ $review->rating }}
+                                                                            <i class="fas fa-star"></i></span></h6>
+                                                                    <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
+                                                                    <p>{{ $review->review }} </p>
+                                                                    <ul class="">
+                                                                        @if (count($review->productReviwGalleries) > 0)
+                                                                            @foreach ($review->productReviwGalleries as $image)
+                                                                                <li><img src="{{ asset($image->image) }}"
+                                                                                        alt="product"
+                                                                                        class="img-fluid w-100"></li>
+                                                                            @endforeach
+                                                                        @endif
+
+
+                                                                    </ul>
+
                                                                 </div>
                                                             </div>
+                                                        @endforeach
+
+                                                        <div class="mt-5">
+                                                            @if ($reviews->hasPages())
+                                                                {{ $reviews->links() }}
+                                                            @endif
                                                         </div>
-                                                        <div class="wsus__main_comment">
-                                                            <div class="wsus__comment_img">
-                                                                <img src="images/client_img_1.jpg" alt="user"
-                                                                    class="img-fluid w-100">
-                                                            </div>
-                                                            <div class="wsus__comment_text reply">
-                                                                <h6>Smith jhon <span>5 <i
-                                                                            class="fas fa-star"></i></span>
-                                                                </h6>
-                                                                <span>09 Jul 2021</span>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                                    elit.
-                                                                    Cupiditate sint molestiae eos? Officia, fuga eaque.
-                                                                </p>
-                                                                <a href="#" data-bs-toggle="collapse"
-                                                                    data-bs-target="#flush-collapsetwo2">reply</a>
-                                                                <div class="accordion accordion-flush"
-                                                                    id="accordionFlushExample2">
-                                                                    <div class="accordion-item">
-                                                                        <div id="flush-collapsetwo2"
-                                                                            class="accordion-collapse collapse"
-                                                                            aria-labelledby="flush-collapsetwo"
-                                                                            data-bs-parent="#accordionFlushExample">
-                                                                            <div class="accordion-body">
-                                                                                <form>
-                                                                                    <div
-                                                                                        class="wsus__riv_edit_single text_area">
-                                                                                        <i class="far fa-edit"></i>
-                                                                                        <textarea cols="3" rows="1"
-                                                                                            placeholder="Your Text"></textarea>
-                                                                                    </div>
-                                                                                    <button type="submit"
-                                                                                        class="common_btn">submit</button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="pagination">
-                                                            <nav aria-label="Page navigation example">
-                                                                <ul class="pagination">
-                                                                    <li class="page-item">
-                                                                        <a class="page-link" href="#"
-                                                                            aria-label="Previous">
-                                                                            <i class="fas fa-chevron-left"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="page-item"><a
-                                                                            class="page-link page_active" href="#">1</a>
-                                                                    </li>
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="#">2</a></li>
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="#">3</a></li>
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="#">4</a></li>
-                                                                    <li class="page-item">
-                                                                        <a class="page-link" href="#" aria-label="Next">
-                                                                            <i class="fas fa-chevron-right"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
-                                                    <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
-                                                        <h4>write a Review</h4>
-                                                        <form action="#">
-                                                            <p class="rating">
-                                                                <span>select your rating : </span>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </p>
-                                                            <div class="row">
-                                                                <div class="col-xl-12">
-                                                                    <div class="wsus__single_com">
-                                                                        <input type="text" placeholder="Name">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-12">
-                                                                    <div class="wsus__single_com">
-                                                                        <input type="email" placeholder="Email">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-12">
-                                                                    <div class="col-xl-12">
+
+
+
+
+
+
+                                                    @php
+                                                        $isBrought = false;
+                                                        $orders = \App\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
+                                                        
+                                                        foreach ($orders as $key => $order) {
+                                                            $existItem = $order
+                                                                ->orderProducts()
+                                                                ->where('product_id', $product->id)
+                                                                ->get();
+                                                        
+                                                            if ($existItem) {
+                                                                $isBrought = true;
+                                                            }
+                                                        }
+                                                        
+                                                    @endphp
+                                                    @if ($isBrought === true)
+                                                        <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
+                                                            <h4>Napisz opinie o produkcje</h4>
+                                                            <form action="{{ route('user.review.create') }}"
+                                                                enctype="multipart/form-data" method="POST">
+                                                                @csrf
+                                                                <p class="rating">
+                                                                    <span>Wybierz ocene: </span>
+                                                                </p>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-xl-12 mb-4">
                                                                         <div class="wsus__single_com">
-                                                                            <textarea cols="3" rows="3"
-                                                                                placeholder="Write your review"></textarea>
+                                                                            <select name="rating" id=""
+                                                                                class="form-control">
+                                                                                <option value="">Wybierz</option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-xl-12">
+                                                                        <div class="col-xl-12">
+                                                                            <div class="wsus__single_com">
+                                                                                <textarea cols="3" rows="3" name="review" placeholder="Write your review"></textarea>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="img_upload">
-                                                                <div class="gallery">
-                                                                    <a class="cam" href="javascript:void(0)"><span><i
-                                                                                class="fas fa-image"></i></span>
-                                                                    </a>
+                                                                <div class="img_upload">
+                                                                    <div class="">
+                                                                        <input type="file" name="images[]" multiple>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <button class="common_btn" type="submit">submit
-                                                                review</button>
-                                                        </form>
-                                                    </div>
+                                                                <input type="hidden" name="product_id" id=""
+                                                                    value="{{ $product->id }}">
+                                                                <input type="hidden" name="vendor_id" id=""
+                                                                    value="{{ $product->vendor_id }}">
+
+                                                                <button class="common_btn" type="submit">Wyślij
+                                                                    opinie</button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-contact239" role="tabpanel"
-                                    aria-labelledby="pills-contact-tab239">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="wsus__contact_question">
-                                                <h5>People usually ask these</h5>
-                                                <div class="accordion" id="accordionExample">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingOne">
-                                                            <button class="accordion-button" type="button"
-                                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                                aria-expanded="true" aria-controls="collapseOne">
-                                                                How can I cancel my order?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                                            aria-labelledby="headingOne"
-                                                            data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Voluptatum voluptas ea hic excepturi sit, sapiente
-                                                                    optio
-                                                                    deleniti pariatur. Dolorum in quos magni?
-                                                                    Necessitatibus
-                                                                    recusandae cupiditate iste expedita amet voluptatem
-                                                                    laudantium.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingTwo">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                                aria-expanded="false" aria-controls="collapseTwo">
-                                                                Why is my registration delayed?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                                            aria-labelledby="headingTwo"
-                                                            data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Voluptatum voluptas ea hic excepturi sit, sapiente
-                                                                    optio
-                                                                    deleniti pariatur. Dolorum in quos magni?
-                                                                    Necessitatibus
-                                                                    recusandae cupiditate iste expedita amet voluptatem
-                                                                    laudantium.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingThree">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseThree" aria-expanded="false"
-                                                                aria-controls="collapseThree">
-                                                                What do I need to buy products?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseThree" class="accordion-collapse collapse"
-                                                            aria-labelledby="headingThree"
-                                                            data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Voluptatum voluptas ea hic excepturi sit, sapiente
-                                                                    optio
-                                                                    deleniti pariatur. Dolorum in quos magni?
-                                                                    Necessitatibus
-                                                                    recusandae cupiditate iste expedita amet voluptatem
-                                                                    laudantium.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingThreet1">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseThreet1" aria-expanded="false"
-                                                                aria-controls="collapseThreet1">
-                                                                How can I track an order?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseThreet1" class="accordion-collapse collapse"
-                                                            aria-labelledby="headingThreet1"
-                                                            data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Voluptatum voluptas ea hic excepturi sit, sapiente
-                                                                    optio
-                                                                    deleniti pariatur. Dolorum in quos magni?
-                                                                    Necessitatibus
-                                                                    recusandae cupiditate iste expedita amet voluptatem
-                                                                    laudantium.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingThreet2">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseThreet2" aria-expanded="false"
-                                                                aria-controls="collapseThreet2">
-                                                                How can I get money back?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseThreet2" class="accordion-collapse collapse"
-                                                            aria-labelledby="headingThreet2"
-                                                            data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Voluptatum voluptas ea hic excepturi sit, sapiente
-                                                                    optio
-                                                                    deleniti pariatur. Dolorum in quos magni?
-                                                                    Necessitatibus
-                                                                    recusandae cupiditate iste expedita amet voluptatem
-                                                                    laudantium.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -780,13 +615,13 @@
         </div>
     </section>
     <!--============================
-        PRODUCT DETAILS END
-    ==============================-->
+            PRODUCT DETAILS END
+        ==============================-->
 
 
     <!--============================
-        RELATED PRODUCT START
-    ==============================-->
+            RELATED PRODUCT START
+        ==============================-->
     {{-- <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -950,13 +785,9 @@
         </div>
     </section> --}}
     <!--============================
-        RELATED PRODUCT END
-    ==============================-->
-
-
+            RELATED PRODUCT END
+        ==============================-->
 @endsection
 
 @push('scripts')
-
-    
 @endpush
