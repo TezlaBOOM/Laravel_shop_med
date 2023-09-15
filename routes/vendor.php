@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\VendorProductVariantController;
 use App\Http\Controllers\Backend\VendorProductVariantItemController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
+use App\Http\Controllers\Frontend\VendorProductReviewController;
 use Illuminate\Support\Facades\Route;
 
 /**Vendor route */
@@ -43,3 +44,6 @@ Route::put('product-variant-item-status', [VendorProductVariantItemController::c
 Route::get('orders', [VendorOrderController::class, 'index'])->name('orders.index');
 Route::get('orders/show/{id}', [VendorOrderController::class, 'show'])->name('orders.show');
 Route::get('orders/status/{id}', [VendorOrderController::class, 'orderStatus'])->name('orders.status');
+
+//review route*/
+Route::get('reviews',[VendorProductReviewController::class,'index'])->name('review.index');

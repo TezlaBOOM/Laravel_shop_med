@@ -7,6 +7,7 @@
     <ul class="dashboard_link">
       <li><a class="active" href="{{route('vendor.dashboard')}}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
       <li><a href="{{route('vendor.orders.index')}}"><i class="far fa-user"></i> Zamówienia</a></li>
+      <li><a href="{{route('vendor.review.index')}}"><i class="far fa-user"></i> Opinie</a></li>
       <li><a href="{{route('vendor.product.index')}}"><i class="far fa-user"></i> Produkty</a></li>
       <li><a href="{{route('vendor.shop-profile.index')}}"><i class="far fa-user"></i> Profil sprzedawcy</a></li>
       <li><a href="{{route('vendor.profile')}}"><i class="far fa-user"></i> Profil</a></li><li>

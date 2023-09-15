@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserOrderController;
+use App\Http\Controllers\Frontend\UserProductReviewController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\WishlistController;
 
@@ -105,5 +106,9 @@ Route::group(['middleware' => ['auth','verified'],'prefix'=>'user','as'=>'user.'
 
     //product review routes
     Route::post('review',[ReviewController::class,'create'])->name('review.create');
+
+    //user review routes
+    Route::get('reviews',[ReviewController::class,'index'])->name('review.index');
+
 });
 

@@ -3,6 +3,7 @@
 /**Admin Routes */
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorController;
 use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BrandController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Models\AdminReview;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
 use App\Models\ShoppingRule;
@@ -159,6 +161,12 @@ Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->name('s
 Route::get('out-for-delivery-orders', [OrderController::class, 'outForDeliveryOrders'])->name('out-for-delivery-orders');
 Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->name('delivered-orders');
 Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->name('canceled-orders');
+
+//* reviews routes*/
+Route::get('reviews', [AdminReviewController::class, 'index'])->name('review.index');
+Route::put('reviews/change-status', [AdminReviewController::class, 'changeStatus'])->name('reviews.change-status');
+
+
 
 //* transaction */
 Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');

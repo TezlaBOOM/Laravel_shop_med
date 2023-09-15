@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <!--==========================
+    {{-- <!--==========================
               PRODUCT MODAL VIEW START
             ===========================-->
     <section class="product_popup_modal">
@@ -147,7 +147,7 @@
     </section>
     <!--==========================
               PRODUCT MODAL VIEW END
-            ===========================-->
+            ===========================--> --}}
 
 
     <!--============================
@@ -215,13 +215,21 @@
                         <div class="wsus__pro_details_text">
                             <a class="title" href="javascript:;">{{ $product->name }}</a>
 
-                            <p class="review">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>20 review</span>
+                            <p class="wsus__pro_rating">
+                                @php
+                                $avgRating = $product->reviews()->avg('rating');
+                                $fullRating = round($avgRating);
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $fullRating)
+                                    <i class="fas fa-star"></i>
+                                    @else
+                                    <i class="far fa-star"></i>
+                                    @endif
+                                @endfor
+
+                                <span>({{count($product->reviews)}} review)</span>
                             </p>
 
 
@@ -533,7 +541,7 @@
 
 
 
-
+                                                    @auth
 
                                                     @php
                                                         $isBrought = false;
@@ -600,6 +608,7 @@
                                                             </form>
                                                         </div>
                                                     @endif
+                                                    @endauth
                                                 </div>
                                             </div>
 
