@@ -49,7 +49,7 @@
 
                         <ul class="wsus__menu_item">
                             <li><a class="active" href="{{url('/')}}">home</a></li>
-                            <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
+                            {{-- <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                                 <div class="wsus__mega_menu">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-3">
@@ -114,8 +114,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                            <li><a href="vendor.html">vendor</a></li>
+                            </li> --}}
+                            <li><a href="{{route('vendorPage.index')}}">Sprzedawcy</a></li>
                             <li><a href="blog.html">blog</a></li>
                             <li><a href="daily_deals.html">campain</a></li>
                             <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>

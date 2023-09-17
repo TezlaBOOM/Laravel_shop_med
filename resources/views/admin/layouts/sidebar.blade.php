@@ -128,10 +128,25 @@
 
           </ul>
         </li>  
+
+        <li class="dropdown {{setActive([
+          'admin.vendor-requests.*',
+          'admin.customers.*',
+          'admin.vendor-list.*'
+          
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Użytkownicy</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.customers.*'])}}"><a class="nav-link" href="{{route('admin.customers.index')}}">Użtykownicy</a></li>
+            <li class="{{setActive(['admin.vendor-list.*'])}}"><a class="nav-link" href="{{route('admin.vendor-list.index')}}">Sprzedawcy</a></li>
+            <li class="{{setActive(['admin.vendor-requests.*'])}}"><a class="nav-link" href="{{route('admin.vendor-requests.index')}}">Oczekujący Sprzedawcy</a></li>
+
+          </ul>
+        </li>  
+
+
         <li><a class="nav-link {{setActive(['admin.advertisement.*'])}}" href="{{route('admin.advertisement.index')}}"><i class="far fa-square"></i> <span>Reklama</span></a></li>
-
         <li><a class="nav-link {{setActive(['admin.subscribers.*'])}}" href="{{route('admin.subscribers.index')}}"><i class="far fa-square"></i> <span>Subskrybencji</span></a></li>
-
         <li><a class="nav-link {{setActive(['admin.settings.*'])}}" href="{{route('admin.settings.index')}}"><i class="far fa-square"></i> <span>Ustawienia</span></a></li>
 
 

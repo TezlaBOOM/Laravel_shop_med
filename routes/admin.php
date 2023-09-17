@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\FlashSeleController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\FooterGridTwoController;
@@ -33,6 +34,8 @@ use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\VendorListController;
+use App\Http\Controllers\Backend\VendorReqeustController;
 use App\Models\AdminReview;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
@@ -40,47 +43,47 @@ use App\Models\ShoppingRule;
 use App\Models\transactions;
 use Illuminate\Support\Facades\Route;
 
-Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
 /**profile route*/
 
-Route::post('profile/update',[ProfileController::class, 'updateProfile'])->name('profile.update');
-Route::post('profile/update/password',[ProfileController::class, 'updatePassword'])->name('password.update');
-Route::get('profile',[ProfileController::class, 'index'])->name('profile');
+Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+Route::post('profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
 /**Slider route*/
-Route::resource('slider',SliderController::class);
+Route::resource('slider', SliderController::class);
 
 /**category route*/
-Route::put("change-status",[CategoryController::class, 'changeStatus'])->name('category.change-status');
-Route::resource('category',CategoryController::class);
+Route::put("change-status", [CategoryController::class, 'changeStatus'])->name('category.change-status');
+Route::resource('category', CategoryController::class);
 
 /**sub-category route*/
-Route::put("subcategory/subchange-status",[SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
-Route::resource('sub-category',SubCategoryController::class);
+Route::put("subcategory/subchange-status", [SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
+Route::resource('sub-category', SubCategoryController::class);
 
 /**sub-category route*/
-Route::put("childcategory/subchange-status",[ChildCategoryController::class, 'changeStatus'])->name('child-category.change-status');
-Route::get('get-subcategories',[ChildCategoryController::class, 'getSubCategory'])->name('get-subcategories');
-Route::resource('child-category',ChildCategoryController::class);
+Route::put("childcategory/subchange-status", [ChildCategoryController::class, 'changeStatus'])->name('child-category.change-status');
+Route::get('get-subcategories', [ChildCategoryController::class, 'getSubCategory'])->name('get-subcategories');
+Route::resource('child-category', ChildCategoryController::class);
 
 /**brand route*/
-Route::put("brand/subchange-status",[BrandController::class, 'changeStatus'])->name('brand.change-status');
-Route::resource('brand',BrandController::class);
+Route::put("brand/subchange-status", [BrandController::class, 'changeStatus'])->name('brand.change-status');
+Route::resource('brand', BrandController::class);
 
 /**vendor route*/
-Route::resource('vendor-profile',AdminVendorController::class);
+Route::resource('vendor-profile', AdminVendorController::class);
 
 /**product route*/
-Route::get('product/get-subcategories',[ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
-Route::get('product/child-subcategories',[ProductController::class, 'getChildCategories'])->name('product.get-childcategories');
+Route::get('product/get-subcategories', [ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
+Route::get('product/child-subcategories', [ProductController::class, 'getChildCategories'])->name('product.get-childcategories');
 Route::put('product/change-status', [ProductController::class, 'changeStatus'])->name('product.change-status');
-Route::resource('product',ProductController::class);
+Route::resource('product', ProductController::class);
 /**product gallery image route*/
-Route::resource('product-image-gallery',ProductImageGalleryController::class);
+Route::resource('product-image-gallery', ProductImageGalleryController::class);
 //*product variant route*/
 Route::put('product-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
-Route::resource('product-variant',ProductVariantController::class);
+Route::resource('product-variant', ProductVariantController::class);
 
 //*product variant item route*/
 Route::get('product-variant-item/{productId}/{variantId}', [ProductVariantItemController::class, 'index'])->name('product-variant-item.index');
@@ -144,9 +147,9 @@ Route::put('product-slider-section-three', [HomePageSettingsController::class, '
 
 
 /**Payment settings routs */
-Route::get('payment-setting', [PaymentSettingController::class,'index'])->name('payment-setting.index');
+Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
 Route::resource('paypal-setting', PayPalSettingController::class);
-Route::put('stripe-setting/{id}', [StripeSettingController::class,'update'])->name('stripe-setting.update');
+Route::put('stripe-setting/{id}', [StripeSettingController::class, 'update'])->name('stripe-setting.update');
 
 /**orders */
 Route::resource('orders', OrderController::class);
@@ -167,7 +170,6 @@ Route::get('reviews', [AdminReviewController::class, 'index'])->name('review.ind
 Route::put('reviews/change-status', [AdminReviewController::class, 'changeStatus'])->name('reviews.change-status');
 
 
-
 //* transaction */
 Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
 
@@ -183,6 +185,17 @@ Route::resource('footer-grid-two', FooterGridTwoController::class);
 Route::put('footer-grid-three/change-status', [FooterGridThreeController::class, 'changeStatus'])->name('footer-grid-three.change-status');
 Route::put('footer-grid-three/change-title', [FooterGridThreeController::class, 'changeTitle'])->name('footer-grid-three.change-title');
 Route::resource('footer-grid-three', FooterGridThreeController::class);
+//vendor route */
+Route::get('vendor-requests', [VendorReqeustController::class, 'index'])->name('vendor-requests.index');
+Route::get('vendor-requests/{id}/show', [VendorReqeustController::class, 'show'])->name('vendor-requests.show');
+Route::put('vendor-requests/{id}/change-status', [VendorReqeustController::class, 'changeStatus'])->name('vendor-requests.change-status');
 
+//* coustomer list routes*/
+Route::get('customers', [CustomerListController::class, 'index'])->name('customers.index');
+Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
+
+//* vendor list routes*/
+Route::get('vendor-list', [VendorListController::class, 'index'])->name('vendor-list.index');
+Route::put('vendor-list/status-change', [VendorListController::class, 'changeStatus'])->name('vendor-list.status-change');
 
 
