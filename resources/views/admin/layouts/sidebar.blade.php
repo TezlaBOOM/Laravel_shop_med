@@ -137,7 +137,8 @@
         <li class="dropdown {{setActive([
           'admin.vendor-requests.*',
           'admin.customers.*',
-          'admin.vendor-list.*'
+          'admin.vendor-list.*',
+          'admin.manage-user.*'
           
         ])}}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Użytkownicy</span></a>
@@ -145,7 +146,9 @@
             <li class="{{setActive(['admin.customers.*'])}}"><a class="nav-link" href="{{route('admin.customers.index')}}">Użtykownicy</a></li>
             <li class="{{setActive(['admin.vendor-list.*'])}}"><a class="nav-link" href="{{route('admin.vendor-list.index')}}">Sprzedawcy</a></li>
             <li class="{{setActive(['admin.vendor-requests.*'])}}"><a class="nav-link" href="{{route('admin.vendor-requests.index')}}">Oczekujący Sprzedawcy</a></li>
-
+            <li class="{{setActive(['admin.manage-user.*'])}}"><a class="nav-link" href="{{route('admin.manage-user.index')}}">Menadrzer </a></li>
+            <li class="{{setActive(['admin.admin-list.*'])}}"><a class="nav-link" href="{{route('admin.admin-list.index')}}">Admin List </a></li>
+            
           </ul>
         </li>  
 

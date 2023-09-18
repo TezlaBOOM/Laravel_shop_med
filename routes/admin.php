@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorController;
 use App\Http\Controllers\Backend\AdvertisementController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingsController;
+use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PayPalSettingController;
@@ -210,3 +212,11 @@ Route::put('about/update', [AboutController::class, 'update'])->name('about.upda
 /** terms and conditons routes */
 Route::get('terms-and-conditions', [TermsAndConditionController::class, 'index'])->name('terms-and-conditions.index');
 Route::put('terms-and-conditions/update', [TermsAndConditionController::class, 'update'])->name('terms-and-conditions.update');
+/** manage user routes */
+Route::get('manage-user', [ManageUserController::class, 'index'])->name('manage-user.index');
+Route::post('manage-user', [ManageUserController::class, 'create'])->name('manage-user.create');
+/** admin list routes */
+Route::get('admin-list', [AdminListController::class, 'index'])->name('admin-list.index');
+Route::put('admin-list/status-change', [AdminListController::class, 'changeStatus'])->name('admin-list.status-change');
+Route::delete('admin-list/{id}', [AdminListController::class, 'destory'])->name('admin-list.destory');
+
