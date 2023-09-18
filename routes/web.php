@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -70,6 +71,13 @@ Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->
 /**Newsletter */
 Route::post('newsletter-request', [NewsletterController::class, 'newsletterRequest'])->name('newsletter-request');
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
+/** about page route */
+Route::get('about', [PageController::class, 'about'])->name('about');
+/** terms and conditions page route */
+Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions');
+/** Contact route */
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
 
 
 

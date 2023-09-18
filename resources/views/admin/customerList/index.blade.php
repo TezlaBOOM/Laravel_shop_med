@@ -13,7 +13,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>wszyscy użytkownicy</h4>
+                    <h4>Wszyscy użytkownicy</h4>
                   </div>
                   <div class="card-body">
                     {{ $dataTable->table() }}

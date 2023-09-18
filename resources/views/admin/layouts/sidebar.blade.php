@@ -102,12 +102,17 @@
 
         <li class="dropdown {{setActive([
           'admin.slider.*',
-          'admin.home-page-setting.*'
+          'admin.home-page-setting.*',
+          'admin.vendor-condition.*',
+          'admin.about.*'
         ])}}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Zarządzanie Stroną</span></a>
           <ul class="dropdown-menu">
             <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
             <li class="{{setActive(['admin.home-page-setting.*'])}}"><a class="nav-link" href="{{route('admin.home-page-setting')}}">Ustawienia strony głównej</a></li>
+            <li class="{{setActive(['admin.vendor-condition.*'])}}"><a class="nav-link" href="{{route('admin.vendor-condition.index')}}">Warunki sprzedarzy</a></li>
+            <li class="{{setActive(['admin.about.*'])}}"><a class="nav-link" href="{{route('admin.about.index')}}">O nas</a></li>
+            <li class="{{setActive(['admin.terms-and-conditions.*'])}}"><a class="nav-link" href="{{route('admin.terms-and-conditions.index')}}">Warunki</a></li>
 
           </ul>
         </li>

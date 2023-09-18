@@ -15,8 +15,8 @@ class UserVendorReqeustController extends Controller
 
     public function index()
     {
-        // $content = VendorCondition::first();
-        return view('frontend.dashboard.vendor-request.index');
+         $content = VendorCondition::first();
+        return view('frontend.dashboard.vendor-request.index',compact('content'));
     }
 
     public function create(Request $request)
