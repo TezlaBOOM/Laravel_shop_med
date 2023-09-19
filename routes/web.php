@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\paymentController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Backend\VendorController;
@@ -78,6 +79,9 @@ Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])
 /** Contact route */
 Route::get('contact', [PageController::class, 'contact'])->name('contact');
 Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
+/**Product track route */
+Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
+
 
 
 
