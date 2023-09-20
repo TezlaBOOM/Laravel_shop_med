@@ -63,8 +63,8 @@
                 </div>
                 <div class="col-xl-12">
                     <section id="pagination">
-                        @if ($flashSaleItems->hasPages())
-                            {{ $flashSaleItems->links() }}
+                        @if ($vendors->hasPages())
+                            {{ $vendors->links() }}
                         @endif
                     </section>
                 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\paymentController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
@@ -82,7 +83,8 @@ Route::post('contact', [PageController::class, 'handleContactForm'])->name('hand
 /**Product track route */
 Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
 
-
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
 
 
@@ -108,6 +110,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     //user address route
     Route::resource('address', UserAddressController::class);
+    /** blog comment route*/
+    Route::post('blog-comment', [BlogController::class, 'comment'])->name('blog-comment');
 
     //Checkout route
     Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');

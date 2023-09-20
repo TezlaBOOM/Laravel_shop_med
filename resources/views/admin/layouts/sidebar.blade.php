@@ -116,6 +116,15 @@
 
           </ul>
         </li>
+        <li class="dropdown {{setActive([
+
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Blog</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.blog-category.index')}}">Kategorie</a></li>
+            <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.blog.index')}}">Blog</a></li>
+          </ul>
+        </li>
 
         <li class="dropdown {{setActive([
           'admin.footer-info.*',

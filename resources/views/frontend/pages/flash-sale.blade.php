@@ -109,8 +109,8 @@
                     @endforeach
                     <div class="mt-5">
                         @if ($flashSaleItems->hasPages())
-                            {{ $flashSaleItems->links() }}
-                        @endif
+                        {{$flashSaleItems->links()}}
+                    @endif
 
                     </div>
                 </div>
