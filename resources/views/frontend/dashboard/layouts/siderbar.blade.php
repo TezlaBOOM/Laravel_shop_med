@@ -5,6 +5,7 @@
     </span>
     <a href="dsahboard.html" class="dash_logo"><img src="images/logo.png" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
+      <li><a class="active" href="{{url('/')}}"><i class="fas fa-tachometer"></i>Strona główna</a></li>
       <li><a class="active" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer"></i>Panel</a></li>
       <li><a href="{{route('user.orders.index')}}"><i class="fas fa-list-ul"></i> Zamówienia</a></li>
       @if (auth()->user()->role === 'vendor')
