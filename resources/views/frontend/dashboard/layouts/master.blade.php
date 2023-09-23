@@ -10,7 +10,8 @@
     @yield('title')
   </title>
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <link rel="icon" type="image/png" href="{{asset('frontend/images/favicon.png')}}">
+
+  <link rel="icon" type="image/png" href="{{$logoSetting->favicon}}">
   <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/select2.min.css')}}">

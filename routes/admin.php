@@ -130,6 +130,7 @@ Route::resource('coupons', CouponController::class);
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 Route::put('generale-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('generale-setting-update');
 Route::put('email-setting-update', [SettingController::class, 'emailSettingUpdate'])->name('email-setting-update');
+Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'])->name('logo-setting-update');
 
 //*setting route*/
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
