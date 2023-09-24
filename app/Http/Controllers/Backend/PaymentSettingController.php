@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CodSetting;
+use App\Models\CustomerCreditSetting;
 use App\Models\PaypalSetting;
 use App\Models\RazorpaySetting;
 use App\Models\StripeSetting;
@@ -17,8 +19,10 @@ class PaymentSettingController extends Controller
     {
         $paypalSettings = PaypalSetting::first();
         $stripeSettings = StripeSetting::first();
+        $codSettings = CodSetting::first();
+        $customerCreditSettings = CustomerCreditSetting::first();
        
-        return view('admin.payment-settings.index',compact('paypalSettings','stripeSettings'));
+        return view('admin.payment-settings.index',compact('paypalSettings','stripeSettings','codSettings','customerCreditSettings'));
     }
 
 }

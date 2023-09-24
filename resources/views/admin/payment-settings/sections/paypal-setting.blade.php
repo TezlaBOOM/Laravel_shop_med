@@ -9,7 +9,7 @@
                     <label>Paypal Status</label>
                     <select name="status" id="" class="form-control">
                         <option {{$paypalSettings->status ===0 ?'selected':''}} value="0">Wyłączone</option>
-                        <option {{$paypalSettings->status ===1 ?'selected':''}}value="1">Włączone</option>
+                        <option {{$paypalSettings->status ===1 ?'selected':''}} value="1">Włączone</option>
                     </select>
                 </div>
 

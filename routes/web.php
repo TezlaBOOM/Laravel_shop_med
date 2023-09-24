@@ -130,6 +130,10 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('stripe/success', [paymentController::class, 'stripeSuccess'])->name('stripe.success');
     Route::get('stripe/cancel', [paymentController::class, 'stripeCancel'])->name('stripe.cancel');
 
+    Route::get('cod/payment', [paymentController::class, 'payWithCod'])->name('cod.payment');
+    Route::get('customer-credit/payment', [paymentController::class, 'payWithCustomerCredit'])->name('customer-credit.payment');
+
+
 
     //product review routes
     Route::post('review', [ReviewController::class, 'create'])->name('review.create');

@@ -14,7 +14,9 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\CodSettingController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CustomerCreditSettingController;
 use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\FlashSeleController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
@@ -160,6 +162,8 @@ Route::put('product-slider-section-three', [HomePageSettingsController::class, '
 Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
 Route::resource('paypal-setting', PayPalSettingController::class);
 Route::put('stripe-setting/{id}', [StripeSettingController::class, 'update'])->name('stripe-setting.update');
+Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('cod-setting.update');
+Route::put('customer-credit-setting/{id}', [CustomerCreditSettingController::class, 'update'])->name('customer-credit-setting.update');
 
 /**orders */
 Route::resource('orders', OrderController::class);

@@ -8,7 +8,7 @@
                     <label>Stripe Status</label>
                     <select name="status" id="" class="form-control">
                         <option {{$stripeSettings->status ===0 ?'selected':''}} value="0">Wyłączone</option>
-                        <option {{$stripeSettings->status ===1 ?'selected':''}}value="1">Włączone</option>
+                        <option {{$stripeSettings->status ===1 ?'selected':''}} value="1">Włączone</option>
                     </select>
                 </div>
 

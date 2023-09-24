@@ -24,7 +24,9 @@
                                   <div class="list-group" id="list-tab" role="tablist">
                                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab">PayPal</a>
                                     <a class="list-group-item list-group-item-action" id="list-stripe-list" data-toggle="list" href="#list-stripe" role="tab">Stripe</a>
-                                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab">Settings</a>
+                                    <a class="list-group-item list-group-item-action" id="list-cod-list" data-toggle="list" href="#list-cod" role="tab">Płatność za pobnaiem</a>
+                                    <a class="list-group-item list-group-item-action" id="list-customer-credit-list" data-toggle="list" href="#list-customer-credit" role="tab">Kredyt kupiecki</a>
+
                                   </div>
                                 </div>
                                 <div class="col-10">
@@ -34,6 +36,9 @@
         
                                     @include('admin.payment-settings.sections.stripe-setting')
 
+                                    @include('admin.payment-settings.sections.cod')
+
+                                    @include('admin.payment-settings.sections.customer-credit')
 
                                   </div>
                                 </div>
