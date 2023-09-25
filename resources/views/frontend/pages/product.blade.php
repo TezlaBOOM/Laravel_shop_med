@@ -157,7 +157,10 @@
                                     @foreach ($products as $product)
                                         <div class="col-xl-4  col-sm-6">
                                             <div class="wsus__product_item">
+                                                @if ($product->product_type !==null)
                                                 <span class="wsus__new">{{ productType($product->product_type) }}</span>
+                                                @endif
+                                                
                                                 @if (checkDiscount($product) == true)
                                                     <span
                                                         class="wsus__minus">-{{ calculateDicCountProcent($product->price, $product->offer_price) }}%</span>

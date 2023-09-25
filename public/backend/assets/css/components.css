@@ -1159,7 +1159,7 @@ tr:first-child > td > .fc-day-grid-event {
   line-height: 18px;
   color: #fff;
 }
-#toast-container > .toast-warning:before {
+/* #toast-container > .toast-warning:before {
   content: "";
 }
 #toast-container > .toast-error:before {
@@ -1171,9 +1171,9 @@ tr:first-child > td > .fc-day-grid-event {
 }
 #toast-container > .toast-success:before {
   content: "";
-}
+} */
 
-.toast.toast-error {
+/* .toast.toast-error {
   background-color: #fc544b;
 }
 .toast.toast-warning {
@@ -1191,7 +1191,7 @@ tr:first-child > td > .fc-day-grid-event {
 .toast.toast-info .toast-message {
   color: #000;
   margin-top: 5px;
-}
+} */
 
 /* 1.29 User Item */
 .user-item {

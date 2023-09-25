@@ -56,7 +56,6 @@ class VendorProductController extends Controller
             'backorder'=>['required'],
             'short_description' =>['required','max:600'],
             'seo_description' =>['required'],
-            'product_type' =>['required'],
         ]);
 
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
@@ -81,7 +80,6 @@ class VendorProductController extends Controller
         $product->offer_price = $request->offer_price;
         $product->offer_start_date = $request->offer_start_date;
         $product->offer_end_date = $request->offer_end_date;
-        $product->product_type = $request->product_type;
         $product->status = $request->status;
         $product->is_approved = 0;
         $product->seo_title = $request->seo_title;
@@ -172,7 +170,6 @@ class VendorProductController extends Controller
             $product->offer_price = $request->offer_price;
             $product->offer_start_date = $request->offer_start_date;
             $product->offer_end_date = $request->offer_end_date;
-            $product->product_type = $request->product_type;
             // $product->is_approved = $request->is_approved;
             $product->status = $request->status;
             $product->seo_title = $request->seo_title;

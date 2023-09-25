@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ProductImageGallery;
 use App\Models\ProductVariant;
@@ -178,6 +179,9 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product=Product::findOrFail($id);
+        if(OrderProduct::where('product_id', $product->id)->count() >0 ){
+            return response(['status' => 'error', 'message' =>'Produkt jest w zamówienu']);
+        }
         /** Delte the main product image */
         $this->deleteImage($product->thumb_image);
 

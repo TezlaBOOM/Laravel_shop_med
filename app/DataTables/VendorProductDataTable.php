@@ -71,7 +71,7 @@ class VendorProductDataTable extends DataTable
                 break;
 
                 default:
-                return '<i class="badge bad-dark">Unknown</i>';
+                return '<i class="badge bg-dark">Nie określony</i>';
                 break;
 
             }
