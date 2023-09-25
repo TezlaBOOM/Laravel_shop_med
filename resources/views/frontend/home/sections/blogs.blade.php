@@ -4,7 +4,7 @@
             <div class="col-xl-12">
                 <div class="wsus__section_header">
                     <h3>Nowe posty na blogu</h3>
-                    <a class="see_btn" href="">Zobacz więcej<i class="fas fa-caret-right"></i></a>
+                    <a class="see_btn" href="{{route('blog')}}">Zobacz więcej<i class="fas fa-caret-right"></i></a>
                 </div>
             </div>
         </div>

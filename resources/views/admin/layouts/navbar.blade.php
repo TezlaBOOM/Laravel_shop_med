@@ -8,7 +8,7 @@
 
     </form>
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
         <div class="dropdown-menu dropdown-list dropdown-menu-right">
           <div class="dropdown-header">Messages
             <div class="float-right">
@@ -73,8 +73,8 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-      </li>
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+      </li> --}}
+      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
         <div class="dropdown-menu dropdown-list dropdown-menu-right">
           <div class="dropdown-header">Notifications
             <div class="float-right">
@@ -131,23 +131,20 @@
           <div class="dropdown-footer text-center">
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
-        </div>
+        </div> --}}
       </li>
       <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-        <img alt="image" src="{{asset('backend/assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
-        <div class="d-sm-none d-lg-inline-block">Hi,</div></a>
+        <img alt="image" style="width: 40px;height: 40px;
+        object-fit: cover;" src="{{asset(auth()->user()->image)}}" class="rounded-circle mr-1">
+        <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->name}}</div></a>
         <div class="dropdown-menu dropdown-menu-right">
-          <div class="dropdown-title">Logged in 5 min ago</div>
-          <a href="{{route('admin.profile')}}"class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
-          </a>
-          <a href="features-activities.html" class="dropdown-item has-icon">
-            <i class="fas fa-bolt"></i> Activities
-          </a>
-          <a href="{{route('profile.edit')}}" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Settings
+          <a href="{{route('admin.profile')}}" class="dropdown-item has-icon">
+            <i class="far fa-user"></i> Profil
           </a>
 
+          <a href="{{route('admin.settings.index')}}" class="dropdown-item has-icon">
+            <i class="fas fa-cog"></i> Ustawienia
+          </a>
           <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

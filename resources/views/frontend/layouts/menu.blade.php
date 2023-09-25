@@ -44,11 +44,11 @@
                             @endforeach
 
 
-                            <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
+                            <li><a href="#"><i class="fal fa-gem"></i> Wszystkie kategorie</a></li>
                         </ul>
 
                         <ul class="wsus__menu_item">
-                            <li><a class="active" href="{{url('/')}}">home</a></li>
+                            <li><a class="active" href="{{url('/')}}">Strona główna</a></li>
                             {{-- <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                                 <div class="wsus__mega_menu">
                                     <div class="row">
@@ -152,24 +152,34 @@
     <section id="wsus__mobile_menu">
         <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
         <ul class="wsus__mobile_menu_header_icon d-inline-flex">
+            
+                <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id ="wishlist_count">
+                    @if (auth()->check())
+                    {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                    @else
+                    0
+                    @endif
+                    
+                </span></a></li>
+                <li><a class="wsus__cart_icon" href="#"><i
+                            class="fal fa-shopping-bag"></i><span id="cart-count">{{Cart::content()->count()}}</span></a></li>
+            
 
-            <li><a href="wishlist.html"><i class="far fa-heart"></i> <span>2</span></a></li>
-
-            <li><a href="compare.html"><i class="far fa-random"></i> </i><span>3</span></a></li>
         </ul>
-        <form>
-            <input type="text" placeholder="Search">
+        <form action="{{route('products.index')}}">
+            <input type="text" placeholder="szukaj..." name="search" value="{{request()->search}}">
             <button type="submit"><i class="far fa-search"></i></button>
         </form>
+
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                    role="tab" aria-controls="pills-home" aria-selected="true">Categories</button>
+                    role="tab" aria-controls="pills-home" aria-selected="true">Kategorie</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                    role="tab" aria-controls="pills-profile" aria-selected="false">main menu</button>
+                    role="tab" aria-controls="pills-profile" aria-selected="false">Menu</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -210,7 +220,21 @@
                             <li><a class="{{setActive(['product-traking'])}}" href="{{route('product-traking.index')}}">Śledź zamówienie</a></li>
                             <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blog</a></li>
                             <li><a class="{{setActive(['about'])}}" href="{{route('about')}}">O nas</a></li>
+                            <li><a href="{{route('contact')}}">Kontakt</a></li>
+                            @if (auth()->check())
+                            @if (auth()->user()->role === 'user')
+                            <li><a href="{{route('user.dashboard')}}">Profil</a></li>
+                            @elseif (auth()->user()->role === 'vendor')
+                            <li><a href="{{route('vendor.dashbaord')}}">Panel Sprzedawcy</a></li>
+                            @elseif (auth()->user()->role === 'admin')
+                            <li><a href="{{route('admin.dashboard')}}">Panel Admin</a></li>
+    
+                            @endif
+                            @else
+                            <li><a href="{{route('login')}}">login</a></li>
+                            @endif
                         </ul>
+
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{ $settings->site_name }} || Produkty wyprzedażowe
+    {{ $settings->site_name }} || Produkty 
 @endsection
 
 @section('content')
@@ -158,11 +158,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>products details</h4>
+                        <h4>Informacje o produkcie</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">peoduct</a></li>
-                            <li><a href="#">product details</a></li>
+                            <li><a href="{{url('/')}}">Strona głowna</a></li>
+                            <li><a href="#">Produkt</a></li>
+                            <li><a href="javascript:;">Informacje o produkcie</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-md-7 col-lg-7">
+                    <div class="col-xl-8 col-md-7 col-lg-7">
                         <div class="wsus__pro_details_text">
                             <a class="title" href="javascript:;">{{ $product->name }}</a>
 
@@ -343,10 +343,10 @@
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">Dodaj do koszyka</button>
                                     </li>
-                                    <li><a class="buy_now" href="#">Kup teraz</a></li>
+                                    
                                     <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
                                                 class="fal fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                 
                                 </ul>
 
                             </form>
@@ -359,43 +359,7 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
-                        <div class="wsus_pro_det_sidebar" id="sticky_sidebar">
-                            <ul>
-                                <li>
-                                    <span><i class="fal fa-truck"></i></span>
-                                    <div class="text">
-                                        <h4>Return Available</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <span><i class="far fa-shield-check"></i></span>
-                                    <div class="text">
-                                        <h4>Secure Payment</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <span><i class="fal fa-envelope-open-dollar"></i></span>
-                                    <div class="text">
-                                        <h4>Warranty Available</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="wsus__det_sidebar_banner">
-                                <img src="images/blog_1.jpg" alt="banner" class="img-fluid w-100">
-                                <div class="wsus__det_sidebar_banner_text_overlay">
-                                    <div class="wsus__det_sidebar_banner_text">
-                                        <p>Black Friday Sale</p>
-                                        <h4>Up To 70% Off</h4>
-                                        <a href="#" class="common_btn">shope now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
