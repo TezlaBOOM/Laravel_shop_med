@@ -29,8 +29,8 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
-    @if($settings->layout === 'RTL')
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/rtl.css')}}">
+    @if ($settings->layout === 'RTL')
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/rtl.css') }}">
     @endif
 </head>
 
@@ -57,28 +57,61 @@
     <!--==========================
         POP UP START
     ===========================-->
-    {{-- <section id="wsus__pop_up">
+    <section id="wsus__pop_up">
         <div class="wsus__pop_up_center">
             <div class="wsus__pop_up_text">
+
                 <span id="cross"><i class="fas fa-times"></i></span>
-                <h5>get up to <span>75% off</span></h5>
-                <h2>Sign up to E-SHOP</h2>
-                <p>Subscribe to the <b>E-SHOP</b> market newsletter to receive updates on special offers.</p>
-                <form>
-                    <input type="email" placeholder="Your Email" class="news_input">
-                    <button type="submit" class="common_btn">go</button>
-                    <div class="wsus__pop_up_check_box">
+                <h5>ZAWARTOŚĆ STRONY ZAWIERA REKLAMY WYROBÓW MEDYCZNYCH PRZEZNACZONYCH DLA PROFESJONALNYCH UŻYTKOWNIKÓW.
+                </h5>
+
+                <p>STRONA PRZEZNACZONA JEST WYŁĄCZNIE DLA OSÓB WYKONUJĄCYCH ZAWODY MEDYCZNE LUB ZAJMUJĄCYCH SIĘ
+                    UŻYWANIEM LUB OBROTEM WYROBAMI MEDYCZNYMI W RAMACH CZYNNOŚCI ZAWODOWYCH. WEJŚCIE NA STRONE MOŻLIWE
+                    JEST WYŁĄCZNIE PO ZŁOŻENIU PONIŻSZEGO OŚWIADCZENIA: <br>OŚWIADCZAM, ŻE WYKONUJĘ ZAWÓD MEDYCZNY LUB
+                    ZAJMUJĘ SIĘ UŻYWANIEM LUB OBROTEM WYROBAMI MEDYCZNYMI W RAMACH CZYNNOŚCI ZAWODOWYCH.</p>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="common_btn">NIE JESTEM - OPÓŚĆ STRONE</button>
+                        </div>  
+                        <div class="col" >
+                            <button type="submit" class="common_btn" id="confirmButton" >OŚWIADCZAM – PRZEJDŹ DALEJ</button>
+                        </div>  
+
+                
+                
                     </div>
-                </form>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
-                    <label class="form-check-label" for="flexCheckDefault11">
-                        Don't show this popup again
-                    </label>
-                </div>
+
+
             </div>
-        </div>
-    </section>  --}}
+    </section>
+
+
+    
+    <script>
+        // Funkcja do pokazywania komunikatu
+        function showPolicyModal() {
+            var modal = document.getElementById("wsus__pop_up");
+            modal.style.display = "block";
+        }
+    
+        // Funkcja do ukrywania komunikatu
+        function hidePolicyModal() {
+            var modal = document.getElementById("wsus__pop_up");
+            modal.style.display = "none";
+        }
+    
+        // Obsługa naciśnięcia przycisku "Tak, jestem pełnoletni"
+        var confirmButton = document.getElementById("confirmButton");
+        confirmButton.addEventListener("click", function () {
+            hidePolicyModal();
+            // Tutaj można dodać kod do kontynuowania przeglądania strony
+        });
+    
+        // Pokaż komunikat po załadowaniu strony
+        window.addEventListener("load", function () {
+            showPolicyModal();
+        });
+    </script>
     <!--==========================
         POP UP END
     ===========================-->
