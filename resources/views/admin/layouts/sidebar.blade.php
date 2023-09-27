@@ -154,7 +154,7 @@
             </li>
 
             <li
-                class="dropdown {{ setActive(['admin.slider.*', 'admin.home-page-setting', 'admin.vendor-condition.*', 'admin.about.*', 'admin.advertisement.*','admin.terms-and-conditions.*']) }}">
+                class="dropdown {{ setActive(['admin.slider.*', 'admin.home-page-setting', 'admin.vendor-condition.*', 'admin.about.*', 'admin.advertisement.*','admin.terms-and-conditions.*','admin.product-policy.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fa fa-file"></i> <span>Zarządzanie Stroną</span></a>
                 <ul class="dropdown-menu">
@@ -170,6 +170,8 @@
                             href="{{ route('admin.terms-and-conditions.index') }}">Warunki</a></li>
                     <li class="{{ setActive(['admin.advertisement.*']) }}"><a class="nav-link"
                             href="{{ route('admin.advertisement.index') }}">Banery</a></li>
+                            <li class="{{ setActive(['admin.product-policy.*']) }}"><a class="nav-link"
+                                href="{{ route('admin.product-policy.index') }}">Polityka produktów</a></li>
 
                 </ul>
             </li>

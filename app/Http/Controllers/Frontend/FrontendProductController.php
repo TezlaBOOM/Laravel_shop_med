@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\ProductPolicy;
 use App\Models\ProductReview;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -104,9 +105,12 @@ class FrontendProductController extends Controller
 
     public function index(string $slug)
     {
+        $policybox1 = ProductPolicy::where('id', 1)->first();
+        $policybox2 = ProductPolicy::where('id', 2)->first();
+        $policybox3 = ProductPolicy::where('id', 3)->first();
         $product = Product::with(['vendor', 'category', 'brand', 'variants', 'productImageGalleries'])->where('slug', $slug)->where('status', 1)->first();
         $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
-        return view('frontend.pages.product-detail', compact('product','reviews'));
+        return view('frontend.pages.product-detail', compact('product','reviews','policybox1','policybox2','policybox3'));
     }
     public function changeListView(Request $request)
     {

@@ -394,26 +394,22 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xl-4 col-md-4">
-                                                <div class="description_single">
-                                                    <h6><span>1</span> Free Shipping & Return</h6>
-                                                    <p>We offer free shipping for products on orders above 50$ and
-                                                        offer
-                                                        free delivery for all orders in US.</p>
+                                            <div class="col-xl-4 col-md-4 d-flex">
+                                                <div class="description_single flex-fill">
+                                                    <h6><span>{!! @$policybox1->id !!}</span> {!! @$policybox1->title !!}</h6>
+                                                    {!! @$policybox1->content !!}
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4 col-md-4">
-                                                <div class="description_single">
-                                                    <h6><span>2</span> Free and Easy Returns</h6>
-                                                    <p>We guarantee our products and you could get back all of your
-                                                        money anytime you want in 30 days.</p>
+                                            <div class="col-xl-4 col-md-4 d-flex">
+                                                <div class="description_single flex-fill">
+                                                    <h6><span>{!! @$policybox2->id !!}</span> {!! @$policybox2->title !!}</h6>
+                                                    {!! @$policybox2->content !!}
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4 col-md-4">
-                                                <div class="description_single">
-                                                    <h6><span>3</span> Special Financing </h6>
-                                                    <p>Get 20%-50% off items over 50$ for a month or over 250$ for a
-                                                        year with our special credit card.</p>
+                                            <div class="col-xl-4 col-md-4 d-flex">
+                                                <div class="description_single flex-fill">
+                                                    <h6><span>{!! @$policybox3->id !!}</span> {!! @$policybox3->title !!}</h6>
+                                                    {!! @$policybox3->content !!}
                                                 </div>
                                             </div>
                                         </div>

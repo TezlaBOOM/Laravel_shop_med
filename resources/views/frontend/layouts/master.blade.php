@@ -57,11 +57,10 @@
     <!--==========================
         POP UP START
     ===========================-->
-    <section id="wsus__pop_up">
+    <section id="wsus__pop_up" style="display:none;">
         <div class="wsus__pop_up_center">
             <div class="wsus__pop_up_text">
 
-                <span id="cross"><i class="fas fa-times"></i></span>
                 <h5>ZAWARTOŚĆ STRONY ZAWIERA REKLAMY WYROBÓW MEDYCZNYCH PRZEZNACZONYCH DLA PROFESJONALNYCH UŻYTKOWNIKÓW.
                 </h5>
 
@@ -69,49 +68,26 @@
                     UŻYWANIEM LUB OBROTEM WYROBAMI MEDYCZNYMI W RAMACH CZYNNOŚCI ZAWODOWYCH. WEJŚCIE NA STRONE MOŻLIWE
                     JEST WYŁĄCZNIE PO ZŁOŻENIU PONIŻSZEGO OŚWIADCZENIA: <br>OŚWIADCZAM, ŻE WYKONUJĘ ZAWÓD MEDYCZNY LUB
                     ZAJMUJĘ SIĘ UŻYWANIEM LUB OBROTEM WYROBAMI MEDYCZNYMI W RAMACH CZYNNOŚCI ZAWODOWYCH.</p>
-                    <div class="row">
-                        <div class="col">
-                            <button type="submit" class="common_btn">NIE JESTEM - OPÓŚĆ STRONE</button>
-                        </div>  
-                        <div class="col" >
-                            <button type="submit" class="common_btn" id="confirmButton" >OŚWIADCZAM – PRZEJDŹ DALEJ</button>
-                        </div>  
-
-                
-                
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="common_btn" id="unconfirmButton">NIE JESTEM - OPÓŚĆ
+                            STRONE</button>
                     </div>
+                    <div class="col">
+                        <button type="submit" class="common_btn" id="confirmButton">OŚWIADCZAM – PRZEJDŹ DALEJ</button>
+                    </div>
+
+
+
+                </div>
 
 
             </div>
     </section>
 
 
-    
-    <script>
-        // Funkcja do pokazywania komunikatu
-        function showPolicyModal() {
-            var modal = document.getElementById("wsus__pop_up");
-            modal.style.display = "block";
-        }
-    
-        // Funkcja do ukrywania komunikatu
-        function hidePolicyModal() {
-            var modal = document.getElementById("wsus__pop_up");
-            modal.style.display = "none";
-        }
-    
-        // Obsługa naciśnięcia przycisku "Tak, jestem pełnoletni"
-        var confirmButton = document.getElementById("confirmButton");
-        confirmButton.addEventListener("click", function () {
-            hidePolicyModal();
-            // Tutaj można dodać kod do kontynuowania przeglądania strony
-        });
-    
-        // Pokaż komunikat po załadowaniu strony
-        window.addEventListener("load", function () {
-            showPolicyModal();
-        });
-    </script>
+
+
     <!--==========================
         POP UP END
     ===========================-->
@@ -199,6 +175,43 @@
             $('.auto_click').click();
         })
     </script>
+        <script>
+            // Funkcja do pokazywania komunikatu - function showing popup
+            function showPolicyModal() {
+                var modal = document.getElementById("wsus__pop_up");
+                modal.style.display = "block";
+            }
+    
+            // Funkcja do ukrywania komunikatu - function hiding popup 
+            function hidePolicyModal() {
+                var modal = document.getElementById("wsus__pop_up");
+                modal.style.display = "none";
+            }
+    
+            // Obsługa naciśnięcia przycisku "Tak, jestem specialistą"  - function button "I m doctor"
+            var confirmButton = document.getElementById("confirmButton");
+            confirmButton.addEventListener("click", function() {
+                hidePolicyModal();
+    
+            });
+    
+            // Obsługa naciśnięcia przycisku "Tak, jestem specialistą"- function button "I m not doctor"
+            var unconfirmButton = document.getElementById("unconfirmButton");
+            unconfirmButton.addEventListener("click", function() {
+                window.history.back();
+    
+            });
+    
+            // Pokaż komunikat po załadowaniu strony - function load popup
+            window.addEventListener("load", function() {
+                var hasPopupBeenShown = sessionStorage.getItem("popupShown");
+    
+                if (!hasPopupBeenShown) {
+                    showPolicyModal();
+                    sessionStorage.setItem("popupShown", "true");
+                }
+            });
+        </script>
     @include('frontend.layouts.scripts')
     @stack('scripts')
 </body>

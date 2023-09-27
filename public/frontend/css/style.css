@@ -4050,7 +4050,9 @@ PRODUCT DETAILS START
   padding: 30px;
   border-radius: 3px;
   margin-top: 30px;
+  min-height:100px;
 }
+
 
 .description_single h6 {
   font-size: 18px;
@@ -4075,6 +4077,7 @@ PRODUCT DETAILS START
 
 .description_single p {
   font-size: 15px;
+ 
 }
 
 .wsus__pro_det_info {

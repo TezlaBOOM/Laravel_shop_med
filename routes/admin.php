@@ -30,6 +30,7 @@ use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PayPalSettingController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductPolicyController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -217,6 +218,9 @@ Route::put('vendor-condition/update', [VendorConditionController::class, 'update
 /** about routes */
 Route::get('about', [AboutController::class, 'index'])->name('about.index');
 Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
+/** about routes */
+Route::get('product-policy', [ProductPolicyController::class, 'index'])->name('product-policy.index');
+Route::put('product-policy/update', [ProductPolicyController::class, 'update'])->name('product-policy.update');
 /** terms and conditons routes */
 Route::get('terms-and-conditions', [TermsAndConditionController::class, 'index'])->name('terms-and-conditions.index');
 Route::put('terms-and-conditions/update', [TermsAndConditionController::class, 'update'])->name('terms-and-conditions.update');
