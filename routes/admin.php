@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorController;
 use App\Http\Controllers\Backend\AdvertisementController;
+use App\Http\Controllers\Backend\BackorderController;
 use App\Http\Controllers\Backend\BlogCategoryController;
 use App\Http\Controllers\Backend\BlogCommentController;
 use App\Http\Controllers\Backend\BlogController;
@@ -49,6 +50,7 @@ use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorReqeustController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Models\AdminReview;
+use App\Models\Backorder;
 use App\Models\Category;
 use App\Models\ProductImageGallery;
 use App\Models\ShoppingRule;
@@ -127,6 +129,9 @@ Route::resource('shipping-rule', ShippingRuleController::class);
 Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->name('coupons.change-status');
 Route::resource('coupons', CouponController::class);
 
+//*backorder*/
+Route::put('backorder/change-status', [CouponController::class, 'changeStatus'])->name('backorder.change-status');
+Route::resource('backorder', BackorderController::class);
 
 
 //*setting route*/

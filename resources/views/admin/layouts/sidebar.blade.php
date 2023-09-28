@@ -95,12 +95,15 @@
                         ]) }}">
                         <a class="nav-link" href="{{ route('admin.product.index') }}">Produkty </a>
                     </li>
+                    
                     <li class="{{ setActive(['admin.seller-product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.seller-product.index') }}">Produkty Sprdzeawców</a></li>
                     <li class="{{ setActive(['admin.seller-pending-product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.seller-pending-product.index') }}">Produkty oczekujące</a></li>
                     <li class="{{ setActive(['admin.review.*']) }}"><a class="nav-link"
                             href="{{ route('admin.review.index') }}">Opinie</a></li>
+                            <li class="{{ setActive(['admin.backorder.*']) }}"><a class="nav-link"
+                                href="{{ route('admin.backorder.index') }}">Backorder</a></li>
 
                 </ul>
             </li>
