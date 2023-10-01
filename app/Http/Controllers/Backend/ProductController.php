@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Backorder;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
@@ -35,7 +36,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.product.create', compact('categories','brands'));
+        $backorders = Backorder::all();
+        return view('admin.product.create', compact('categories','brands','backorders'));
     }
 
     /**
@@ -115,7 +117,8 @@ class ProductController extends Controller
         $childCategories = ChildCategory::where('sub_category_id', $product->sub_category_id)->get();
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories'));
+        $backorders = Backorder::all();
+        return view('admin.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories','backorders'));
     }
 
     /**
@@ -132,6 +135,7 @@ class ProductController extends Controller
                 'price' => ['required'],
                 'vat' => ['required'],
                 'qty' => ['required'],
+                'backorder'=>['required'],
                 'short_description' => ['required', 'max: 600'],
                 'long_description' => ['required'],
                 'seo_title' => ['nullable','max:200'],
@@ -168,7 +172,7 @@ class ProductController extends Controller
             $product->seo_description = $request->seo_description;
             $product->save();
     
-            toastr('Updated Successfully!', 'success');
+            toastr('Zaktualizowano', 'success');
     
             return redirect()->route('admin.product.index');
     }

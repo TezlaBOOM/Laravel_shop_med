@@ -11,6 +11,7 @@ use App\DataTables\PendingOrderDataTable;
 use App\DataTables\processedOrderDataTable;
 use App\DataTables\shippedOrderDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Backorder;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,8 @@ class OrderController extends Controller
     {
        
         $order = Order::findOrFail($id);
-        return view('admin.order.show', compact('order'));
+        $backorders = Backorder::all();
+        return view('admin.order.show', compact('order','backorders'));
     }
 
 

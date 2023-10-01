@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\VendorProductDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Backorder;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
@@ -34,7 +35,8 @@ class VendorProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('vendor.product.create', compact('categories','brands'));
+        $backorders = Backorder::all();
+        return view('vendor.product.create', compact('categories','brands','backorders'));
     }
 
     /**
@@ -119,7 +121,8 @@ class VendorProductController extends Controller
         $childCategories = ChildCategory::where('sub_category_id', $product->sub_category_id)->get();
         $categories = Category::all();
         $brands = Brand::all();
-        return view('vendor.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories'));
+        $backorders = Backorder::all();
+        return view('vendor.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories','backorders'));
     }
 
     /**
@@ -136,6 +139,7 @@ class VendorProductController extends Controller
                 'price' => ['required'],
                 'vat' => ['required'],
                 'qty' => ['required'],
+                'backorder' =>['required'],
                 'short_description' => ['required', 'max: 600'],
                 'long_description' => ['required'],
                 'seo_title' => ['nullable','max:200'],

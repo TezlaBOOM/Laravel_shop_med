@@ -6,8 +6,8 @@
 
 @section('content')
     <!--============================
-            BREADCRUMB START
-        ==============================-->
+                BREADCRUMB START
+            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -25,13 +25,13 @@
         </div>
     </section>
     <!--============================
-            BREADCRUMB END
-        ==============================-->
+                BREADCRUMB END
+            ==============================-->
 
 
     <!--============================
-            CART VIEW PAGE START
-        ==============================-->
+                CART VIEW PAGE START
+            ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr class="d-flex">
                                         <th class="wsus__pro_img">
-                                           Zdjęcie
+                                            Zdjęcie
                                         </th>
 
                                         <th class="wsus__pro_name" style="width:500px">
@@ -55,7 +55,7 @@
 
 
 
-                                        <th class="wsus__pro_tk"  style="width:236px">
+                                        <th class="wsus__pro_tk" style="width:236px">
                                             Cena
                                         </th>
 
@@ -76,66 +76,56 @@
                                             </td>
 
                                             <td class="wsus__pro_status">
-                                                @if ($item->product->qty > 0)
-                                                    @switch($item->product->backorder)
-                                                        @case(0)
-                                                            <p>Na magazynie: <b style="color:green"> {{ $item->product->qty }}</b>
-                                                                <br> Pozostałe : <u>Na zamówienie</u><</p>
 
-                                                            @break
+                                                @foreach ($backorders as $backordered)
+                                                    @if ($product->backorder == $backordered->id)
+                                                        @if ($product->qty > 0)
+                                                            <p class="wsus__stock_area">
+                                                                Na magazynie: <b style="color:green">
+                                                                    {{ $item->product->qty }}</b>
+                                                                <br> Pozostałe : <u>{{ $backordered->name }}</u>
 
-                                                            @case(1)
-                                                                Na magazynie: <b style="color:green">{{ $item->product->qty }} </b>
-                                                                Produkt:<u>Wycofane</u>
-                                                                </p>
-                                                            @break
 
-                                                            @default
-                                                            <p>Na magazynie: <b style="color:green"> {{ $item->product->qty }}</b>
-                                                                <br> Pozostałe : <u>Ustalenia indiwidualne</u><</p>
-                                                                </p>
-                                                        @endswitch
-                                                    @elseif ($item->product->qty === 0)
-                                                        @switch($item->options->variants['main']['backorder'])
-                                                            @case(0)
-                                                                <p class="wsus__stock_area"><span class="in_stock">Na
-                                                                        zamówienie</span></p>
-                                                            @break
+                                                            </p>
+                                                        @else
+                                                            <p class="wsus__stock_area">
+                                                                Na magazynie: <b style="color:green">
+                                                                    {{ $item->product->qty }}</b>
+                                                                <br> Pozostałe : <u>{{ $backordered->name }}</u>
 
-                                                            @case(1)
-                                                                <p class="wsus__stock_area"><span class="stock_out">Wycofany</span>
-                                                                </p>
-                                                            @break
 
-                                                            @default
-                                                                <p class="wsus__stock_area"><span class="in_stock">Ustalana
-                                                                        indywidualnie</span></p>
-                                                        @endswitch
+                                                            </p>
+                                                        @endif
+                                                    @elseif($product->backorder == 0)
+                                                        <b>Korekta status</b>
+                                                    @break;
                                                 @endif
-                                            </td>
+                                            @endforeach
+                                        </td>
 
-                                            <td class="wsus__pro_tk" style="width:236px">
-                                                <h6>
-                                                    {{ $settings->currency_icon }}{{ $item->product->price }}
-                                                </h6>
-                                            </td>
+                                        <td class="wsus__pro_tk" style="width:236px">
+                                            <h6>
+                                                {{ $settings->currency_icon }}{{ $item->product->price }}
+                                            </h6>
+                                        </td>
 
-                                            <td class="wsus__pro_icon">
-                                                <a class="common_btn"
-                                                    href="{{ route('product-detail', $item->product->slug) }}">Zobacz produkt
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        <td class="wsus__pro_icon">
+                                            <a class="common_btn"
+                                                href="{{ route('product-detail', $item->product->slug) }}">Zobacz
+                                                produkt
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--============================
+    </div>
+</section>
+<!--============================
             CART VIEW PAGE END
         ==============================-->
 @endsection

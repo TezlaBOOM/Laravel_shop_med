@@ -38,4 +38,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductReview::class);
     }
+    public function backorders()
+    {
+        return $this->belongsTo(Backorder::class ,'backorder','id');
+    }
 }

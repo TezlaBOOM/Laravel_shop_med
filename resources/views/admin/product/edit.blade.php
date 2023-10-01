@@ -100,7 +100,7 @@
                                   <div class="form-group wsus__input">
                                     <label for="inputStatus">Vat:</label>
                                     <select id="inputStatus" class="form-control" name="vat">
-                                        <option value="">Wybierz</option>
+                                        
                                         <option {{$product->vat == 0 ? 'selected': ''}} value="0">0</option>
                                         <option {{$product->vat == 1 ? 'selected': ''}} value="1">5</option>
                                         <option {{$product->vat == 2 ? 'selected': ''}} value="2">8</option>
@@ -118,12 +118,10 @@
                                   <div class="form-group">
                                     <label for="inputStatus">Na zamówienie</label>
                                     <select id="inputStatus" class="form-control" name="backorder">
-                                        <option value="">Wybierz</option>
-                                        <option {{$product->backorder == 0 ? 'selected': ''}} value="0">Na zamówienie</option>
-                                        <option {{$product->backorder == 1 ? 'selected': ''}} value="1">Wycofane</option>
-                                        <option {{$product->backorder == 2 ? 'selected': ''}} value="2">4 dni</option>
-                                        <option {{$product->backorder == 3 ? 'selected': ''}} value="3">7 dni</option>
-                                        <option {{$product->backorder == 4 ? 'selected': ''}} value="4">14 dni</option>
+                                       
+                                        @foreach ($backorders as $backorder)
+                                        <option {{$product->backorder == $backorder->id ? 'selected': ''}}  value="{{$backorder->id}}">{{$backorder->name}}</option>
+                                        @endforeach 
                                     </select>
                                   </div>
                                 </div>

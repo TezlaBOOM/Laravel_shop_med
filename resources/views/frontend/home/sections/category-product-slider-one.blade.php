@@ -186,8 +186,29 @@
 
                                 <p class="description">{!!$product->short_description!!}</p>
 
-                                @if ($product->qty > 0)
-                                @switch($product->backorder)
+                                    
+                                @foreach ($backorders as $backordered)
+                                @if ($product->backorder == $backordered->id)
+                                    @if ( $product->qty > 0)
+                                        <p class="wsus__stock_area">
+                                            <span class="in_stock"> Dostępność:</span> <br>
+                                            Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
+                                            Zamówienia powyżej <b style="color:orange"> {{$product->qty}}</b>: <u>{{$backordered->name}}</u>
+                                        </p>
+                                    @else
+                                        <p class="wsus__stock_area">
+                                            <span class="in_stock"> Dostępność:</span> <br>
+                                            Na magazynie: <b style="color:green"> {{$product->qty}}</b><br>
+                                            Zamówienia powyżej <b style="color:orange"> {{$product->qty}}</b>: <u>{{$backordered->name}} </u>
+                                        </p>
+                                    @endif
+                                @elseif($product->backorder == 0)
+                                    <b>Korekta status</b>
+                                @break;
+                            @endif
+                        @endforeach
+
+                                {{-- @switch($product->backorder)
                                     @case(0)
                                     <p class="wsus__stock_area">
                                        <span class="in_stock"> Dostępność:</span> <br>
@@ -225,7 +246,7 @@
                                     <p class="wsus__stock_area"><span class="in_stock">Ustalana indywidualnie</span></p>
    
                                     @endswitch
-                            @endif
+                            @endif --}}
 
 
                                 <form class="shopping-cart-form" method="post">

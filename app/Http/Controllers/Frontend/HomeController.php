@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Backorder;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
@@ -24,6 +25,8 @@ class HomeController extends Controller
         $flashSaleItems = FlashSaleItem::where('show_at_home',1)->where('status', 1)->get();
         $popularCategory = HomePageSettings::where('key', 'popular_category_section')->first();
         $brands= Brand::where('status',1)->where('is_featured',1)->get();
+        $backorders= Backorder::all();
+
        
         $typeBaseProducts = $this->getTypeBaseProduct();
         $categoryProductSliderSectionOne = HomePageSettings::where('key', 'product_slider_section_one')->first();
@@ -60,7 +63,7 @@ class HomeController extends Controller
         'homepage_secion_banner_two', 
         'homepage_secion_banner_three',
         'homepage_secion_banner_four',
-        'recentBlogs'
+        'recentBlogs','backorders'
     ));
     }
 
@@ -85,12 +88,12 @@ class HomeController extends Controller
     public function vendorProductsPage(string $id)
     {
         $products = Product::where(['status' => 1, 'is_approved' => 1, 'vendor_id' => $id])->orderBy('id', 'DESC')->paginate(12);
-
+        $backorders= Backorder::all();
         $categories = Category::where(['status' => 1])->get();
         $brands = Brand::where(['status' => 1])->get();
         $vendor = Vendor::findOrFail($id);
 
-        return view('frontend.pages.vendor-product', compact('products', 'categories', 'brands', 'vendor'));
+        return view('frontend.pages.vendor-product', compact('products', 'categories', 'brands', 'vendor','backorders'));
 
     }
 

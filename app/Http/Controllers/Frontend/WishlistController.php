@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backorder;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ class WishlistController extends Controller
     public function index()
     {
         $wishlistProducts = Wishlist::with('product')->where('user_id', Auth::user()->id)->orderBy('id','DESC')->get();
-        return view('frontend.pages.wishlist',compact('wishlistProducts'));
+        $backorders= Backorder::all();
+        return view('frontend.pages.wishlist',compact('wishlistProducts','backorders'));
     }
     public function addToWishList(Request $request)
     {

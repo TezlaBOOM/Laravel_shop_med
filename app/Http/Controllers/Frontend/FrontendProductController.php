@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Backorder;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
@@ -95,12 +96,12 @@ class FrontendProductController extends Controller
 
         $categories = Category::where(['status' => 1])->get();
         $brands = Brand::where(['status' => 1])->get();
-
+        $backorders= Backorder::all();
         $product_banner = Advertisement::where('key', 'product_banner')->first();
         $product_banner = json_decode($product_banner?->value);
 
 
-        return view('frontend.pages.product', compact('products', 'categories', 'brands','product_banner'));
+        return view('frontend.pages.product', compact('products', 'categories', 'brands','product_banner','backorders'));
     }
 
     public function index(string $slug)
@@ -108,9 +109,10 @@ class FrontendProductController extends Controller
         $policybox1 = ProductPolicy::where('id', 1)->first();
         $policybox2 = ProductPolicy::where('id', 2)->first();
         $policybox3 = ProductPolicy::where('id', 3)->first();
+        $backorders= Backorder::all();
         $product = Product::with(['vendor', 'category', 'brand', 'variants', 'productImageGalleries'])->where('slug', $slug)->where('status', 1)->first();
         $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
-        return view('frontend.pages.product-detail', compact('product','reviews','policybox1','policybox2','policybox3'));
+        return view('frontend.pages.product-detail', compact('product','reviews','policybox1','policybox2','policybox3','backorders'));
     }
     public function changeListView(Request $request)
     {

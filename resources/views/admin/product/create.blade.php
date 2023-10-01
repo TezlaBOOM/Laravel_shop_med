@@ -90,7 +90,6 @@
                                   <div class="form-group">
                                     <label for="inputStatus">Vat:</label>
                                     <select id="inputStatus" class="form-control" name="vat">
-                                        <option value="">Wybierz</option>
                                         <option value="0">0</option>
                                         <option value="1">5</option>
                                         <option value="2">8</option>
@@ -108,12 +107,10 @@
                                   <div class="form-group">
                                     <label for="inputStatus">Na zamówienie</label>
                                     <select id="inputStatus" class="form-control" name="backorder">
-                                        <option value="">Wybierz</option>
-                                        <option value="0">Na zamówienie</option>
-                                        <option value="1">Wycofane</option>
-                                        <option value="2">4 dni</option>
-                                        <option value="3">7 dni</option>
-                                        <option value="4">14 dni</option>
+                                        
+                                        @foreach ($backorders as $backorder)
+                                        <option value="{{$backorder->id}}">{{$backorder->name}}</option>
+                                        @endforeach 
                                     </select>
                                   </div>
                                 </div>

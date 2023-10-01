@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Backorder extends Model
 {
     use HasFactory;
+
+    public function backorders()
+    { 
+        return $this->hasOne(Product::class);
+    }
 }

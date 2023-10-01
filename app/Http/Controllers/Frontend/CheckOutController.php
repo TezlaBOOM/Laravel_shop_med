@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backorder;
 use App\Models\ShippingRule;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CheckOutController extends Controller
     {
         $addresses = UserAddress::where('id_user', Auth::user()->id)->get();
         $shippingMethods = ShippingRule::where('status', 1)->get();
-        return view('frontend.pages.checkout', compact('addresses', 'shippingMethods'));
+        $backorders= Backorder::all();
+        return view('frontend.pages.checkout', compact('addresses', 'shippingMethods','backorders'));
     }
 
     public function createAddress(Request $request)

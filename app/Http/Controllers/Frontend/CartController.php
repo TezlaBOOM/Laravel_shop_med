@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Backorder;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductVariantItem;
@@ -18,43 +19,57 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
-        if($product->qty===0)
-        {
-            switch($product->backorder)
-            {
-                case 0:
-                    $this->addToCartBackorder($request,$product);
-                    return response(['status' =>'warning', 'message' =>'Produkt na zamówienie']);
-                break;
-                case 1:
-                    $this->addToCartBackorder($request,$product);
-                    return response(['status' =>'error', 'message' =>'Produkt wycofany']);
-                break;
-                default:
-                    $this->addToCartBackorder($request,$product);
-                     return response(['status' =>'warning', 'message' =>'produkt na zamówienie Indiwidualnie']);
-                break;
-            } 
-        }elseif($product->qty < $request->qty){
-            switch($request->backorder)
-            {
-                case 0:
-                    $this->addToCartBackorder($request,$product);
-                    return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie']);
-                break;
-                case 1:
-                    $this->addToCartBackorder($request,$product);
-                    return response(['status' =>'error', 'message' =>'Nie ma wystarczającej ilości produktu na magaznynie']);
-                break;
-                default:
-                    $this->addToCartBackorder($request,$product);
-                     return response(['status' =>'warning', 'message' =>'Produkt zostanoie do zamówienie Indiwidualnie']);
-                break;
-            } 
-        }
+        $backorders = Backorder::all();
 
+
+    
+        if($product->qty > $request->qty){
+            foreach($backorders as $backordered)
+            {
+                if($product->backorder == $backordered->id){
+                    if($backordered->sell == 1){
+                            $this->addToCartBackorder($request,$product);
+                            return response(['status' =>'success', 'message' =>'Dodano. Produkt do kupna1']);
+                    }else{
+                            return response(['status' =>'error', 'message' =>'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu: '.$backordered->name]);
+                    }
+                }else{
+                    if($product->backorder == $backordered->id){
+                        if($backordered->sell == 1){
+                            $this->addToCartBackorder($request,$product);
+                            return response(['status' =>'warning', 'message' =>'Dodano. Status produktu: '.$backordered->name]);
+                        }else{
+                            return response(['status' =>'error', 'message' =>'Produkt nie możliwy w tym monęcie do kupienia. Status produktu: '.$backordered->name]);
+                        }
+                    }
+                }
+            }
+
+        }else{
+            foreach($backorders as $backordered)
+            {
+                if($product->backorder == $backordered->id){
+                    if($backordered->sell == 1){
+                            $this->addToCartBackorder($request,$product);
+                            return response(['status' =>'warning', 'message' =>'Dodano. Status produktu: '.$backordered->name]);
+                    }else{
+                            return response(['status' =>'error', 'message' =>'Produkt nie możliwy w tym monęcie do kupienia. Status produktu: '.$backordered->name]);
+                    }
+                }else{
+                    if($product->backorder == $backordered->id){
+                        if($backordered->sell == 1){
+                            $this->addToCartBackorder($request,$product);
+                            return response(['status' =>'warning', 'message' =>'Status produktu: '.$backordered->name]);
+                        }else{
+                            return response(['status' =>'error', 'message' =>'Produkt nie możliwy w tym monęcie do kupienia. Status produktu: '.$backordered->name]);
+                        }
+                    }
+                }
+            }
+        }
         $this->addToCartBackorder($request,$product);
         return response(['status'=> 'success','message'=>'Dodano produkt do koszyka']);
+
     }
     public function addToCartBackorder(Request $request,$product)
     {
@@ -115,8 +130,9 @@ class CartController extends Controller
         }
         $cart_banner = Advertisement::where('key', 'cart_banner')->first();
         $cart_banner = json_decode($cart_banner?->value);
+        $backorders= Backorder::all();
       
-        return view('frontend.pages.cart-detail',compact('cartItems','cart_banner'));
+        return view('frontend.pages.cart-detail',compact('cartItems','cart_banner','backorders'));
     }
 
     public function updateProductQty(Request $request)

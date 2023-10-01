@@ -79,31 +79,15 @@ class ProductDataTable extends DataTable
 
             }
           })
+          
           ->addColumn('backorder', function($query){
-            switch ($query->backorder){
-                case 0:
-                return '<i class="badge badge-success">Na zamówienie</i>';
-                break;
-
-                case 1:
-                return '<i class="badge badge-danger">wycofane</i>';
-                break;
-                case 2:
-                return '<i class="badge badge-success">4 dni</i>';
-                break;
-                case 3:
-                return '<i class="badge badge-success">7 dni</i>';
-                break;
-                case 4:
-                return '<i class="badge badge-success">14 dni</i>';
-                break;
-
-                default:
-                return '<i class="badge badge-dark">Unknown</i>';
-                break;
-
-            }
-          })
+                if($query->backorders->sell == 1){
+                    return '<i class="badge badge-success">'.$query->backorders->name.'</i>';
+                }else{
+                  return '<i class="badge badge-danger">'.$query->backorders->name.'</i>';
+               }
+            return '';
+        })
 
 
         ->rawColumns(['status','action','thumb_image','type','backorder'])

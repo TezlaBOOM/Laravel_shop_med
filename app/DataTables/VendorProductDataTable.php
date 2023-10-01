@@ -77,30 +77,13 @@ class VendorProductDataTable extends DataTable
             }
           })
           ->addColumn('backorder', function($query){
-            switch ($query->backorder){
-                case 0:
-                return '<i class="badge bg-info">Na zamówienie</i>';
-                break;
-
-                case 1:
-                return '<i class="badge bg-info">wycofane</i>';
-                break;
-                case 2:
-                return '<i class="badge bg-info">4 dni</i>';
-                break;
-                case 3:
-                return '<i class="badge bg-info">7 dni</i>';
-                break;
-                case 4:
-                return '<i class="badge bg-info">14 dni</i>';
-                break;
-
-                default:
-                return '<i class="badge badge-dark">Unknown</i>';
-                break;
-
-            }
-          })
+            if($query->backorders->sell == 1){
+                return '<i class="badge bg-success">'.$query->backorders->name.'</i>';
+            }else{
+              return '<i class="badge bg-danger">'.$query->backorders->name.'</i>';
+           }
+        return '';
+    })
           ->addColumn('approved', function($query){
             if($query->is_approved === 1){
                 return '<i class="badge bg-success"> Zatwierdzony</i>';
