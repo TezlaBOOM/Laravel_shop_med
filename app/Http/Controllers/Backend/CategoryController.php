@@ -34,9 +34,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'icon'=>['required','not_in:empty'],
-            'name'=>['required','max:200','unique:categories,name'],
-            'status'=>['required']
+            'icon' => ['required', 'not_in:empty'],
+            'name' => ['required', 'max:200', 'unique:categories,name'],
+            'status' => ['required']
         ]);
 
         $category = new Category();
@@ -50,8 +50,6 @@ class CategoryController extends Controller
         toastr('Stworzono kategorie', 'success');
 
         return redirect()->route('admin.category.index');
-
-
     }
 
     /**
@@ -68,7 +66,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit',compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -77,9 +75,9 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'icon'=>['required','not_in:empty'],
-            'name'=>['required','max:200','unique:categories,name,'.$id],
-            'status'=>['required']
+            'icon' => ['required', 'not_in:empty'],
+            'name' => ['required', 'max:200', 'unique:categories,name,' . $id],
+            'status' => ['required']
         ]);
 
         $category = Category::findOrFail($id);
@@ -93,7 +91,6 @@ class CategoryController extends Controller
         toastr('Zaktualizowano kategorie', 'success');
 
         return redirect()->route('admin.category.index');
-
     }
 
     /**
@@ -103,8 +100,8 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $subCategory = SubCategory::where('category_id', $category->id)->count();
-        if($subCategory > 0) {
-            return response(['status' => 'error', 'message' =>'Ta kategoria ma pod sobą pod kategorie']);
+        if ($subCategory > 0) {
+            return response(['status' => 'error', 'message' => 'Ta kategoria ma pod sobą pod kategorie']);
         }
         $category->delete();
 
@@ -113,10 +110,37 @@ class CategoryController extends Controller
     public function changeStatus(Request $request)
     {
         $category = Category::findOrFail($request->id);
-        $category -> status = $request -> status == 'true' ? 1 : 0;
-        $category -> save();
+        
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
 
-        return response(['message' =>'Zaktualizowano status']);
+        return response(['message' => 'Zaktualizowano status']);
+    }
+    public function moveUp($id)
+    {
+        $category = Category::find($id);
+        if ($category->sort==null) {
+            
+            $category->sort = $category->id;
+            $category->save();
+        }
+        if ($category) {
+            $category->decrement('sort');
+        }
+        
+        return redirect()->back();
+    }
+
+    public function moveDown($id)
+    {
+        $category = Category::find($id);
+        if ($category->sort==null) {
+            $category->sort = $category->id;
+            $category->save();
+        }
+        if ($category) {
+            $category->increment('sort');
+        }
+        return redirect()->back();
     }
 }
-

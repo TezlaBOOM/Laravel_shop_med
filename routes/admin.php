@@ -70,6 +70,8 @@ Route::resource('slider', SliderController::class);
 
 /**category route*/
 Route::put("change-status", [CategoryController::class, 'changeStatus'])->name('category.change-status');
+Route::get('move-up/{id}', [CategoryController::class, 'moveUp'])->name('category.moveUp');
+Route::get('move-down/{id}', [CategoryController::class, 'moveDown'])->name('category.moveDown');
 Route::resource('category', CategoryController::class);
 
 /**sub-category route*/

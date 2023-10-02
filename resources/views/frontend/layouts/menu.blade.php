@@ -1,5 +1,5 @@
 @php
-    $categories = \App\Models\Category::where('status',1)
+    $categories = \App\Models\Category::where('status',1)->orderBy('sort', 'ASC')
     ->with(['subCategories' => function ($query){
         $query->where('status',1)
         ->with(['childCategories' => function ($query){

@@ -25,7 +25,9 @@ class CategoryDataTable extends DataTable
         ->addColumn('action', function($query){
             $editBtn ="<a href='".route('admin.category.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
             $delBtn ="<a href='".route('admin.category.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
-            return $editBtn.$delBtn;
+            $upBtn ="<a href='".route('admin.category.moveUp',$query->id)."' class='btn btn-primary'>/\</a>";
+            $downBtn ="<a href='".route('admin.category.moveDown',$query->id)."' class='btn btn-primary'>\/</a>";
+            return $editBtn.$delBtn.$upBtn.$downBtn;
         })
 
         ->addColumn('icon', function($query){
@@ -89,7 +91,8 @@ class CategoryDataTable extends DataTable
     {
         return [
 
-            Column::make('id')->width(100),
+            Column::make('id')->width(30),
+            Column::make('sort')->width(50),
             Column::make('icon'),
             Column::make('name'),
             Column::make('status')->width(100),

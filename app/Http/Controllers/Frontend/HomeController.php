@@ -63,7 +63,8 @@ class HomeController extends Controller
         'homepage_secion_banner_two', 
         'homepage_secion_banner_three',
         'homepage_secion_banner_four',
-        'recentBlogs','backorders'
+        'recentBlogs',
+        'backorders'
     ));
     }
 
