@@ -44,7 +44,7 @@
                             @endforeach
 
 
-                            <li><a href="#"><i class="fal fa-gem"></i> Wszystkie kategorie</a></li>
+                            {{-- <li><a href="#"><i class="fal fa-gem"></i> Wszystkie kategorie</a></li> --}}
                         </ul>
 
                         <ul class="wsus__menu_item">
