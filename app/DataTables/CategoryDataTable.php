@@ -23,10 +23,11 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
+            $upBtn ="<a href='".route('admin.category.moveUp',$query->id)."' class='btn btn-primary'>+</a>";
+            $downBtn ="<a href='".route('admin.category.moveDown',$query->id)."' class='btn btn-primary'>-</a>";
             $editBtn ="<a href='".route('admin.category.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
             $delBtn ="<a href='".route('admin.category.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
-            $upBtn ="<a href='".route('admin.category.moveUp',$query->id)."' class='btn btn-primary'>/\</a>";
-            $downBtn ="<a href='".route('admin.category.moveDown',$query->id)."' class='btn btn-primary'>\/</a>";
+
             return $editBtn.$delBtn.$upBtn.$downBtn;
         })
 

@@ -140,4 +140,32 @@ class ChildCategoryController extends Controller
         $subCategories =SubCategory::where('category_id', $request->id)->where('status',1)->get();   
         return $subCategories;
     }
+
+    public function moveUp($id)
+    {
+        $childCategory = childCategory::find($id);
+        if ($childCategory->sort==null) {
+            
+            $childCategory->sort = $childCategory->id;
+            $childCategory->save();
+        }
+        if ($childCategory) {
+            $childCategory->decrement('sort');
+        }
+        
+        return redirect()->back();
+    }
+
+    public function moveDown($id)
+    {
+        $childCategory = childCategory::find($id);
+        if ($childCategory->sort==null) {
+            $childCategory->sort = $childCategory->id;
+            $childCategory->save();
+        }
+        if ($childCategory) {
+            $childCategory->increment('sort');
+        }
+        return redirect()->back();
+    }
 }

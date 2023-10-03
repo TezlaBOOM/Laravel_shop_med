@@ -118,5 +118,32 @@ class SubCategoryController extends Controller
 
         return response(['message' =>'Zaktualizowano status']);
     }
+    public function moveUp($id)
+    {
+        $subCategory = subCategory::find($id);
+        if ($subCategory->sort==null) {
+            
+            $subCategory->sort = $subCategory->id;
+            $subCategory->save();
+        }
+        if ($subCategory) {
+            $subCategory->decrement('sort');
+        }
+        
+        return redirect()->back();
+    }
+
+    public function moveDown($id)
+    {
+        $subCategory = subCategory::find($id);
+        if ($subCategory->sort==null) {
+            $subCategory->sort = $subCategory->id;
+            $subCategory->save();
+        }
+        if ($subCategory) {
+            $subCategory->increment('sort');
+        }
+        return redirect()->back();
+    }
 
 }

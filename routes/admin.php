@@ -76,10 +76,14 @@ Route::resource('category', CategoryController::class);
 
 /**sub-category route*/
 Route::put("subcategory/subchange-status", [SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
+Route::get('subcategory/move-up/{id}', [SubCategoryController::class, 'moveUp'])->name('sub-category.moveUp');
+Route::get('subcategory/move-down/{id}', [SubCategoryController::class, 'moveDown'])->name('sub-category.moveDown');
 Route::resource('sub-category', SubCategoryController::class);
 
 /**sub-category route*/
 Route::put("childcategory/subchange-status", [ChildCategoryController::class, 'changeStatus'])->name('child-category.change-status');
+Route::get('childcategory/move-up/{id}', [ChildCategoryController::class, 'moveUp'])->name('child-category.moveUp');
+Route::get('childcategory/move-down/{id}', [ChildCategoryController::class, 'moveDown'])->name('child-category.moveDown');
 Route::get('get-subcategories', [ChildCategoryController::class, 'getSubCategory'])->name('get-subcategories');
 Route::resource('child-category', ChildCategoryController::class);
 

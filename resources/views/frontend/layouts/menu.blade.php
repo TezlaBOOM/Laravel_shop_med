@@ -1,9 +1,9 @@
 @php
     $categories = \App\Models\Category::where('status',1)->orderBy('sort', 'ASC')
     ->with(['subCategories' => function ($query){
-        $query->where('status',1)
+        $query->where('status',1)->orderBy('sort', 'ASC')
         ->with(['childCategories' => function ($query){
-        $query->where('status',1);
+        $query->where('status',1)->orderBy('sort', 'ASC');
         }]);
     }])
     ->get();
