@@ -217,8 +217,11 @@ Route::get('vendor-requests/{id}/show', [VendorReqeustController::class, 'show']
 Route::put('vendor-requests/{id}/change-status', [VendorReqeustController::class, 'changeStatus'])->name('vendor-requests.change-status');
 
 //* coustomer list routes*/
-Route::get('customers', [CustomerListController::class, 'index'])->name('customers.index');
+// Route::get('customers', [CustomerListController::class, 'index'])->name('customers.index');
+Route::post('customers/update/{id}', [CustomerListController::class, 'update'])->name('customer.update');
+Route::post('customers/updatepassword/{id}', [CustomerListController::class, 'updatePassword'])->name('customer.update.password');
 Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
+Route::resource('customers', CustomerListController::class);
 
 //* vendor list routes*/
 Route::get('vendor-list', [VendorListController::class, 'index'])->name('vendor-list.index');

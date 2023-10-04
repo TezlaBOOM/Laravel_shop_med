@@ -23,6 +23,12 @@ class CustomerListDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+        ->addColumn('action', function($query){
+            $editBtn ="<a href='".route('admin.customers.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+            $delBtn ="<a href='".route('admin.customers.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
+
+            return $editBtn.$delBtn;
+        })
             ->addColumn('status', function($query){
                 if($query->status == 'active'){
                     $button = '<label class="custom-switch mt-2">
@@ -37,7 +43,7 @@ class CustomerListDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['status'])
+            ->rawColumns(['status','action'])
             ->setRowId('id');
     }
 
@@ -81,6 +87,7 @@ class CustomerListDataTable extends DataTable
             Column::make('name'),
             Column::make('email'),
             Column::make('status'),
+            Column::make('action'),
 
         ];
     }
