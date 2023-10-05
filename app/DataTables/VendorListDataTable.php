@@ -23,6 +23,12 @@ class VendorListDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+        ->addColumn('action', function($query){
+            $editBtn ="<a href='".route('admin.customers.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+            $delBtn ="<a href='".route('admin.customers.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
+
+            return $editBtn.$delBtn;
+        })
             ->addColumn('status', function($query){
                 if($query->status == 'active'){
                     $button = '<label class="custom-switch mt-2">
@@ -40,7 +46,7 @@ class VendorListDataTable extends DataTable
             ->addColumn('shop_name', function($query){
                 return $query->vendor->shop_name;
             })
-            ->rawColumns(['status'])
+            ->rawColumns(['status','action'])
             ->setRowId('id');
     }
 
@@ -86,6 +92,7 @@ class VendorListDataTable extends DataTable
             Column::make('shop_name'),
             Column::make('role'),
             Column::make('status'),
+            Column::make('action'),
         ];
     }
 

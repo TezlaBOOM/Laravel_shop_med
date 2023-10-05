@@ -23,11 +23,12 @@ class AdminListDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+
             ->addColumn('action', function($query){
                 if($query->id != 1){
                     $deleteBtn = "<a href='".route('admin.admin-list.destory', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
-
-                    return $deleteBtn;
+                    $editBtn ="<a href='".route('admin.customers.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+                    return $deleteBtn.$editBtn;
                 }
             })
             ->addColumn('status', function($query){
