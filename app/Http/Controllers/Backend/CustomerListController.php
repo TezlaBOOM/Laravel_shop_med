@@ -72,11 +72,12 @@ class CustomerListController extends Controller
         $user ->username = $request->username;
         $user ->email = $request->email;
         $user ->nip = $request->nip;
+        $user ->role = $request->role;
         $user ->phone = $request->phone;
         $user ->status = $request->status;
         $user ->save();
 
-        toastr()->success('Profile updated successfully');
+        toastr()->success('Profil zaktualizowano');
         return redirect()->back();
     
     }

@@ -57,6 +57,18 @@
                                 </div>
 
 
+                                <div class="form-group">
+                                    <label for="inputState">Role</label>
+                                    <select id="inputState" class="form-control" name="role">
+                                        
+                                      <option {{$user->role == 'user' ? 'selected' : ''}}  value="user">Użytkownik</option>
+                                      <option {{$user->role == 'vendor' ? 'selected' : ''}}  value="vendor">Sprzedawca</option>
+                                      <option {{$user->role == 'admin' ? 'selected' : ''}}  value="admin">Admin</option>
+        
+                                    </select>
+                                </div>
+
+
 
                                 <div class="form-group">
                                     <label for="inputState">Status</label>
