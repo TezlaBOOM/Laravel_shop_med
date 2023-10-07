@@ -9,7 +9,7 @@
                 <div class="wsus__monthly_top_banner">
                     <div class="wsus__monthly_top_banner_img">
                         <a href="{{$homepage_secion_banner_one->banner_one->banner_url}}">
-                        <img class="img-fluid" src="{{asset($homepage_secion_banner_one->banner_one->banner_image)}}" alt="img" class="img-fluid w-100">
+                        <img class="img-fluid w-100" src="{{asset($homepage_secion_banner_one->banner_one->banner_image)}}" alt="img" >
                         </a>
                     </div>
                 @endif

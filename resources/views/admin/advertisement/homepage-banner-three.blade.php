@@ -58,7 +58,7 @@
                         <br>
                         <label class="custom-switch mt-2">
                         
-                            <input type="checkbox" {{@$homepage_secion_banner_three->banner_three->status == 1 ? 'checked':''}} name="banner_two_status" class="custom-switch-input" >
+                            <input type="checkbox" {{@$homepage_secion_banner_three->banner_three->status == 1 ? 'checked':''}} name="banner_three_status" class="custom-switch-input" >
                             <span class="custom-switch-indicator"></span>
                         </label>
                     </div>

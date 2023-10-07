@@ -10,7 +10,7 @@
                     <label class="custom-switch mt-2">
 
                         <input type="checkbox"
-                            {{ @$homepage_secion_banner_four->banner_one->status == 1 ? 'checked' : '' }} name="status"
+                            {{ @$homepage_secion_banner_four->banner_one->status == 1 ? 'checked' : '' }} name="banner_one_status"
                             class="custom-switch-input">
                         <span class="custom-switch-indicator"></span>
                     </label>
