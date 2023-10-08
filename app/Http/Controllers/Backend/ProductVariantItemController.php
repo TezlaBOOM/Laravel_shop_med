@@ -30,7 +30,7 @@ class ProductVariantItemController extends Controller
         $request->validate([
             'variant_id' =>['integer','required'],
             'name' =>['max:200','required'],
-            'sku' =>['max:200','required'],
+            
             'price' =>['integer','required'],
             'is_default' =>['required'],
             'status' =>['required']
@@ -39,7 +39,7 @@ class ProductVariantItemController extends Controller
         $variantItem =new ProductVariantItem();
         $variantItem->product_variant_id = $request->variant_id;
         $variantItem->name=$request->name;
-        $variantItem->sku = $request->sku;
+    
         $variantItem->price=$request->price;
         $variantItem->is_default = $request->is_default;
         $variantItem->status=$request->status;
@@ -61,7 +61,7 @@ class ProductVariantItemController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'sku' =>['max:200','required'],
+            
             'price' => ['integer','required'],
             'is_default' => ['required'],
             'status' => ['required']
@@ -70,7 +70,7 @@ class ProductVariantItemController extends Controller
         $variantItem = ProductVariantItem::findOrFail($variantItemId);
         $variantItem->name = $request->name;
         $variantItem->price = $request->price;
-        $variantItem->sku = $request->sku;
+       
         $variantItem->is_default = $request->is_default;
         $variantItem->status = $request->status;
         $variantItem->save();

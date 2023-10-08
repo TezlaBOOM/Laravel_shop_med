@@ -34,10 +34,7 @@
                           <label>nazwa przedmiotu</label>
                           <input type="text" class="form-control" name="name" value="">
                       </div>
-                      <div class="form-group">
-                        <label>sku</label>
-                        <input type="text" class="form-control" name="sku" value=""max="200">
-                      </div>
+
                       <div class="form-group">
                         <label>Cena <code>(0 oznacze za free)</label>
                         <input type="text" class="form-control" name="price" value="">
