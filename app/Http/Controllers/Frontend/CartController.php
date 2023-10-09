@@ -13,6 +13,7 @@ use Cart;
 
 use Illuminate\Support\Facades\Session;
 
+use function PHPUnit\Framework\isEmpty;
 
 class CartController extends Controller
 {
@@ -20,53 +21,117 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->product_id);
         $backorders = Backorder::all();
+        $cartItems = Cart::content();
 
+        foreach ($backorders as $backordered) {
 
-
-        if ($product->qty > $request->qty) {
-            foreach ($backorders as $backordered) {
-                if ($product->backorder == $backordered->id) {
-                    if ($backordered->sell == 1) {
+            if ($product->backorder == $backordered->id) {
+                if ($backordered->sell == 1 && $backordered->block == 0) {  //tak i tak
+                    if (isEmpty($cartItems)) {
                         $this->addToCartBackorder($request, $product);
-                        return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna1']);
+                        return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna']);
                     } else {
-                        if ($product->qty > $request->qty) {
-                            $this->addToCartBackorder($request, $product);
-                            return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna.1']);
-                        }else{
-                            return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu1: ' . $backordered->name]);
+                        foreach ($cartItems as $item) {
+                            if ($product->qty >= $item->qty && $item->id == $product->id) {
+
+                                $this->addToCartBackorder($request, $product);
+                                return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna']);
+                            } else {
+                                $this->addToCartBackorder($request, $product);
+                                return response(['status' => 'warning', 'message' => 'Dodano. Ale: ' . $backordered->name]);
+                            }
                         }
                     }
-                } else {
-          
-                            return response(['status' => 'error', 'message' => 'Produkt jest w tym momęcie nie dostepny' . $backordered->name]);
-                        
-                    }
-                
-            }
-        } else {
-            foreach ($backorders as $backordered) {
-                if ($product->backorder == $backordered->id) {
-                    if ($backordered->sell == 1) {
-                        $this->addToCartBackorder($request, $product);
-                        return response(['status' => 'warning', 'message' => 'Dodano. Status produktu: ' . $backordered->name]);
-                    } else {
-                        return response(['status' => 'error', 'message' => 'Produkt nie możliwy w tym monęcie do kupienia. Status produktu3: ' . $backordered->name]);
-                    }
-                } else {
-                    if ($product->backorder == $backordered->id) {
-                        if ($backordered->sell == 1) {
-                            $this->addToCartBackorder($request, $product);
-                            return response(['status' => 'warning', 'message' => 'Status produktu: ' . $backordered->name]);
-                        } else {
-                            return response(['status' => 'error', 'message' => 'Produkt nie możliwy w tym monęcie do kupienia. Status produktu4: ' . $backordered->name]);
+                } else if ($backordered->sell == 0 && $backordered->block == 1) { //nie i nie
+
+                    return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu1: ' . $backordered->name]);
+                } else if ($backordered->sell == 1 && $backordered->block == 1) { //tak i nie
+                   
+                    if ($cartItems->count() == 0) { 
+                                if ($product->qty >= $request->qty){
+                                    $this->addToCartBackorder($request, $product);
+                                    return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna22']);
+                                } else {
+                                    return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu2: ' . $backordered->name]);
+                                }
+                            } else if ($cartItems->count() > 0){
+                                
+                        foreach ($cartItems as $item) {
+                           
+                            
+                            if ($item->id == $product->id){
+                                $ilosc= $item->qty + $request->qty;
+                                
+                                if ($ilosc <= $product->qty){
+                                    $this->addToCartBackorder($request, $product);
+                                    return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna23']);
+                                } else {
+                                    return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu2: ' . $backordered->name]);
+                                }
+
+                            }else if ($item->id !== $product->id){
+                                if ($product->qty >= $request->qty){
+                                    $this->addToCartBackorder($request, $product);
+                                    return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna22']);
+                                } else {
+                                    return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu2: ' . $backordered->name]);
+                                } 
+                            }
+                            
                         }
-                    }
+                        }
+
+
+                } else { //nie i tak
+                    return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu3: ' . $backordered->name]);
                 }
-            }
+            } 
         }
-        $this->addToCartBackorder($request, $product);
-        return response(['status' => 'success', 'message' => 'Dodano produkt do koszyka']);
+        return response(['status' => 'error', 'message' => 'Error ']);
+
+
+        // if ($product->qty > $request->qty) {
+        //     foreach ($backorders as $backordered) {
+        //         if ($product->backorder == $backordered->id) {
+        //             if ($backordered->sell == 1) {
+        //                 $this->addToCartBackorder($request, $product);
+        //                 return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna1']);
+        //             } else {
+        //                 if ($product->qty > $request->qty) {
+        //                     $this->addToCartBackorder($request, $product);
+        //                     return response(['status' => 'success', 'message' => 'Dodano. Produkt do kupna.1']);
+        //                 } else {
+        //                     return response(['status' => 'error', 'message' => 'Dodano. Produkt nie możliwy w tym monęcie do kupienia. Status produktu1: ' . $backordered->name]);
+        //                 }
+        //             }
+        //         } else {
+
+        //             return response(['status' => 'error', 'message' => 'Produkt jest w tym momęcie nie dostepny' . $backordered->name]);
+        //         }
+        //     }
+        // } else {
+        //     foreach ($backorders as $backordered) {
+        //         if ($product->backorder == $backordered->id) {
+        //             if ($backordered->sell == 1) {
+        //                 $this->addToCartBackorder($request, $product);
+        //                 return response(['status' => 'warning', 'message' => 'Dodano. Status produktu: ' . $backordered->name]);
+        //             } else {
+        //                 return response(['status' => 'error', 'message' => 'Produkt nie możliwy w tym monęcie do kupienia. Status produktu3: ' . $backordered->name]);
+        //             }
+        //         } else {
+        //             if ($product->backorder == $backordered->id) {
+        //                 if ($backordered->sell == 1) {
+        //                     $this->addToCartBackorder($request, $product);
+        //                     return response(['status' => 'warning', 'message' => 'Status produktu: ' . $backordered->name]);
+        //                 } else {
+        //                     return response(['status' => 'error', 'message' => 'Produkt nie możliwy w tym monęcie do kupienia. Status produktu4: ' . $backordered->name]);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // $this->addToCartBackorder($request, $product);
+        // return response(['status' => 'success', 'message' => 'Dodano produkt do koszyka']);
     }
     public function addToCartBackorder(Request $request, $product)
     {

@@ -32,6 +32,13 @@
                               <option {{$backorder->sell == 0 ? 'selected': ''}} value="0">Nie</option>
                           </select>
                       </div>
+                      <div class="form-group">
+                        <label for="inputStatus">Blokować Sprzedawać poniżej stanu</label>
+                        <select id="inputStatus" class="form-control" name="block">
+                          <option {{$backorder->block == 1 ? 'selected': ''}} value="1">Tak</option>
+                          <option {{$backorder->block == 0 ? 'selected': ''}} value="0">Nie</option>
+                        </select>
+                        </div>
 
                         <button type="submmit" class="btn btn-primary">Zapisz</button>
                     </form>

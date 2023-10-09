@@ -36,7 +36,14 @@ class backorderDataTable extends DataTable
                     return  '<span class="">Nie</span';
                 }
             })
-            ->rawColumns(['action', 'sell'])
+            ->addColumn('block', function ($query) {
+                if ($query->block == 1) {
+                    return  '<span class="">Tak</span>';
+                } else {
+                    return  '<span class="">Nie</span';
+                }
+            })
+            ->rawColumns(['action', 'sell','block'])
             ->setRowId('id');
     }
 
@@ -80,6 +87,7 @@ class backorderDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('sell'),
+            Column::make('block'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

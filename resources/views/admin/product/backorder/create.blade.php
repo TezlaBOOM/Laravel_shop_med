@@ -32,6 +32,13 @@
                                       <option value="0">Nie</option>
                                   </select>
                               </div>
+                              <div class="form-group">
+                                <label for="inputStatus">Blokować Sprzedawać poniżej stanu</label>
+                                <select id="inputStatus" class="form-control" name="block">
+                                    <option value="1">Tak</option>
+                                    <option value="0">Nie</option>
+                                </select>
+                                </div>
 
 
                                 <button type="submmit" class="btn btn-primary">Zapisz</button>

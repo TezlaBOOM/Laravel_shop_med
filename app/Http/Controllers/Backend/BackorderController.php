@@ -33,7 +33,9 @@ class BackorderController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => ['required', 'max:200','unique:backorders,name'],
-            'sell' => ['required', 'integer']
+            'sell' => ['required', 'integer'],
+            'block' => ['required', 'integer'],
+            
 
 
         ]);
@@ -41,6 +43,7 @@ class BackorderController extends Controller
         $backorder = new Backorder();
         $backorder->name = $request->name;
         $backorder->sell = $request->sell;
+        $backorder->block = $request->block;
 
         $backorder->save();
 
@@ -74,14 +77,15 @@ class BackorderController extends Controller
     {
         $request->validate([
             
-            'sell' => ['required', 'integer']
+            'sell' => ['required', 'integer'],
+            'block' => ['required', 'integer'],
 
         ]);
 
         $backorder = Backorder::findOrFail($id);
         
         $backorder->sell = $request->sell;
-
+        $backorder->block = $request->block;
         $backorder->save();
 
         toastr('Zaktualizowano', 'success', 'Success');
