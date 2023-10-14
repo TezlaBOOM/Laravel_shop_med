@@ -45,6 +45,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\backend\UserAddressController;
+use App\Http\Controllers\backend\VendorAddressController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorReqeustController;
@@ -222,6 +224,20 @@ Route::post('customers/update/{id}', [CustomerListController::class, 'update'])-
 Route::post('customers/updatepassword/{id}', [CustomerListController::class, 'updatePassword'])->name('customer.update.password');
 Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
 Route::resource('customers', CustomerListController::class);
+//user address route
+Route::get('customers/address/{id}', [UserAddressController::class, 'index'])->name('customer.address.index');
+Route::get('customers/address/create/{id}', [UserAddressController::class, 'create'])->name('customer.address.create');
+Route::post('customers/address/create/{id}', [UserAddressController::class, 'store'])->name('customer.address.store');
+Route::get('customers/address/edit/{id}', [UserAddressController::class, 'edit'])->name('customer.address.edit');
+Route::post('customers/address/edit/{id}', [UserAddressController::class, 'update'])->name('customer.address.update');
+Route::delete('customers/address/delete/{id}', [UserAddressController::class, 'destroy'])->name('customer.address.delete');
+//vendor address route
+Route::get('vendor/address/{id}', [VendorAddressController::class, 'index'])->name('vendor.address.index');
+Route::get('vendor/address/create/{id}', [VendorAddressController::class, 'create'])->name('vendor.address.create');
+Route::post('vendor/address/create/{id}', [VendorAddressController::class, 'store'])->name('vendor.address.store');
+Route::get('vendor/address/edit/{id}', [VendorAddressController::class, 'edit'])->name('vendor.address.edit');
+Route::post('vendor/address/edit/{id}', [VendorAddressController::class, 'update'])->name('vendor.address.update');
+Route::delete('vendor/address/delete/{id}', [VendorAddressController::class, 'destroy'])->name('vendor.address.delete');
 
 //* vendor list routes*/
 Route::get('vendor-list', [VendorListController::class, 'index'])->name('vendor-list.index');

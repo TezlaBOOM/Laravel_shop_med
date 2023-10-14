@@ -25,9 +25,11 @@ class CustomerListDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
             $editBtn ="<a href='".route('admin.customers.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+            $editaddressBtn ="<a href='".route('admin.customer.address.index',$query->id)."' class='btn btn-primary'><i class='fa fa-home'></i></a>";
             $delBtn ="<a href='".route('admin.customers.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'>X</a>";
+            
 
-            return $editBtn.$delBtn;
+            return $editBtn.$delBtn.$editaddressBtn ;
         })
             ->addColumn('status', function($query){
                 if($query->status == 'active'){

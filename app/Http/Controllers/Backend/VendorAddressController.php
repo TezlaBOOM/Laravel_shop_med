@@ -1,29 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\backend;
 
+use App\DataTables\VendoraddressDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserAddressController extends Controller
+class VendorAddressController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(VendoraddressDataTable $dataTable,Request $request )
     {
-        $addresses = UserAddress::where('id_user', Auth::user()->id)->get();
-        return view('frontend.dashboard.address.index', compact('addresses'));
+        $addresses = User::findOrFail($request->id);
+       
+        return $dataTable->render('admin.vendor-list.address.index', compact('addresses'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('frontend.dashboard.address.create');
+        $addresses = User::findOrFail($request->id);
+        return view('admin.vendor-list.address.create',compact('addresses'));
     }
 
     /**
@@ -42,7 +46,7 @@ class UserAddressController extends Controller
             'country'=>['required'],
         ]);
         $address = new UserAddress();
-        $address->id_user = Auth::user()->id;
+        $address->id_user = $request->id;
         // $address->type = $request->type;
         $address->name = $request->name;
         $address->phone = $request->phone;
@@ -55,7 +59,11 @@ class UserAddressController extends Controller
 
         toastr('Dodano adres', 'success','success');
 
-        return redirect()->route('user.address.index');
+        $addresses = User::findOrFail($address->id_user);
+       
+      
+        return redirect()->route('admin.vendor.address.index',
+        ['id' => $addresses->id]);
 
     }
 
@@ -73,7 +81,9 @@ class UserAddressController extends Controller
     public function edit(string $id)
     {
         $address = UserAddress::findOrFail($id);
-        return view('frontend.dashboard.address.edit', compact('address'));
+       
+        
+        return view('admin.vendor-list.address.edit', compact('address'));
     }
 
     /**
@@ -92,8 +102,6 @@ class UserAddressController extends Controller
             'country'=>['required'],
         ]);
         $address = UserAddress::findOrFail($id);
-        $address->id_user = Auth::user()->id;
-        // $address->type = $request->type;
         $address->name = $request->name;
         $address->phone = $request->phone;
         $address->nip = $request->nip;
@@ -105,7 +113,11 @@ class UserAddressController extends Controller
 
         toastr('zaktualizowano adres', 'success','success');
 
-        return redirect()->route('user.address.index');
+        $addresses = User::findOrFail($address->id_user);
+       
+      
+        return redirect()->route('admin.vendor.address.index',
+        ['id' => $addresses->id]);
     }
 
     /**
