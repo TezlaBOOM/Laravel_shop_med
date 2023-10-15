@@ -106,7 +106,13 @@
                                                                     @break;
                                                         @endif
                                                     @elseif($item->backorder == 0)
-                                                        <b>Korekta status</b>
+                                                    <p>Na magazynie: <b style="color:green">
+                                                        {{ $item->options->variants['main']['storage'] }}</b>
+                                                </p>
+                                                    <span>Pozostałe :<br> <u>{{ $backordered->name }}
+                                                        </u></span>
+                                                    </p>
+                                                    
                                                     @break;
                                                 @endif
                                             @endforeach
@@ -151,7 +157,7 @@
                                             <div class="product_qty_wrapper">
                                                 <button class="btn btn-danger product-decrement">-</button>
                                                 <input class="product-qty" data-rowid="{{ $item->rowId }}"
-                                                    type="text" min="1" max="100"
+                                                    type="text" min="1" max="10000"
                                                     value="{{ $item->qty }}" readonly />
                                                 <button class="btn btn-success product-increment">+</button>
                                             </div>

@@ -31,11 +31,22 @@
                         calculateCouponDescount();
 
                         toastr.success(data.message)
-                    } else if (data.status == 'warning') {
 
+                        window.location.reload();
+                    } else if (data.status == 'warning') {
+                        let productId = '#' + rowId;
+                        let totalAmount = data.productTotal +
+                            "{{ $settings->currency_icon }}"
+                        $(productId).text(totalAmount)
+
+                        renderCartSubTotal();
+                        calculateCouponDescount();
                         toastr.warning(data.message)
+                        window.location.reload();
                     } else if (data.status === 'error') {
+
                         toastr.error(data.message)
+                        window.location.reload();
                     }
                 },
                 error: function(data) {
@@ -74,11 +85,20 @@
                         calculateCouponDescount();
 
                         toastr.success(data.message)
+                        window.location.reload();
                     } else if (data.status == 'warning') {
+                        let productId = '#' + rowId;
+                        let totalAmount = data.productTotal +
+                            "{{ $settings->currency_icon }}"
+                        $(productId).text(totalAmount)
 
+                        renderCartSubTotal();
+                        calculateCouponDescount();
                         toastr.warning(data.message)
+                        window.location.reload();
                     } else if (data.status === 'error') {
                         toastr.error(data.message)
+                        window.location.reload();
                     }
                 },
                 error: function(data) {

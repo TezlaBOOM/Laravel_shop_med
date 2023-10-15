@@ -197,38 +197,144 @@ class CartController extends Controller
     {
         $productId = Cart::get($request->rowId)->id;
         $product = Product::findOrFail($productId);
+        $backorders = Backorder::all();
+        $cartItems = Cart::content();
+        // dd($cartItems);
+        // if($request->quantity>$cartItems->qty)
+        // {
 
-        if ($product->qty === 0) {
-            switch ($product->backorder) {
-                case 0:
-                    return response(['status' => 'warning', 'message' => 'Produkt na zamówienie']);
-                    break;
-                case 1:
-                    return response(['status' => 'error', 'message' => 'Produkt wycofany']);
-                    break;
-                default:
-                    return response(['status' => 'warning', 'message' => 'produkt na zamówienie Indiwidualnie']);
-                    break;
-            }
-        } elseif ($product->qty < $request->qty) {
-            switch ($request->backorder) {
-                case 0:
-                    return response(['status' => 'warning', 'message' => 'Produkt zostanoie do zamówienie']);
-                    break;
-                case 1:
-                    return response(['status' => 'error', 'message' => 'Nie ma wystarczającej ilości produktu na magaznynie']);
-                    break;
-                default:
-                    return response(['status' => 'warning', 'message' => 'Produkt zostanoie do zamówienie Indiwidualnie']);
-                    break;
+        // }
+        foreach ($backorders as $backordered) {
+
+            if ($product->backorder == $backordered->id) {
+                if ($backordered->sell == 1 && $backordered->block == 0) {  //tak i tak
+                    if (isEmpty($cartItems)) {
+
+
+                        Cart::update($request->rowId, $request->quantity);
+                        $productTotal = $this->getProductTotal($request->rowId);
+
+                        return response(['status' => 'success', 'message' => 'Zmieniono', 'productTotal' => $productTotal]);
+                    } else {
+                        foreach ($cartItems as $item) {
+                            if ($product->qty >= $item->qty && $item->id == $product->id) {
+
+
+                                Cart::update($request->rowId, $request->quantity);
+                                $productTotal = $this->getProductTotal($request->rowId);
+
+
+                                return response(['status' => 'success', 'message' => 'Zmieniono', 'productTotal' => $productTotal]);
+                            } else {
+
+
+                                Cart::update($request->rowId, $request->quantity);
+                                $productTotal = $this->getProductTotal($request->rowId);
+
+                                return response(['status' => 'warning', 'message' => 'Zmieniono. Ale: ' . $backordered->name, 'productTotal' => $productTotal]);
+                            }
+                        }
+                    }
+                } else if ($backordered->sell == 0 && $backordered->block == 1) { //nie i nie
+                    $productTotal = $this->getProductTotal($request->rowId);
+                    return response(['status' => 'error', 'message' => 'Nie Dodano. Status produktu: ' . $backordered->name, 'productTotal' => $productTotal]);
+                } else if ($backordered->sell == 1 && $backordered->block == 1) { //tak i nie
+
+                    if ($cartItems->count() == 0) {
+                        if ($product->qty >= $request->qty) {
+                            Cart::update($request->rowId, $request->quantity);
+                            $productTotal = $this->getProductTotal($request->rowId);
+
+                            return response(['status' => 'success', 'message' => 'Zmieniono', 'productTotal' => $productTotal]);
+                        } else {
+
+                            $productTotal = $this->getProductTotal($request->rowId);
+                            return response(['status' => 'error', 'message' => 'Nie Dodano. Status produktu: ' . $backordered->name, 'productTotal' => $productTotal]);
+                        }
+                    } else if ($cartItems->count() > 0) {
+
+
+                        $oo = $cartItems->search(function ($cartItem, $name) use ($product) {
+                            return $cartItem->name == $product->name;
+                        });
+
+                        if ($oo !== false) {
+                            $smailcart = Cart::get($oo);
+
+                            $ilosc = $smailcart->qty + $request->qty + 1;
+                            if ($ilosc <= $product->qty) {
+                                Cart::update($request->rowId, $request->quantity);
+                                $productTotal = $this->getProductTotal($request->rowId);
+
+                                return response(['status' => 'success', 'message' => 'Zmieniono', 'productTotal' => $productTotal]);
+                            } else {
+                                if ($request->quantity > $smailcart->qty) {
+
+                                   
+                                    $productTotal = $this->getProductTotal($request->rowId);
+                                    return response(['status' => 'error', 'message' => 'Nie Dodano1. Status produktu: ' . $backordered->name, 'productTotal' => $productTotal]);
+                                } else {
+                                    $qty1 = $request->quantity;
+                                    Cart::update($request->rowId, $qty1);
+                                    $productTotal = $this->getProductTotal($request->rowId);
+                                    return response(['status' => 'success', 'message' => 'Zmieniono.', 'productTotal' => $productTotal]);
+                                }
+                            }
+                        } else {
+                            if ($request->id !== $product->id) {
+                                Cart::update($request->rowId, $request->quantity);
+                                $productTotal = $this->getProductTotal($request->rowId);
+
+                                return response(['status' => 'success', 'message' => 'Zmieniono', 'productTotal' => $productTotal]);
+                            } else {
+
+                                $productTotal = $this->getProductTotal($request->rowId);
+                                return response(['status' => 'error', 'message' => 'Nie Dodano. Status produktu: ' . $backordered->name, 'productTotal' => $productTotal]);
+                            }
+                        }
+                    }
+                } else { //nie i tak
+                    $productTotal = $this->getProductTotal($request->rowId);
+                    return response(['status' => 'error', 'message' => 'Nie Dodano. Status produktu: ' . $backordered->name, 'productTotal' => $productTotal]);
+                }
             }
         }
-
-
-        Cart::update($request->rowId, $request->quantity);
         $productTotal = $this->getProductTotal($request->rowId);
+        return response(['status' => 'error', 'message' => 'Nie Dodano. ERROR: ', 'productTotal' => $productTotal]);
 
-        return response(['status' => 'success', 'message' => 'zmieniono ilość', 'productTotal' => $productTotal]);
+
+
+        // if ($product->qty === 0) {
+        //     switch ($product->backorder) {
+        //         case 0:
+        //             return response(['status' => 'warning', 'message' => 'Produkt na zamówienie']);
+        //             break;
+        //         case 1:
+        //             return response(['status' => 'error', 'message' => 'Produkt wycofany']);
+        //             break;
+        //         default:
+        //             return response(['status' => 'warning', 'message' => 'produkt na zamówienie Indiwidualnie']);
+        //             break;
+        //     }
+        // } elseif ($product->qty < $request->qty) {
+        //     switch ($request->backorder) {
+        //         case 0:
+        //             return response(['status' => 'warning', 'message' => 'Produkt zostanoie do zamówienie']);
+        //             break;
+        //         case 1:
+        //             return response(['status' => 'error', 'message' => 'Nie ma wystarczającej ilości produktu na magaznynie']);
+        //             break;
+        //         default:
+        //             return response(['status' => 'warning', 'message' => 'Produkt zostanoie do zamówienie Indiwidualnie']);
+        //             break;
+        //     }
+        // }
+
+
+        // Cart::update($request->rowId, $request->quantity);
+        // $productTotal = $this->getProductTotal($request->rowId);
+
+        // return response(['status' => 'success', 'message' => 'zmieniono ilość', 'productTotal' => $productTotal]);
     }
     public function getProductTotal($rowId)
     {
