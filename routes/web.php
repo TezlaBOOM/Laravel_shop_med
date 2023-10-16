@@ -75,6 +75,8 @@ Route::post('newsletter-request', [NewsletterController::class, 'newsletterReque
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 /** about page route */
 Route::get('about', [PageController::class, 'about'])->name('about');
+/** about page route */
+Route::get('pricelist', [PageController::class, 'pricelist'])->name('pricelist');
 /** terms and conditions page route */
 Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions');
 /** Contact route */

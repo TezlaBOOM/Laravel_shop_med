@@ -9,7 +9,9 @@ use App\Models\TermsAndCondition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
-
+use App\Models\Category;
+use App\Models\HistoryPrice;
+use App\Models\Product;
 
 class PageController extends Controller
 {
@@ -42,5 +44,11 @@ class PageController extends Controller
 
         return response(['status' => 'success', 'message' => 'Mail został wysłany']);
 
+    }
+    public function pricelist()
+    {
+        $products = Product::where(['status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->get();
+        $categories = Category::where(['status' => 1])->get();
+        return view('frontend.pages.pricelist', compact('products','categories'));
     }
 }

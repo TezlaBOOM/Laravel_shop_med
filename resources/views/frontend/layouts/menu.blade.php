@@ -117,6 +117,7 @@
                             </li> --}}
                             <li><a class="{{setActive(['vendorPage'])}}" href="{{route('vendorPage.index')}}">Sprzedawcy</a></li>
                             <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">Wyprzedaż</a></li>
+                            <li><a class="{{setActive(['pricelist'])}}" href="{{route('pricelist')}}">Cennik</a></li>
                             <li><a class="{{setActive(['product-traking'])}}" href="{{route('product-traking.index')}}">Śledź zamówienie</a></li>
                             <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blog</a></li>
                             <li><a class="{{setActive(['about'])}}" href="{{route('about')}}">O nas</a></li>
