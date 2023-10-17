@@ -110,9 +110,9 @@
                                 <select id="inputStatus" class="form-control" name="vat">
                                     
                                     <option {{$product->vat == 0 ? 'selected': ''}} value="0">0</option>
-                                    <option {{$product->vat == 1 ? 'selected': ''}} value="1">5</option>
-                                    <option {{$product->vat == 2 ? 'selected': ''}} value="2">8</option>
-                                    <option {{$product->vat == 3 ? 'selected': ''}} value="3">23</option>
+                                    <option {{$product->vat == 5 ? 'selected': ''}} value="5">5</option>
+                                    <option {{$product->vat == 8 ? 'selected': ''}} value="8">8</option>
+                                    <option {{$product->vat == 23 ? 'selected': ''}} value="23">23</option>
                                 </select>
                               </div>
                             </div>

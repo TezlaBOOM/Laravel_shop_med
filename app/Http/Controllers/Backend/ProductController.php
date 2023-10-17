@@ -8,6 +8,7 @@ use App\Models\Backorder;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\HistoryPrice;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ProductImageGallery;
@@ -61,6 +62,7 @@ class ProductController extends Controller
             'product_type' =>['required'],
         ]);
 
+
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
         //dd($request->sub_category);
         $product = new Product();
@@ -90,6 +92,14 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         //dd($request->category);
         $product->save();
+
+
+        $history = new HistoryPrice();
+        $history->product_id=$product->id;
+        $history->action="create";
+        $history->old_price="";
+        $history->new_price=$product->price;
+        $history->save();
 
         toastr('Created Successfully!', 'success');
 
@@ -143,7 +153,23 @@ class ProductController extends Controller
                 'status' => ['required']
             ]);
     
+            
+
+    
             $product = Product::findOrFail($id);
+
+            $val1 = (int) $request->price;
+            $val2 = (int) $product->price;
+            
+            if($val1 !== $val2){
+                $history = new HistoryPrice();
+                $history->product_id=$product->id;
+                $history->action="edit";
+                $history->old_price=$product->price;
+                $history->new_price=$request->price;
+                $history->save();
+            }
+
     
             /** Handle the image upload */
             $imagePath = $this->updateImage($request, 'image', 'uploads', $product->thumb_image);
@@ -171,6 +197,8 @@ class ProductController extends Controller
             $product->seo_title = $request->seo_title;
             $product->seo_description = $request->seo_description;
             $product->save();
+
+            
     
             toastr('Zaktualizowano', 'success');
     

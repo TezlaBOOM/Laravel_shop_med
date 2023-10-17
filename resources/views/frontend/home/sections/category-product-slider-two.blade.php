@@ -183,25 +183,7 @@
                                     @else
                                         <h4>{{ $product->price }} {{ $settings->currency_icon }}</h4>
                                     @endif
-                                    @switch($product->vat)
-                                        @case(0)
-                                            <h6>0% Vat</h6>
-                                        @break
-
-                                        @case(1)
-                                            <h6>5% Vat</h6>
-                                        @break
-
-                                        @case(2)
-                                            <h6>8% Vat</h6>
-                                        @break
-
-                                        @case(3)
-                                            <h6>23% Vat</h6>
-                                        @break
-
-                                        @default
-                                    @endswitch
+                                    <h6>{{$product->vat}}% Vat</h6>
 
                                     <p class="description">{!! $product->short_description !!}</p>
 

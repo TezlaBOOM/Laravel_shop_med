@@ -8,6 +8,7 @@ use App\Models\Backorder;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\HistoryPrice;
 use App\Models\Product;
 use App\Models\ProductImageGallery;
 use App\Models\ProductVariant;
@@ -89,7 +90,14 @@ class VendorProductController extends Controller
         //dd($request->category);
         $product->save();
 
-        toastr('Created Successfully!', 'success');
+        $history = new HistoryPrice();
+        $history->product_id=$product->id;
+        $history->action="create";
+        $history->old_price="";
+        $history->new_price=$product->price;
+        $history->save();
+
+        toastr('Stworzono!', 'success');
 
         return redirect()->route('vendor.product.index');
 
@@ -153,6 +161,12 @@ class VendorProductController extends Controller
             if($product->vendor_id != Auth::user()->vendor->id){
                 abort(404);
             }
+            $history = new HistoryPrice();
+            $history->product_id=$product->id;
+            $history->action="edit";
+            $history->old_price=$product->price;
+            $history->new_price=$request->price;
+            $history->save();
             /** Handle the image upload */
             $imagePath = $this->updateImage($request, 'image', 'uploads', $product->thumb_image);
     

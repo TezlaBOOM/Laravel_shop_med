@@ -42,4 +42,12 @@ class Product extends Model
     {
         return $this->belongsTo(Backorder::class ,'backorder','id');
     }
+
+    // public function calculatePriceNetto($vat,$PriceBrutto)
+    // {
+    //     $PriceNetto = $PriceBrutto / (1 + $vat / 100);
+    //     return $PriceNetto;
+    // }
+
+
 }

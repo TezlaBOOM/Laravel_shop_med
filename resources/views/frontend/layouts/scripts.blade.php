@@ -185,7 +185,6 @@
             })
         }
 
-
         function fetchSidebarCartProducts() {
             $.ajax({
                 method: 'GET',
@@ -365,27 +364,27 @@
 
             $.ajax({
                 method: 'POST',
-                url: "{{route('newsletter-request')}}",
+                url: "{{ route('newsletter-request') }}",
                 data: data,
-                beforeSend: function(){
+                beforeSend: function() {
                     $('.subscribe_btn').text('Ładowanie...');
                 },
-                success: function(data){
-                    if(data.status === 'success'){
+                success: function(data) {
+                    if (data.status === 'success') {
                         $('.subscribe_btn').text('Subskrybujesz');
                         $('.newsletter_email').val('');
                         toastr.success(data.message);
 
-                    }else if(data.status === 'error'){
+                    } else if (data.status === 'error') {
 
                         $('.subscribe_btn').text('Subskrybujesz');
                         toastr.error(data.message);
                     }
                 },
-                error: function(data){
+                error: function(data) {
                     let errors = data.responseJSON.errors;
-                    if(errors){
-                        $.each(errors, function(key, value){
+                    if (errors) {
+                        $.each(errors, function(key, value) {
                             toastr.error(value);
                         })
                     }

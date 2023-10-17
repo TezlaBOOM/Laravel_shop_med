@@ -91,9 +91,9 @@
                                     <label for="inputStatus">Vat:</label>
                                     <select id="inputStatus" class="form-control" name="vat">
                                         <option value="0">0</option>
-                                        <option value="1">5</option>
-                                        <option value="2">8</option>
-                                        <option value="3">23</option>
+                                        <option value="5">5</option>
+                                        <option value="8">8</option>
+                                        <option value="23">23</option>
                                     </select>
                                   </div>
                                 </div>

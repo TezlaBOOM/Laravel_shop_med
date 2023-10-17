@@ -64,8 +64,8 @@
                                         <td><a href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
                                         </td>
                                         <td><a href="{{ route('product-detail', $product->slug) }}">{{ $product->sku }}</td>
-                                        <td></td>
-                                        <td>{{ $product->price }}</td>
+                                        <td><span id="wartoscCenyNetto">{{number_format($product->price / (1 + $product->vat / 100),2)}} </span>{{$settings->currency_icon}}</td>
+                                    <td>{{ $product->price }} {{$settings->currency_icon}}</td>
                                     </tr>
                                 @endif
                                 @endforeach
