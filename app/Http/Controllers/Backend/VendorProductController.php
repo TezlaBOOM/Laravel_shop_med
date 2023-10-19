@@ -161,12 +161,16 @@ class VendorProductController extends Controller
             if($product->vendor_id != Auth::user()->vendor->id){
                 abort(404);
             }
-            $history = new HistoryPrice();
-            $history->product_id=$product->id;
-            $history->action="edit";
-            $history->old_price=$product->price;
-            $history->new_price=$request->price;
-            $history->save();
+            $val1 = (int) $request->price;
+            $val2 = (int) $product->price;
+            if($val1 !== $val2){
+                $history = new HistoryPrice();
+                $history->product_id=$product->id;
+                $history->action="edit";
+                $history->old_price=$product->price;
+                $history->new_price=$request->price;
+                $history->save();
+            }
             /** Handle the image upload */
             $imagePath = $this->updateImage($request, 'image', 'uploads', $product->thumb_image);
     

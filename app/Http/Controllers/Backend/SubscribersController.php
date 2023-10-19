@@ -15,6 +15,14 @@ class SubscribersController extends Controller
     {
         return $dataTable->render('admin.subscriber.index');
     } 
+    public function newsletter()
+    {
+        return view('admin.subscriber.newsletter');
+    } 
+    public function pricelist()
+    {
+        return view('admin.subscriber.pricelist');
+    } 
     public function destory(string $id)
     {
         $subscriber = NewsletterSubscriber::findOrFail($id)->delete();

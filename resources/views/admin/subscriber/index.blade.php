@@ -16,19 +16,23 @@
                       <h4>Wyślij mail do wszystkich</h4>
                     </div>
                     <div class="card-body">
-                     <form action="{{route('admin.subscribers-send-mail')}}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Temat</label>
-                            <input type="text" class="form-control" name="subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Wiadomość</label>
-                            <textarea name="message"  class="form-control"></textarea>
-                        </div>
-                        <button class="btn btn-primary" style="submit">Wyślij</button>
-                     </form>
-                    </div>
+                    <div class="container">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="card-body">
+                                  <a href="{{route('admin.subscribers.newsletter')}}" class="btn btn-block btn-primary">newsletter</a>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="card-body">
+
+                                  <a href="{{route('admin.subscribers.pricelist')}}" class="btn btn-block btn-primary">Cennik</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
     
                   </div>
                 </div>
@@ -59,6 +63,7 @@
                 </div>
               </div>
             </section>
+            
             
 @endsection
 @push('scripts')

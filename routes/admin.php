@@ -150,6 +150,8 @@ Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'
 
 //*setting route*/
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
+Route::get('subscribers/newsletter', [SubscribersController::class, 'newsletter'])->name('subscribers.newsletter');
+Route::get('subscribers/pricelist', [SubscribersController::class, 'pricelist'])->name('subscribers.pricelist');
 Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
 Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
 
