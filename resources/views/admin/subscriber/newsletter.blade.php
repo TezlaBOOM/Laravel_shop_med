@@ -19,14 +19,22 @@
 
                 </div>
                     <div class="card-body">
-                     <form action="{{route('admin.subscribers-send-mail')}}" method="POST">
+                     <form action="{{route('admin.subscribers-send-mail')}}" method="POST"enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Temat</label>
                             <input type="text" class="form-control" name="subject">
                         </div>
+                          <div class="form-group">
+                              <label>Obrazek</label>
+                              <input type="file" class="form-control" name="image">
+                          </div>
+                          <div class="form-group">
+                              <label>Tekst alternatywny</label>
+                              <input type="text" class="form-control" name="alttext" >
+                          </div>
                         <div class="form-group">
-                            <label for="">Wiadomość</label>
+                            <label for="">Wiadomość Html</label>
                             <textarea name="message"  class="form-control"></textarea>
                         </div>
                         <button class="btn btn-primary" style="submit">Wyślij</button>

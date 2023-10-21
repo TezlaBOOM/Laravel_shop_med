@@ -216,11 +216,20 @@
             </li>
 
 
+            <li
+            class="dropdown {{ setActive(['admin.subscribers.*']) }}">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-bars"></i>
+                <span>Subskrybcje</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ setActive(['admin.subscribers.index']) }}"><a class="nav-link"
+                        href="{{ route('admin.subscribers.index') }}">Kategorie</a></li>
+                <li class="{{ setActive(['admin.subscribers.maillist']) }}"><a class="nav-link"
+                        href="{{ route('admin.subscribers.maillist') }}">Lista maili</a></li>
+
+            </ul>
+        </li>
 
 
-            <li><a class="nav-link {{ setActive(['admin.subscribers.*']) }}"
-                    href="{{ route('admin.subscribers.index') }}"><i class="fa fa-envelope"></i>
-                    <span>Subskrybencji</span></a></li>
             <li><a class="nav-link {{ setActive(['admin.settings.*']) }}"
                     href="{{ route('admin.settings.index') }}"><i class="fa fa-hammer"></i>
                     <span>Ustawienia</span></a></li>

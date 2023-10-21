@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('email');
             $table->text('title');
             $table->text('image');
+            $table->text('alt_text');
             $table->text('content');
             $table->text('id_creator');
             $table->timestamps();
