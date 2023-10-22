@@ -153,6 +153,7 @@ Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscr
 Route::get('subscribers/newsletter', [SubscribersController::class, 'newsletter'])->name('subscribers.newsletter');
 Route::get('subscribers/pricelist', [SubscribersController::class, 'pricelist'])->name('subscribers.pricelist');
 Route::get('subscribers/mailist', [SubscribersController::class, 'maillist'])->name('subscribers.maillist');
+Route::get('subscribers/mailist/show/{id}', [SubscribersController::class, 'show'])->name('subscribers.show');
 Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
 Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
 

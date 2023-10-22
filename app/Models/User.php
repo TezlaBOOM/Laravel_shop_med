@@ -48,5 +48,9 @@ class User extends Authenticatable
     { 
         return $this->hasOne(Vendor::class);
     }
+    public function userlist()
+    { 
+        return $this->hasOne(mail_list::class);
+    }
 
 }

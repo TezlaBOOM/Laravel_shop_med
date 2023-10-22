@@ -12,6 +12,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use App\Models\User;
 
 class SubscriberListDataTable extends DataTable
 {
@@ -23,7 +24,20 @@ class SubscriberListDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'subscriberlist.action')
+        ->addColumn('show', function($query){
+            $showBtn = "<a href='".route('admin.subscribers.show',$query->id)."' class='btn btn-primary'><i class='far fa-eye'></i></a>";
+
+            return $showBtn;
+        })
+        ->addColumn('Admin', function($query){
+            // dd($query->userlist->name);
+            return $query->user->email;
+        })
+            ->addColumn('Data', function($query){
+                return date('d-M-Y', strtotime($query->created_at));
+            })
+            ->addColumn('subscriberlist.action','Admin','Data','show')
+            ->rawColumns(['show'])
             ->setRowId('id');
     }
 
@@ -32,7 +46,7 @@ class SubscriberListDataTable extends DataTable
      */
     public function query(mail_list $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('action','newsletter')->newQuery();
     }
 
     /**
@@ -63,15 +77,18 @@ class SubscriberListDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('action'),
+            Column::make('title'),
+            Column::make('Data'),
+            Column::make('Admin'),
+            Column::computed('show')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
+            
         ];
     }
 
