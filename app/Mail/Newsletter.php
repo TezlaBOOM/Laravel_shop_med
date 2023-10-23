@@ -14,19 +14,23 @@ class Newsletter extends Mailable
     use Queueable, SerializesModels;
 
     public $subject;
-    public $image;
+    public $imagePath;
     public $alttext;
     public $messageContent;
+    public $offer_url;
+    public $image_url;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $messageContent, $alttext, $image)
+    public function __construct($subject, $imagePath, $alttext, $messageContent,$offer_url,$image_url)
     {
         $this->subject = $subject;
-        $this->image = $image;
+        $this->imagePath = $imagePath;
         $this->alttext = $alttext;
         $this->messageContent = $messageContent;
+        $this->offer_url = $offer_url;
+        $this->image_url = $image_url;
     }
 
     /**

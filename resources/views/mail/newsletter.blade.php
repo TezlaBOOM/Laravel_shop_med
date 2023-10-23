@@ -22,6 +22,9 @@
             padding: 20px;
           
         }
+        h2{
+            text-align: center;
+        }
 
         /* Menu */
         .menu-table {
@@ -87,16 +90,15 @@
     <div class="menu">
         <table class="menu-table">
             <tr>
-                <td><a href="#sklep">Sklep</a></td>
-                <td><a href="#oferta">Oferta</a></td>
-                <td><a href="#kontakt">Kontakt</a></td>
+                <td><a href="{{$offer_url}}">Sklep</a></td>
+                <td><a href="{{$offer_url}}">Oferta</a></td>
+                <td><a href="{{$offer_url}}">Kontakt</a></td>
             </tr>
         </table>
     </div>
     <div class="newsletter-content">
         <h2>Nowości i Aktualności</h2>
-        <p>Witaj, drogi Klient! Oto najnowsze informacje i aktualności z naszej firmy:</p>
-        <p><img src="{{$image}}" alt="{{$alttext}}" style="max-width: 100%;"></p>
+        <p><a href="{{$image_url}}"><img src="{{$message->embed($imagePath)}}" alt="{{$alttext}}" style="max-width: 100%;"></a></p>
         {{$messageContent}}
         <p>Śledź nas na mediach społecznościowych, aby być na bieżąco!</p>
     </div>

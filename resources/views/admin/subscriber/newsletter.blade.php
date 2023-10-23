@@ -33,6 +33,14 @@
                               <label>Tekst alternatywny</label>
                               <input type="text" class="form-control" name="alttext" >
                           </div>
+                          <div class="form-group">
+                            <label for="">Url obrazka</label>
+                            <input type="text" class="form-control" name="image_url">
+                        </div>
+                        <div class="form-group">
+                          <label for="">Url oferty</label>
+                          <input type="text" class="form-control" name="offer_url">
+                      </div>
                         <div class="form-group">
                             <label for="">Wiadomość Html</label>
                             <textarea name="message"  class="form-control"></textarea>

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('mail_lists', function (Blueprint $table) {
             $table->id();
             $table->text('action');
+            $table->text('offer_url');
             $table->text('email');
             $table->text('title');
             $table->text('image');
             $table->text('alt_text');
+            $table->text('image_url');
             $table->text('content');
             $table->text('id_creator');
             $table->timestamps();

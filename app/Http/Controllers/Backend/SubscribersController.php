@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SubscribersController extends Controller
 {
     use ImageUploadTrait;
@@ -48,23 +50,34 @@ class SubscribersController extends Controller
         $request->validate([
             'subject' => ['required'],
             'message' => ['max:2048'],
-            'alttext' => ['max:2048'],
-            'image' =>['max:2048'],
+            'alttext' => ['required','max:2048'],
+            'image_url' => ['required','max:2048'],
+            'offer_url' => ['required','max:2048'],
+            'image' =>['required','max:2048'],
         ]);
         $emails = NewsletterSubscriber::where('is_verified', 1)->pluck('email')->toArray();
         $list = NewsletterSubscriber::where('is_verified', 1)->pluck('email');
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
-        Mail::to($emails)->send(new Newsletter($request->subject,$request->imagePath,$request->alttext, $request->message));
-        
-        
+
         $maillist= new mail_list();
         $maillist->action= 'newsletter';
         $maillist->email= $list;
         $maillist->title = $request->subject;
+        $maillist->image_url = $request->image_url;
+        $maillist->offer_url = $request->offer_url;
         $maillist->image = $imagePath;
         $maillist->alt_text = $request->alttext;
         $maillist->content = $request->message;
         $maillist->user_id = Auth::User()->id;
+       
+       if(is_null($request->message)){
+        Mail::to($emails)->send(new Newsletter($request->subject,$imagePath,$request->alttext, ' ',$request->offer_url,$request->image_url));
+        $maillist->content = ' ';
+       }else{
+        Mail::to($emails)->send(new Newsletter($request->subject,$imagePath,$request->alttext, $request->message,$request->offer_url,$request->image_url));
+        $maillist->content = $request->message;
+       }
+    
         $maillist->save();
         toastr('Mail został wysłany','success','success');
         return redirect()->back();
