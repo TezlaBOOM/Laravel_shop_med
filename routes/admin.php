@@ -155,7 +155,9 @@ Route::get('subscribers/pricelist', [SubscribersController::class, 'pricelist'])
 Route::get('subscribers/mailist', [SubscribersController::class, 'maillist'])->name('subscribers.maillist');
 Route::get('subscribers/mailist/show/{id}', [SubscribersController::class, 'show'])->name('subscribers.show');
 Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
+
 Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
+Route::post('subscribers-send-mail-pricelist', [SubscribersController::class, 'sendMailPriceList'])->name('subscribers-send-mail-pricelist');
 
 /**Advertisement */
 Route::put('advertisement/homepage-banner-secion-one', [AdvertisementController::class, 'homepageBannerSecionOne'])->name('homepage-banner-secion-one');

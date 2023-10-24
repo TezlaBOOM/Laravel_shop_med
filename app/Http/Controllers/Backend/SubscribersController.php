@@ -6,6 +6,8 @@ use App\DataTables\NewsletterSubscriberDataTable;
 use App\DataTables\SubscriberListDataTable;
 use App\Http\Controllers\Controller;
 use App\Mail\Newsletter;
+use App\Mail\PriceList;
+use App\Models\HistoryPrice;
 use App\Models\mail_list;
 use App\Models\NewsletterSubscriber;
 use App\Traits\ImageUploadTrait;
@@ -79,6 +81,43 @@ class SubscribersController extends Controller
        }
     
         $maillist->save();
+        toastr('Mail został wysłany','success','success');
+        return redirect()->back();
+        
+    }
+    public function sendMailPriceList(Request $request)
+    {
+        $request->validate([
+            'subject' => ['required'],
+            'startDate' => ['required'],
+            'endDate' => ['required'],
+           
+
+        ]);
+        
+        $emails = NewsletterSubscriber::where('is_verified', 1)->pluck('email')->toArray();
+        $list = NewsletterSubscriber::where('is_verified', 1)->pluck('email');
+        $price = HistoryPrice::whereBetween('created_at', [$request->startDate, $request->endDate])->orderby('id','DESC')->get();
+        $pricelist = HistoryPrice::whereBetween('created_at', [$request->startDate, $request->endDate])
+        ->orderBy('id', 'DESC')->pluck('id')->toArray();;
+        $maillist= new mail_list();
+        $maillist->action= 'pricelist';
+        $maillist->email= $list;
+        $maillist->title = $request->subject;
+        $maillist->content =$price;
+        $maillist->user_id = Auth::User()->id;
+        
+
+    //    if(is_null($request->message)){
+    //     $maillist->content = ' ';
+    //    }else{
+    //     Mail::to($emails)->send(new Newsletter($request->subject,$imagePath,$request->alttext, $request->message,$request->offer_url,$request->image_url));
+    //     $maillist->content = $request->message;
+    //    }
+    
+        $maillist->save();
+      
+        Mail::to($emails)->send(new PriceList($request->subject,$pricelist));
         toastr('Mail został wysłany','success','success');
         return redirect()->back();
         

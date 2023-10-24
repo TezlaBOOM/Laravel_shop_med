@@ -16,28 +16,43 @@
                         <table class="table table-striped table-hover table-md">
                             <tr>
                               <td>Nazwa użytkownika: </td>
-                              <td>{{$mail->email}}</td>
+                              <td>{{@$mail->email}}</td>
                             </tr>
                             <tr>
                                 <td>Temat: </td>
-                                <td>{{$mail->title}}</td>
+                                <td>{{@$mail->title}}</td>
                             </tr>
                             <tr>
                                 <td>Obrazek: </td>
                                 <td>
-                                    
-                                    <img width="100px" src="{{asset($mail->image)}}" alt="{{$mail->alt}}">
+                                    <img width="100px" src="{{asset(@$mail->image)}}" alt="{{@$mail->alt}}">
                                 </td>
                             
                               
                             </tr>
                             <tr>
+                              <td>Link w obrazku: </td>
+                              <td>
+                                  {{@$mail->image_url}}
+                              </td>
+                          
+                            
+                          </tr>
+                          <tr>
+                            <td>Link do oferty: </td>
+                            <td>
+                                {{@$mail->offer_url}}
+                            </td>
+                        
+                          
+                        </tr>
+                            <tr>
                                 <td>Zawartość: </td>
-                                <td>{{$mail->content}}</td>
+                                <td>{{@$mail->content}}</td>
                             </tr>
                             <tr>
                                 <td>Wysłane przez: </td>
-                                <td>Wysłane przez {{$mail->user->name}}</td>
+                                <td>Wysłane przez {{@$mail->user->name}}</td>
                             </tr>
                           </table>
                     </div>
