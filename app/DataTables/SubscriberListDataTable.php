@@ -46,7 +46,7 @@ class SubscriberListDataTable extends DataTable
      */
     public function query(mail_list $model): QueryBuilder
     {
-        return $model->where('action','newsletter')->newQuery();
+        return $model->whereIn('action', ['newsletter', 'pricelist'])->newQuery();
     }
 
     /**

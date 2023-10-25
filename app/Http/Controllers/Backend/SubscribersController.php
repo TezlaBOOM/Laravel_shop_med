@@ -114,10 +114,10 @@ class SubscribersController extends Controller
     //     Mail::to($emails)->send(new Newsletter($request->subject,$imagePath,$request->alttext, $request->message,$request->offer_url,$request->image_url));
     //     $maillist->content = $request->message;
     //    }
-    
+   
         $maillist->save();
       
-        Mail::to($emails)->send(new PriceList($request->subject,$pricelist));
+        Mail::to($emails)->send(new PriceList($request->subject,$pricelist,$request->startDate,$request->endDate));
         toastr('Mail został wysłany','success','success');
         return redirect()->back();
         

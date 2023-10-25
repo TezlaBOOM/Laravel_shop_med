@@ -83,7 +83,59 @@
             font-size: 20px;
             margin: 0 10px;
         }
+        /* Stylizacja głównej tabeli */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    
+}
+
+/* Stylizacja wierszy z nagłówkami */
+.table thead tr {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: bold;
+    list-style-type: none;
+}
+
+/* Stylizacja komórek w nagłówku */
+.table thead th {
+    padding: 10px;
+}
+
+/* Stylizacja reszty wierszy */
+.table tbody tr {
+    background-color: #f2f2f2;
+}
+
+/* Stylizacja komórek w wierszach */
+.table tbody td {
+    padding: 10px;
+}
+.product{
+    text-align: center;
+}
+
+/* Stylizacja pierwszej komórki w każdym wierszu */
+.table tbody tr td:first-child {
+    font-weight: bold;
+}
+
+/* Dodanie lewej krawędzi do pierwszej komórki w każdym wierszu */
+.table tbody tr td:first-child::before {
+    
+    margin-right: 5px;
+}
+
+/* Stylizacja linków w komórkach z atrybutem 'href' */
+.table tbody a {
+    text-decoration: none;
+    color: #3498db;
+}
     </style>
+
+
 </head>
 
 <body>
@@ -93,14 +145,70 @@
     <div class="menu">
         <table class="menu-table">
             <tr>
-                <td><a href="">Sklep</a></td>
-                <td><a href="">Oferta</a></td>
-                <td><a href="">Kontakt</a></td>
+                <td><a href="{{route('home')}}">Sklep</a></td>
+                <td><a href="{{route('flash-sale')}}">Oferta</a></td>
+                <td><a href="{{route('contact')}}">Kontakt</a></td>
             </tr>
         </table>
     </div>
     <div class="newsletter-content">
-        <h2>Nowości i Aktualności</h2>
+        <h2>Zmiana cen produktów <br> od {{$startDate}} do {{$endDate}} </h2>
+        <table class="table ">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Stara Cena Brutto</th>
+                    <th scope="col">Nowa Cena Brutto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+
+                    $products = \App\Models\Product::where(['status' => 1, 'is_approved' => 1])
+                        ->orderBy('id', 'DESC')
+                        ->get();
+                    $categories = \App\Models\Category::where(['status' => 1])->get();
+                    $historyPrice = \App\Models\HistoryPrice::whereBetween('created_at', [$startDate, $endDate])
+                        ->orderby('id', 'DESC')
+                        ->get();
+                    
+                    $uniqueCollection = $historyPrice->unique('product_id');
+                   
+                @endphp
+                @foreach ($categories as $category)
+                    <tr class="table-gray">
+                        <td class="table-active" colspan="5"><a
+                                href="{{ route('products.index', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                        </td>
+                        {{-- <td ></td> --}}
+                    </tr>
+
+                    @foreach ($products as $product)
+                        @if ($product->category_id == $category->id)
+                            @foreach ($uniqueCollection as $price)
+                                @if ($product->id == $price->product_id)
+                                <tr>
+                                        <td></td>
+                                        <td class="product"><a href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a></td>
+                                        <td class="product"><a href="{{ route('product-detail', $product->slug) }}">{{ $product->sku }}</td>
+
+                                        <td class="product">{{ $price->old_price }} {{ $settings->currency_icon }}</td>
+                                        <td class="product">{{ $product->price }} {{ $settings->currency_icon }}</td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                @endforeach
+
+
+            </tbody>
+        </table>
+
+
+        {{-- @endforeach
         @dd($messageContent)
         <table class="table ">
             <thead>
@@ -121,9 +229,10 @@
                 </tr>
             @endforeach
             </tbody>
-        </table>
+        </table> --}}
         <p>Śledź nas na mediach społecznościowych, aby być na bieżąco!</p>
     </div>
+   
     <footer>
         &copy; 2023 Nasza Firma | <a href="mailto:info@nasza-firma.com">info@nasza-firma.com</a>
         <div class="social-icons">

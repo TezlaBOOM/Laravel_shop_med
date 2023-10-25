@@ -2,6 +2,9 @@
 
 namespace App\Mail;
 
+use App\Models\Category;
+use App\Models\HistoryPrice;
+use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,16 +17,20 @@ class PriceList extends Mailable
     use Queueable, SerializesModels;
 
     public $subject;
-
+    public $startDate;
+    public $endDate;
     public $messageContent;
 
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $messageContent)
+    public function __construct($subject, $messageContent,$startDate,$endDate)
     {
+
         $this->subject = $subject;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
         $this->messageContent = $messageContent;
 
     }
