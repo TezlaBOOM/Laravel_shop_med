@@ -20,20 +20,20 @@
                     <form action="{{route('admin.blog.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label>Image</label>
+                            <label>Obrazek</label>
                             <input type="file" class="form-control" name="image">
                         </div>
 
                         <div class="form-group">
-                            <label>Title</label>
+                            <label>Tytuł</label>
                             <input type="text" class="form-control" name="title" value="{{old('title')}}">
                         </div>
 
 
                         <div class="form-group">
-                            <label for="inputState">Category</label>
+                            <label for="inputState">Kategoria</label>
                             <select id="inputState" class="form-control main-category" name="category">
-                                <option value="">Select</option>
+                                <option value="">Wybierz</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
@@ -42,30 +42,30 @@
 
 
                         <div class="form-group">
-                            <label>Description</label>
+                            <label>Opis</label>
                             <textarea name="description" class="form-control summernote"></textarea>
                         </div>
 
 
 
                         <div class="form-group">
-                            <label>Seo Title</label>
+                            <label>Seo tytuł</label>
                             <input type="text" class="form-control" name="seo_title" value="{{old('seo_title')}}">
                         </div>
 
                         <div class="form-group">
-                            <label>Seo Description</label>
+                            <label>Seo opis</label>
                             <textarea name="seo_description" class="form-control"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">
-                              <option value="1">Active</option>
-                              <option value="0">Inactive</option>
+                              <option value="1">Aktywny</option>
+                              <option value="0">Nieaktywny</option>
                             </select>
                         </div>
-                        <button type="submmit" class="btn btn-primary">Create</button>
+                        <button type="submmit" class="btn btn-primary">Stwórz</button>
                     </form>
                   </div>
 

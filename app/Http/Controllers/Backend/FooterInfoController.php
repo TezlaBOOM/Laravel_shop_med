@@ -73,7 +73,7 @@ class FooterInfoController extends Controller
         FooterInfo::updateOrCreate(
             ['id' => $id],
             [
-                'logo' => empty(!$imagePath) ? $imagePath : $footerInfo->banner,
+                'logo' => empty(!$imagePath) ? $imagePath : $footerInfo->logo,
                 'phone' => $request->phone,
                 'nip' => $request->nip,
                 'email' => $request->email,

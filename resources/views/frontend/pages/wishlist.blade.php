@@ -78,8 +78,8 @@
                                             <td class="wsus__pro_status">
 
                                                 @foreach ($backorders as $backordered)
-                                                    @if ($product->backorder == $backordered->id)
-                                                        @if ($product->qty > 0)
+                                                    @if ($item->product->backorder == $backordered->id)
+                                                        @if ($item->product->qty > 0)
                                                             <p class="wsus__stock_area">
                                                                 Na magazynie: <b style="color:green">
                                                                     {{ $item->product->qty }}</b>
@@ -96,7 +96,7 @@
 
                                                             </p>
                                                         @endif
-                                                    @elseif($product->backorder == 0)
+                                                    @elseif($item->product->backorder == 0)
                                                         <b>Korekta status</b>
                                                     @break;
                                                 @endif

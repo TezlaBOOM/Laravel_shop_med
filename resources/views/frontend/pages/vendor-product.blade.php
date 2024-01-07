@@ -93,6 +93,7 @@
                                     @foreach ($products as $product)
                                         <div class="col-xl-3  col-sm-6">
                                             <div class="wsus__product_item">
+                                                
                                                 <span class="wsus__new">{{ productType($product->product_type) }}</span>
                                                 @if (checkDiscount($product) == true)
                                                     <span

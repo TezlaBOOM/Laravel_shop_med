@@ -29,6 +29,8 @@ class AdminListDataTable extends DataTable
                     $deleteBtn = "<a href='".route('admin.admin-list.destory', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
                     $editBtn ="<a href='".route('admin.customers.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
                     return $deleteBtn.$editBtn;
+                }else{
+                     return "Super Admin";
                 }
             })
             ->addColumn('status', function($query){
@@ -45,7 +47,9 @@ class AdminListDataTable extends DataTable
                         </label>';
                     }
                     return $button;
-                }
+                }else{
+                    return "Super Admin";
+               }
             })
             ->rawColumns(['status', 'action'])
             ->setRowId('id');

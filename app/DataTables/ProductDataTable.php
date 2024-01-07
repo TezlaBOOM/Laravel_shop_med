@@ -54,7 +54,7 @@ class ProductDataTable extends DataTable
 
             return $button;
         })
-        ->addColumn('thumb_image', function($query){
+        ->addColumn('thumbnail_image', function($query){
             return  $img="<img width='50px' src='".asset($query->thumb_image)."'></img>";
           })
           ->addColumn('type', function($query){
@@ -90,7 +90,7 @@ class ProductDataTable extends DataTable
         })
 
 
-        ->rawColumns(['status','action','thumb_image','type','backorder'])
+        ->rawColumns(['status','action','thumbnail_image','type','backorder'])
         ->setRowId('id');
     }
 
@@ -132,7 +132,7 @@ class ProductDataTable extends DataTable
         return [
             Column::make('id')->width(50),
             
-            Column::make('thumb_image'),
+            Column::make('thumbnail_image'),
             Column::make('name'),
             Column::make('price'),
             Column::make('qty'),
