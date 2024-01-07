@@ -6,8 +6,8 @@
     <a href="{{route('vendor.dashboard')}}" class="dash_logo"><img src="{{asset($logoSetting->logo)}}" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
       <li><a  href="{{url('/')}}"><i class="fas fa-home"></i>Strona główna</a></li>
-      @if (auth()->user()->role === 'user')
-      <li><a class="{{setActive(['user.dashboard'])}}" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer"></i>Panel Sprzedaawcy</a></li>
+      @if (auth()->user()->role !== 'user')
+      <li><a class="{{setActive(['user.dashboard'])}}" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer"></i>Panel użytkownika</a></li>
       @endif
       <li><a class="{{setActive(['vendor.dashboard'])}}" href="{{route('vendor.dashboard')}}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
       <li><a class="{{setActive(['vendor.orders.index'])}}" href="{{route('vendor.orders.index')}}"><i class="fas fa-box"></i> Zamówienia</a></li>

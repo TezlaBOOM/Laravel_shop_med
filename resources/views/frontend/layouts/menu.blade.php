@@ -128,7 +128,7 @@
                             @if (auth()->user()->role === 'user')
                             <li><a href="{{route('user.dashboard')}}">Profil</a></li>
                             @elseif (auth()->user()->role === 'vendor')
-                            <li><a href="{{route('vendor.dashbaord')}}">Panel Sprzedawcy</a></li>
+                            <li><a href="{{route('vendor.dashboard')}}">Panel Sprzedawcy</a></li>
                             @elseif (auth()->user()->role === 'admin')
                             <li><a href="{{route('admin.dashboard')}}">Panel Admin</a></li>
     
@@ -226,7 +226,7 @@
                             @if (auth()->user()->role === 'user')
                             <li><a href="{{route('user.dashboard')}}">Profil</a></li>
                             @elseif (auth()->user()->role === 'vendor')
-                            <li><a href="{{route('vendor.dashbaord')}}">Panel Sprzedawcy</a></li>
+                            <li><a href="{{route('vendor.dashboard')}}">Panel Sprzedawcy</a></li>
                             @elseif (auth()->user()->role === 'admin')
                             <li><a href="{{route('admin.dashboard')}}">Panel Admin</a></li>
     

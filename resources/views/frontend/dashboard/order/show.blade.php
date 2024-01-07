@@ -119,20 +119,20 @@
                                                             <td class="amount">
                                                                 @foreach ($variants as $key => $item)
                                                                     @if ($key == 'main')
-
-                                                                        @foreach ($backorders as $backordered)
-                                                                            @if ($variantt->backorder == $backordered->id)
-                                                                                @if ($item->storage - $product->qty > 0)
+                                                                    @foreach ($backorders as $backordered)
+                                                                    
+                                                                    @if ($item->backorder == $backordered->id)
+                                                                        @if ($item->storage > 0)
                                                                                     <b>Dostępne</b>
                                                                                 @else
                                                                                     <b>{{ $backordered->name }}:
                                                                                         brakuje
-                                                                                        {{ $item)->storage - $product->qty }}
+                                                                                        {{ $item->storage - $product->qty }}
                                                                                         z
-                                                                                        {{ $item)->storage }} </b>
-                                                                                    @dd($backordered->id);
+                                                                                        {{ $item->storage }} </b>
+                                                                                    
                                                                                 @endif
-                                                                            @elseif($variantt->backorder == 0)
+                                                                            @elseif($item->backorder == 0)
                                                                                 <b>Korekta status</b>
                                                                             @break;
                                                                         @endif
