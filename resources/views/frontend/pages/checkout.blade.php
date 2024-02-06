@@ -253,7 +253,7 @@
                     },
                     success: function(data){
                         if(data.status === 'success'){
-                            $('#submitCheckoutForm').text('Place Order')
+                            $('#submitCheckoutForm').text('Zamów')
                             // redirect user to next page
                             window.location.href = data.redirect_url;
                         }

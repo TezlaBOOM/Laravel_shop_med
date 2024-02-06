@@ -8,7 +8,7 @@ aria-labelledby="v-pills-home-tab">
                     <input type="hidden" name="stripe_token" id="stripe-token-id">
                     <div id="card-element" class="form-control"></div>
                     <br>
-                    <button class="nav-link common_btn" id="pay-btn" onclick="createToken()" type="button">Pay with Stripe</button>
+                    <button class="nav-link common_btn" id="pay-btn" onclick="createToken()" type="button">Płać ze Stripe</button>
                 </form>
             </div>
         </div>

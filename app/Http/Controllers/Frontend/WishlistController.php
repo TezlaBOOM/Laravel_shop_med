@@ -13,19 +13,19 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        $wishlistProducts = Wishlist::with('product')->where('user_id', Auth::user()->id)->orderBy('id','DESC')->get();
-        $backorders= Backorder::all();
+        $wishlistProducts = Wishlist::with('product')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $backorders = Backorder::all();
         $product = Product::all();
-        return view('frontend.pages.wishlist',compact('wishlistProducts','backorders','product'));
+        return view('frontend.pages.wishlist', compact('wishlistProducts', 'backorders', 'product'));
     }
     public function addToWishList(Request $request)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return response(['status' => 'error', 'message' => 'Musisz być zalogowany aby dodać produkt do listy życzeń']);
         }
 
         $wishlistCount = Wishlist::where(['product_id' => $request->id, 'user_id' => Auth::user()->id])->count();
-        if($wishlistCount > 0){
+        if ($wishlistCount > 0) {
             return response(['status' => 'error', 'message' => 'Produkt jest już w listcie życzeń']);
         }
 
@@ -42,7 +42,7 @@ class WishlistController extends Controller
     {
 
         $wishlistProducts = Wishlist::where('id', $id)->firstOrFail();
-        if($wishlistProducts->user_id !== Auth::user()->id){
+        if ($wishlistProducts->user_id !== Auth::user()->id) {
             return redirect()->back();
         }
         $wishlistProducts->delete();
@@ -50,6 +50,5 @@ class WishlistController extends Controller
         toastr('Produkt usunięto', 'success', 'success');
 
         return redirect()->back();
-
     }
 }

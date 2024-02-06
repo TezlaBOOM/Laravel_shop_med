@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>O nas</h4>
+                        <h4>Śledzenie zamówienia</h4>
                         <ul>
                             <li><a href="{{ route('home') }}">Stona głowna</a></li>
                             <li><a href="javascript:;">Śledzenie zamówienia</a></li>
