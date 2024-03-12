@@ -1,4 +1,10 @@
 <section id="wsus__flash_sell" class="wsus__flash_sell_2">
+    @php
+        $today = date("Y-m-d");
+    @endphp
+@if ($today <= $flashSaleDate->end_date)
+    
+
     <div class=" container">
         <div class="row">
             <div class="col-xl-12">
@@ -75,6 +81,7 @@
             @endforeach
         </div>
     </div>
+    @endif
 </section>
 
     <!--==========================

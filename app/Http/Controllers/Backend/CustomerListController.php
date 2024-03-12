@@ -94,20 +94,20 @@ class CustomerListController extends Controller
 
         return response(['status' => 'success', 'message' =>'Usunięto']);
     }
-    public function updatePassword(Request $request)
+
+    public function updatePassword(Request $request, string $id)
     {
-        
         $request->validate([
-            'current_password'=>['required','current_password'],
             'password'=>['required','string','confirmed','min:8']
         ]);
-
-        $request->user()->update([
+//dd($request->id);
+        $user = User::findOrFail($id)->update([
             'password'=>bcrypt($request->password)
         ]);
 
-        toastr()->success('Profile password successfully');
+        toastr()->success('Hasło zostało zmienione');
         return redirect()->back();
     }
+    
 
 }

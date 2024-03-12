@@ -93,27 +93,23 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Wszyscy użytkownicy</h4>
+                                    <h4>Zmiana hasła użytkownika</h4>
                                 </div>
                                 <div class="card-body">
 
-                                    {{-- //{{route('admin.blog.update', $blog->id)}} --}}
+                                  
                                     <form action="{{route('admin.customer.update.password', $user->id)}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                       
 
-                                        <div class="form-group">
-                                            <label>nazwa</label>
-                                            <input name="password" class="form-control" type="password"
-                                                placeholder="New Password">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label>nazwa</label>
-                                            <input name="password_confirmation" class="form-control" type="password"
-                                                placeholder="Confirm Password">
-                                        </div>
+                                        <div class="form-group col-12">
+                                            <label>New Password</label>
+                                            <input type="password" name="password" class="form-control">
+                                          </div>
+                                          <div class="form-group col-12">
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="password_confirmation" class="form-control">
+                                          </div>
 
 
 

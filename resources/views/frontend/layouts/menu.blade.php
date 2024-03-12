@@ -7,6 +7,7 @@
         }]);
     }])
     ->get();
+    $flashSaleDate = \App\Models\FlashSale::first();
 @endphp
     <nav class="wsus__main_menu d-none d-lg-block">
         <div class="container">
@@ -116,7 +117,12 @@
                                 </div>
                             </li> --}}
                             <li><a class="{{setActive(['vendorPage'])}}" href="{{route('vendorPage.index')}}">Sprzedawcy</a></li>
+                            @php
+                                $today = date("Y-m-d");
+                            @endphp
+                                @if ($today <= $flashSaleDate->end_date)
                             <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">Wyprzedaż</a></li>
+                                @endif
                             <li><a class="{{setActive(['pricelist'])}}" href="{{route('pricelist')}}">Cennik</a></li>
                             <li><a class="{{setActive(['product-traking'])}}" href="{{route('product-traking.index')}}">Śledź zamówienie</a></li>
                             <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blog</a></li>

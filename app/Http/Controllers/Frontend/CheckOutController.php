@@ -23,7 +23,6 @@ class CheckOutController extends Controller
     public function createAddress(Request $request)
     {
         $request->validate([
-            'type'=>['required','integer'],
             'name'=>['required', 'max:200'],
             'phone'=>['required', 'max:12'],
             'nip'=>['required', 'max:10'],
@@ -34,7 +33,6 @@ class CheckOutController extends Controller
         ]);
         $address = new UserAddress();
         $address->id_user = Auth::user()->id;
-        $address->type = $request->type;
         $address->name = $request->name;
         $address->phone = $request->phone;
         $address->nip = $request->nip;

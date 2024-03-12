@@ -4,7 +4,7 @@
     $coupon = json_decode($order->coupon);
     
 @endphp
-@extends('vendor.layouts.master')
+@extends('frontend.dashboard.layouts.master')
 @section('title')
     {{ $settings->site_name }} || Zamówienie
 @endsection
@@ -14,7 +14,7 @@
       ==============================-->
     <section id="wsus__dashboard">
         <div class="container-fluid">
-            @include('vendor.layouts.siderbar')
+            @include('frontend.dashboard.layouts.siderbar')
 
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
@@ -61,9 +61,9 @@
                                                             <h6>Status zamówienia:
                                                                 {{ config('order_status.order_status_admin')[$order->order_status]['status'] }}
                                                             </h6>
-                                                            <p>Metoda płatności: {{ $order->payment_method }}</p>
-                                                            <p>Status płatności: {{ $order->payment_status }}</p>
-                                                            <p>Tranzakcja id: {{ $order->transaction->transaction_id }}
+                                                            <p>Metoda płatności: {{ @$order->payment_method }}</p>
+                                                            <p>Status płatności: {{ @$order->payment_status }}</p>
+                                                            <p>Tranzakcja id: {{ @$order->transaction->transaction_id }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -121,21 +121,21 @@
                                                                     @if ($key == 'main')
                                                                     @foreach ($backorders as $backordered)
                                                                     
-                                                                    @if ($item->backorder == $backordered->id)
-                                                                        @if ($item->storage > 0)
+                                                                            @if ($item->backorder == $backordered->id)
+                                                                                @if ($item->storage > 0)
                                                                                     <b>Dostępne</b>
                                                                                 @else
                                                                                     <b>{{ $backordered->name }}:
                                                                                         brakuje
-                                                                                        {{ $item->storage - $product->qty }}
+                                                                                       {{$product->qty }}
                                                                                         z
                                                                                         {{ $item->storage }} </b>
                                                                                     
                                                                                 @endif
                                                                             @elseif($item->backorder == 0)
                                                                                 <b>Korekta status</b>
-                                                                            @break;
-                                                                        @endif
+                                                                                @break;
+                                                                            @endif
                                                                     @endforeach
                                                                 @endif
                                                             @endforeach

@@ -26,6 +26,7 @@ class HomeController extends Controller
         $popularCategory = HomePageSettings::where('key', 'popular_category_section')->first();
         $brands= Brand::where('status',1)->where('is_featured',1)->get();
         $backorders= Backorder::all();
+        
 
        
         $typeBaseProducts = $this->getTypeBaseProduct();
